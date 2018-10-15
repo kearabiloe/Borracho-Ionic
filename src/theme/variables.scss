@@ -13,8 +13,8 @@ $font-path: "../assets/fonts";
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
 $text-color:        #000;
-$background-color:  #fff;
-
+$background-color:  #aab4bf;
+$text-input-placeholder-color:#04264c;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -25,8 +25,8 @@ $background-color:  #fff;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #04264c,
+  secondary:  #c0d634,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222

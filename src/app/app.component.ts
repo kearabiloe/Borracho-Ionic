@@ -10,9 +10,14 @@ import { Settings } from '../providers';
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
+      <ion-item >
+          <ion-avatar item-start>
+            <img src="assets/img/appicon.png">
+          </ion-avatar>
+          <ion-title>
+            Borracho
+          </ion-title>
+        </ion-item>
     </ion-header>
 
     <ion-content>

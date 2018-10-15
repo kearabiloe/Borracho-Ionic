@@ -9,8 +9,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+// Providers
+import { ParseProvider } from '../providers/parse/parse';
+import { AuthProvider } from '../providers/auth/auth';
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
+
 import { MyApp } from './app.component';
 
 // The translate loader needs to know where to load i18n files
@@ -62,6 +66,8 @@ export function provideSettings(storage: Storage) {
     Camera,
     SplashScreen,
     StatusBar,
+    ParseProvider,
+    AuthProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
