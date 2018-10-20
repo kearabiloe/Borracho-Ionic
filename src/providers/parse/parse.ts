@@ -17,15 +17,15 @@ export class ParseProvider {
     console.log('Initiated Parse');
   }
 
-  public getGameScores(offset: number = 0, limit: number = 3): Promise<any> {
+  public getRentalProperties(offset: number = 0, limit: number = 3): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const GameScore = Parse.Object.extend('GameScore');
-        let query = new Parse.Query(GameScore);
+        const RentalProperty = Parse.Object.extend('RentalProperties');
+        let query = new Parse.Query(RentalProperty);
         query.skip(offset);
         query.limit(limit);
-        query.find().then((gameScores) => {
-          resolve(gameScores);
+        query.find().then((Properties) => {
+          resolve(Properties);
         }, (error) => {
           reject(error);
         });
@@ -33,20 +33,36 @@ export class ParseProvider {
     });
   }
 
-  public addGameScore(newScore): Promise<any> {
-    const GameScore = Parse.Object.extend('GameScore');
-    
-    let gameScore = new GameScore();
-    gameScore.set('score', parseInt(newScore.score));
-    gameScore.set('playerName', newScore.playerName);
-    gameScore.set('cheatMode', false);
+  public getRentalProperty(propertyId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const RentalProperty = Parse.Object.extend('RentalProperties');
+        let query = new Parse.Query(RentalProperty);
+        query.get(propertyId).then((Property) => {
+          resolve(Property);
+        }, (error) => {
+          reject(error);
+        });
+      }, 500);
+    });
+  }
 
-    return gameScore.save(null, {
-      success: function (gameScore) {
-        console.log(gameScore);
-        return gameScore;
+  public addRentalProperty(newProperty): Promise<any> {
+    const RentalProperty = Parse.Object.extend('RentalProperties');
+    
+    let rentalProperty = new RentalProperty();
+    rentalProperty.set('name', newProperty.name);
+    rentalProperty.set('street_address', newProperty.street_address);
+    rentalProperty.set('suburb', newProperty.suburb);
+    rentalProperty.set('price', newProperty.price);
+    rentalProperty.set('propertyPic', newProperty.propertyPic);
+
+    return rentalProperty.save(null, {
+      success: function (rentalProperty) {
+        console.log(rentalProperty);
+        return rentalProperty;
       },
-      error: function (gameScore, error) {
+      error: function (rentalProperty, error) {
         console.log(error);
         return error;
       }

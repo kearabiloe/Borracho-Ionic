@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chats.html',
 })
 export class ChatsPage {
-	chatsSegment: any = 'unread';
+	chatsSegment: any = 'chats';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

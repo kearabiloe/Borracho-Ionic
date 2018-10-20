@@ -3,6 +3,11 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
+// Parse
+import { Parse } from 'parse';
+
+// Constants
+import { ENV } from '../../app/app.constant';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -25,17 +30,25 @@ import { Api } from '../api/api';
  */
 @Injectable()
 export class User {
-  _user: any;
+  user: any ={
+    "id":1,
+    "username":"",
+    "email":"",
+    "sessionToken":""
+  };
+  headers: any = {
+    'X-Parse-Application-Id':'Borracho'
+  };
+  private parseAppId: string = ENV.parseAppId;
+  private parseServerUrl: string = ENV.parseServerUrl;  
 
-  constructor(public api: Api) { }
-
+  constructor(public api: Api) {}
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
-   */
+   */   
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
-
+    let seq = this.api.post('login', accountInfo,{"headers":this.headers}).share();
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
       if (res.status == 'success') {
@@ -72,13 +85,18 @@ export class User {
    * Log the user out, which forgets the session
    */
   logout() {
-    this._user = null;
+    this.user = null;
   }
 
   /**
    * Process a login/signup response to store user data
    */
   _loggedIn(resp) {
-    this._user = resp.user;
+    this.user.id = resp.get('objectId');
+    this.user.username = resp.get('username');
+    this.user.email = resp.get('email');
+    this.user.sessionToken = resp.get('sessionToken');
+    console.log(this.user);
   }
+
 }

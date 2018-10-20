@@ -6,47 +6,55 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Rentals</ion-title>
+  <ion-toolbar [color]="agentMode ? 'secondary' : 'primary'">
+<!--     <ion-buttons start *ngIf="agentMode">
+      <button ion-button icon-only (click)="addProperty()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>     -->  	
+	<ion-segment [(ngModel)]="rentalsSegment" [color]="agentMode ? 'primary' : 'light'">
+		<ion-segment-button value="all"  >
+		  All Properties
+		</ion-segment-button>
+		<ion-segment-button value="appartments">
+		  My Properties
+		</ion-segment-button>
+	</ion-segment>
+
     <ion-buttons end>
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-navbar>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content >
-  <ion-toolbar color="primary">
-    <ion-searchbar (input)="getItems($event)"></ion-searchbar>      
-  </ion-toolbar>
-  <ion-segment [(ngModel)]="rentalsSegment" color="primary">
-    <ion-segment-button value="all">
-      All
-    </ion-segment-button>
-    <ion-segment-button value="appartments">
-      Appartments
-    </ion-segment-button>
-    <ion-segment-button value="houses">
-      Houses
-    </ion-segment-button>
-  </ion-segment>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>	
+
 
 
 <div [ngSwitch]="rentalsSegment">
   <ion-list *ngSwitchCase="'all'">
-  	<ion-item-sliding>
-	  <ion-item (click)="openRental()">
+  	<ion-item-sliding *ngFor="let property of rentalProperties" >
+	  <ion-item (click)="openProperty(property)" >
 	    <ion-thumbnail item-start>
-	      <img src="assets/imgs/logo.png">
+	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
 	    </ion-thumbnail>
-	    <h2>All Listings</h2>
-	    <p>Hayao Miyazaki • 1988</p>
+	    <h2>{{ property.name }}</h2>
+	    <p> {{ property.suburb}} • R{{ property.price }} </p>
 	    <button ion-button  item-end color="secondary">View</button>
 	  </ion-item>
-	  <ion-item-options side="left">
+	  <ion-item-options side="right">
 	  	<button ion-button color="primary">
 			<ion-icon name="text"></ion-icon>
 			Text
@@ -55,12 +63,6 @@
 			<ion-icon name="call"></ion-icon>
 			Call
 		</button>
-		</ion-item-options>
-		<ion-item-options side="right">
-			<button ion-button color="primary">
-				<ion-icon name="mail"></ion-icon>
-				Email
-			</button>
 		</ion-item-options>
 	</ion-item-sliding>		  
   </ion-list>
@@ -124,5 +126,11 @@
   </ion-list>
 </div>
 
-
+  <ion-fab right bottom (tap)="tapHome($event)">
+    <button ion-fab [color]="agentMode ? 'secondary' : 'primary'"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="share"></ion-icon></button>
+      <button ion-fab *ngIf="agentMode"  (click)="addProperty()"><ion-icon name="home"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

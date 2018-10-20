@@ -26,54 +26,35 @@ export class AuthProvider {
 
   public signin(username: string, password: string): Observable<boolean> {
     return new Observable((observer) => {
-      Parse.User.logIn(username, password, {
-        success: function (user) {
+      Parse.User.logIn(username, password).then((user)=>{
+          console.log(user);
           observer.next(true);
           observer.complete();
-        },
-        error: function (user, error) {
-          // If the user inputs the email instead of the username
-          var userQuery = new Parse.Query(Parse.User);
-
-          userQuery.equalTo('email', username);
-          userQuery.first().then(function (success) {
-            var username = success.toJSON().username; 
-            Parse.User.logIn(username, password, {
-              success: function (user) {
-                observer.next(true);
-                observer.complete();
-              },
-              error: function (user, error) {
-                observer.error(error);
-                observer.complete();
-              }
-            });
-          }, function (error) {
-            observer.error(error);
-            observer.complete();
-          });
-          
-        }
+      }).catch(error => {
+          console.error(error);
+          observer.error(error);
+          observer.complete();        
       });
     });
   }
 
-  public signup(username: string, password: string, email: string): Observable<boolean> {
+
+  public signup(account: any): Observable<boolean> {
     return new Observable((observer) => {
       var user = new Parse.User();
-      user.set('username', username);
-      user.set('password', password);
-      user.set('email', email);
+      user.set('name', account.name);
+      user.set('username', account.username);
+      user.set('password', account.password);
+      user.set('email', account.email);
 
-      user.signUp(null, {
-        success: (user) => {
+      user.signUp(null).then((user) => {
+          console.log("signup successfull");
           observer.next(true);
           observer.complete();
-        },
-        error: (user, error) => {
+        }).catch(error => {
+          console.error(error);
           observer.error(error);
-          observer.complete();
-        }
+          observer.complete();        
       });
 
     });

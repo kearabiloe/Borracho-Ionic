@@ -43,6 +43,7 @@
   "WELCOME_TITLE": "Welcome",
 
   "LOGIN_TITLE": "Sign in",
+  "LOGIN_SUCCESS": "You are now signed in.",
   "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
   "LOGIN_BUTTON": "Sign in",
   "SIGNUP_TITLE": "Sign up",
@@ -51,11 +52,14 @@
 
   "LIST_MASTER_TITLE": "Items",
 
-  "ITEM_CREATE_TITLE": "New Item",
-  "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",
+  "PROPERTY_CREATE_TITLE": "New Property",
+  "PROPERTY_CREATE_CHOOSE_IMAGE": "Add Image",
 
-  "ITEM_NAME_PLACEHOLDER": "Name",
-  "ITEM_ABOUT_PLACEHOLDER": "About",
+  "PROPERTY_NAME_PLACEHOLDER": "Name",
+  "PROPERTY_ABOUT_PLACEHOLDER": "About",
+  "PROPERTY_PRICE_PLACEHOLDER": "Price",
+  "PROPERTY_STREET_ADDRESS_PLACEHOLDER": "Street Address",
+  "PROPERTY_SUBURB_PLACEHOLDER": "Suburb",
 
   "DONE_BUTTON": "Done",
   "CANCEL_BUTTON": "Cancel",
