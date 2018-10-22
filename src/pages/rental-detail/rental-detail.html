@@ -8,28 +8,65 @@
 
 
 <ion-content>
-  <div *ngIf="rentalProperty.propertyPic" class="item-profile" text-center #profilePic [style.background-image]="'url(' + rentalProperty.propertyPic + ')'">
-  </div>
-  <div *ngIf="rentalProperty.propertyPic==null" class="item-profile" text-center #profilePic [style.background-image]="'url(assets/imgs/logo.png)'">
-  </div>
+<ion-card>
+  <img [src]="rentalProperty.propertyPic? rentalProperty.propertyPic : 'assets/imgs/logo.png'"/>
+  <ion-card-content>
+    <ion-card-title>
+      R {{ rentalProperty.price }} {{ rentalProperty.billingFrequency}}
+      </ion-card-title>
+    <p>
+      {{ rentalProperty.about }}
+    </p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        11h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>  
+</ion-card>
+<ion-card color="secondary">
+  <ion-card-header>
+    Features
+  </ion-card-header>
+  <ion-card-content>
+  <ion-list >
+    <button ion-item color="secondary">
+      <ion-icon name="shirt" item-start></ion-icon>
+      Laundry
+    </button>
 
-	<ion-list>
-	  <ion-list-header color="primary">
-	    {{rentalProperty.name}}
-	  </ion-list-header>
-	  <ion-item-group>
-	    <ion-item-divider color="primary">Basic</ion-item-divider>
-		<ion-item>
-			<ion-icon name="leaf" item-start></ion-icon>
-			  Herbology
-			<ion-icon name="rose" item-end></ion-icon>
-		</ion-item>
-	    <ion-item>Argentina</ion-item>
-	  </ion-item-group>
-	  <ion-item-group>
-	    <ion-item-divider color="primary">Amenities</ion-item-divider>
-	    <p>{{rentalProperty.about}}</p>
-	  </ion-item-group>	  
-	</ion-list>
+    <button ion-item color="secondary">
+      <ion-icon name="wifi" item-start></ion-icon>
+      Internet
+    </button>
+
+    <button ion-item color="secondary">
+      <ion-icon name="beer" item-start></ion-icon>
+      Pub
+    </button>
+
+    <button ion-item color="secondary">
+      <ion-icon name="planet" item-start></ion-icon>
+      Space
+    </button>
+
+  </ion-list>
+</ion-card-content>
+</ion-card>
+
 
 </ion-content>

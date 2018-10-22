@@ -5,8 +5,8 @@
   "EMAIL": "Email",
   "USERNAME": "Username",
   "PASSWORD": "Password",
-  "LOGIN": "Sign in",
-  "SIGNUP": "Sign up",
+  "LOGIN": "Log in",
+  "SIGNUP": "Register",
 
   "TAB1_TITLE": "Rent",
   "TAB2_TITLE": "Laundry",
@@ -17,18 +17,18 @@
   "TUTORIAL_SKIP_BUTTON": "Skip",
   "TUTORIAL_CONTINUE_BUTTON": "Continue",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+  "TUTORIAL_SLIDE1_TITLE": "Private Properties<br/>Managed By Borracho",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "This <b>Borracho Properties</b> application is a fully-featured Property Management Platform trusted by private rental property owners.",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+  "TUTORIAL_SLIDE2_TITLE": "Compare & Rent Fast",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Easily find the right property to rent near your current location or by using keywords.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+  "TUTORIAL_SLIDE3_TITLE": "Verified By Our Team",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "No Fake listings! We have a team of agents that scouts for and verifies properties managed by Borracho.",
 
-  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+  "TUTORIAL_SLIDE4_TITLE": "Ready To Rent?",
 
-  "WELCOME_INTRO": "The starting point for your next great Ionic app",
+  "WELCOME_INTRO": "Access Your Borracho Properties Account",
 
   "SETTINGS_TITLE": "Settings",
   "SETTINGS_OPTION1": "Option 1",
