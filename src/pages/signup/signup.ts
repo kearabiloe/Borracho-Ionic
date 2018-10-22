@@ -3,7 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController, AlertController } from 'ionic-angular';
 // Providers
 import { AuthProvider } from '../../providers/auth/auth';
-import { User } from '../../providers';
 import { MainPage } from '../';
 
 @IonicPage()

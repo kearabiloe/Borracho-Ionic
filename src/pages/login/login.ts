@@ -49,13 +49,13 @@ export class LoginPage {
     this.user.signin(this.account.username, this.account.password).subscribe((success) => {
       console.log("logged in!");
       loader.dismissAll();
-/*      let toast = this.toastCtrl.create({
+      let toast = this.toastCtrl.create({
         message: this.loginSuccessString,
         duration: 3000,
         position: 'top'
       });      
       
-      toast.present();*/
+      toast.present();
       this.navCtrl.setRoot(MainPage);
     }, (error) => {
       console.log(error);

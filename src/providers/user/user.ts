@@ -3,11 +3,6 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
-// Parse
-import { Parse } from 'parse';
-
-// Constants
-import { ENV } from '../../app/app.constant';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -39,8 +34,6 @@ export class User {
   headers: any = {
     'X-Parse-Application-Id':'Borracho'
   };
-  private parseAppId: string = ENV.parseAppId;
-  private parseServerUrl: string = ENV.parseServerUrl;  
 
   constructor(public api: Api) {}
   /**
