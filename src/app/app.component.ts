@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Plugins } from '@capacitor/core';
+const { SplashScreen } = Plugins;
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
@@ -56,13 +57,12 @@ export class MyApp {
     settings: Settings,
     private config: Config,
     private statusBar: StatusBar,
-    private splashScreen: SplashScreen,
     private push: Push) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      SplashScreen.hide();
       this.initPush();
     });
     this.initTranslate();
@@ -124,15 +124,9 @@ this.push.listChannels().then((channels) => console.log('List of channels', chan
 // to initialize push notifications
 
 const options: PushOptions = {
-   android: {},
-   ios: {
-       alert: 'true',
-       badge: true,
-       sound: 'false'
-   },
-   windows: {},
+   android: {'senderID': '134068110418'},
    browser: {
-       pushServiceURL: 'http://192.168.43.128:5000/parse/push'
+       pushServiceURL: 'http://push.api.phonegap.com/v1/push'
    }
 };
 

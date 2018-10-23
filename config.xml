@@ -87,6 +87,7 @@
         <variable name="SENDER_ID" value="134068110418" />
         <variable name="FCM_VERSION" value="11.6.2" />
     </plugin>
+    <plugin name="cordova-plugin-firebase" spec="^2.0.5" />
     <engine name="android" spec="^7.1.1" />
     <engine name="browser" spec="^5.0.4" />
 </widget>
