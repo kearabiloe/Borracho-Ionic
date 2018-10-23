@@ -107,7 +107,7 @@ this.push.hasPermission()
 
   });
 
-// Create a channel (Android O and above). You'll need to provide the id, description and importance properties.
+/*// Create a channel (Android O and above). You'll need to provide the id, description and importance properties.
 this.push.createChannel({
  id: "testchannel1",
  description: "My first test channel",
@@ -117,14 +117,14 @@ this.push.createChannel({
 
 // Delete a channel (Android O and above)
 this.push.deleteChannel('testchannel1').then(() => console.log('Channel deleted'));
-
+*/
 // Return a list of currently configured channels
 this.push.listChannels().then((channels) => console.log('List of channels', channels))
 
 // to initialize push notifications
 
 const options: PushOptions = {
-   android: {'senderID': '134068110418'},
+   android: {},
    browser: {
        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
    }
