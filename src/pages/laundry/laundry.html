@@ -6,13 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-buttons start>
-      <button ion-button icon-only color="light">
-        <ion-icon name="calendar"></ion-icon>
-      </button>
-    </ion-buttons>    
-    <ion-title>Laundry</ion-title>
+  <ion-navbar color="primary">   
+    <ion-title>Borracho Laundry</ion-title>
     <ion-buttons end>
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -23,85 +18,36 @@
 
 
 <ion-content >
-<ion-slides>
-  <ion-slide>
-    <h2>Slide 2</h2>    
-    <ion-list radio-group>
-      <ion-item>
-        <ion-label>Clothes</ion-label>
-        <ion-radio checked="true" value="clothes"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Blankets/Curtains</ion-label>
-        <ion-radio value="blankets"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Shoes</ion-label>
-        <ion-radio value="shoes" ></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Other</ion-label>
-        <ion-radio value="other" ></ion-radio>
-      </ion-item>  
-    </ion-list>
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-left outline disabled >
-          <ion-icon name="arrow-back" ></ion-icon>
-          <div>Back</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left outline slideNext>
-          <ion-icon name="arrow-forward" ></ion-icon>
-          <div>Next</div>
-        </button>
-      </ion-col>
-    </ion-row>  
-  </ion-slide>
-  <ion-slide>
-    <h1>Slide 2</h1>
-    <ion-list radio-group>
-      <ion-item>
-        <ion-label>Clothes</ion-label>
-        <ion-radio checked="true" value="clothes"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Blankets/Curtains</ion-label>
-        <ion-radio value="blankets"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Shoes</ion-label>
-        <ion-radio value="shoes" ></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Other</ion-label>
-        <ion-radio value="other" ></ion-radio>
-      </ion-item>  
-    </ion-list>
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-left outline disabled >
-          <ion-icon name="arrow-back" ></ion-icon>
-          <div>Back</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left outline slideNext>
-          <ion-icon name="arrow-forward" ></ion-icon>
-          <div>Next</div>
-        </button>
-      </ion-col>
-    </ion-row>      
-  </ion-slide>
-  <ion-slide>
-    <h1>Slide 3</h1>
-  </ion-slide>
-</ion-slides>  
+<ion-list>
+  <ion-item-group>
+    <ion-item-divider color="secondary">
+      Laundry Orders
+      <button ion-button outline  icon-left item-end>
+        <ion-icon name="add-circle" ></ion-icon>
+      New Order
+    </button>
+    </ion-item-divider>
+    <ion-item>
+      <ion-icon name="cart" item-start></ion-icon>
+        <h2>#ABDSJA</h2>
+        <p>
+          Waiting To Be Sorted<br/>
+          <small><b>Price:</b> R70 | Mixed Load  </small>
+        </p>
+      <ion-icon name="checkbox" item-end></ion-icon>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="primary">Completed</ion-item-divider>
+    <ion-item>
+      <ion-icon name="cart" item-start></ion-icon>
+        <h2>#ABDSJA</h2>
+        <p>
+          Waiting To Be Sorted<br/>
+          <small><b>Price:</b> R70 | Mixed Load  </small>
+        </p>
+      <ion-icon name="checkbox" item-end></ion-icon>
+    </ion-item>
+  </ion-item-group>
+</ion-list>
 </ion-content>

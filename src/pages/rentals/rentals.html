@@ -6,13 +6,17 @@
 -->
 <ion-header>
 
+     	
   <ion-toolbar [color]="agentMode ? 'secondary' : 'primary'">
-    <ion-buttons start>
-      <button ion-button icon-only (click)="addProperty()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>      	
-    <ion-title>Borracho Properties</ion-title>
+	<ion-segment [(ngModel)]="rentalsSegment" [color]="agentMode ? 'primary' : 'secondary'">
+		<ion-segment-button value="all"  >
+		  All
+		</ion-segment-button>
+		<ion-segment-button value="appartments">
+		  My Properties
+		</ion-segment-button>
+	</ion-segment>
+
     <ion-buttons end>
       <button ion-button icon-only menuToggle (tap)="tapHome($event)">
         <ion-icon name="menu"></ion-icon>
@@ -32,20 +36,16 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>	
-  <ion-toolbar [color]="agentMode ? 'secondary' : 'primary'">
-		<ion-segment [(ngModel)]="rentalsSegment" [color]="agentMode ? 'primary' : 'secondary'">
-			<ion-segment-button value="all"  >
-			  Everything
-			</ion-segment-button>
-			<ion-segment-button value="appartments">
-			  My Property
-			</ion-segment-button>
-		</ion-segment>
-	</ion-toolbar>
-
 
 <div [ngSwitch]="rentalsSegment">
   <ion-list *ngSwitchCase="'all'">
+    <ion-item-divider color="secondary">
+      Looking For Property?
+      <button ion-button outline  icon-left item-end >
+        <ion-icon name="chatbubbles" ></ion-icon>
+      Chat With Agent
+    </button>
+    </ion-item-divider>    	
   	<ion-item-sliding *ngFor="let property of rentalProperties" >
 	  <ion-item (click)="openProperty(property)" >
 	    <ion-thumbnail item-start>
@@ -70,6 +70,13 @@
   </ion-list>
 
   <ion-list *ngSwitchCase="'appartments'">
+    <ion-item-divider color="secondary">
+      Looking For Tenants?
+      <button ion-button outline  icon-left item-end (click)="addProperty()">
+        <ion-icon name="add-circle" ></ion-icon>
+      Add Property
+    </button>
+    </ion-item-divider>  	
   	<ion-item-sliding>
 	  <ion-item>
 	    <ion-thumbnail item-start>

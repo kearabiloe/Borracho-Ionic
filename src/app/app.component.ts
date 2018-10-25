@@ -41,8 +41,6 @@ export class MyApp {
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Settings', component: 'SettingsPage' }
   ]
 
   constructor(private translate: TranslateService,
@@ -55,8 +53,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      SplashScreen.hide();
-      this.initPush();
+      SplashScreen.hide().catch((err)=>{console.log(err)});
+      //this.initPush();
     });
     this.initTranslate();
   }

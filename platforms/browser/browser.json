@@ -20,7 +20,7 @@
           "/manifest/application": [
             {
               "xml": "<activity android:label=\"@string/app_name\" android:name=\"com.foo.Foo\"><intent-filter></intent-filter></activity>",
-              "count": 2
+              "count": 4
             }
           ]
         }

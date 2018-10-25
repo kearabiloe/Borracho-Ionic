@@ -20,10 +20,15 @@ export class ParseProvider {
   public getRentalProperties(offset: number = 0, limit: number = 3): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        let currentUser = Parse.User.current();
+        console.log(currentUser);
         const RentalProperty = Parse.Object.extend('RentalProperties');
+        //const RentalProperty = currentUser.relation('RentalProperties');
         let query = new Parse.Query(RentalProperty);
         query.skip(offset);
         query.limit(limit);
+        query.ascending("price");
+        query.equalTo('isListed',true);
         query.find().then((Properties) => {
           resolve(Properties);
         }, (error) => {

@@ -7,103 +7,146 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Studio</ion-title>
+  <ion-toolbar [color]="agentMode ? 'secondary' : 'primary'">
+    <ion-segment [(ngModel)]="rentalsSegment" [color]="agentMode ? 'primary' : 'secondary'">
+      <ion-segment-button value="latest"  >
+        Latest
+      </ion-segment-button>
+      <ion-segment-button value="hiphop">
+        Hip-Hop
+      </ion-segment-button>
+      <ion-segment-button value="house">
+        House
+      </ion-segment-button>
+      <ion-segment-button value="other">
+        Other
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+    <ion-item-divider color="secondary">
+      Get Published!
+      <button ion-button outline  icon-left item-end>
+        <ion-icon name="add-circle" ></ion-icon>
+      Join Borracho Studio 
+    </button>
+    </ion-item-divider>  
+<div [ngSwitch]="rentalsSegment">
+  <ion-list *ngSwitchCase="'latest'">
+    <ion-item-sliding *ngFor="let property of rentalProperties" >
+    <ion-item (click)="openProperty(property)" >
+      <ion-thumbnail item-start>
+        <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+      </ion-thumbnail>
+      <h2>{{ property.name }}</h2>
+      <h3>• {{ property.suburb}}</h3>
+      <small>{{ property.about }}</small>
+      <button ion-button  item-end color="primary" clear small>R{{ property.price }}</button>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+      <ion-icon name="text"></ion-icon>
+      Text
+    </button>
+    <button ion-button color="secondary">
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+    </ion-item-options>
+  </ion-item-sliding>     
+  </ion-list>
 
-
-
-
-<ion-card>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="assets/imgs/logo.png">
-    </ion-avatar>
-    <h2>Marty McFly</h2>
-    <p>November 5, 1955</p>
-  </ion-item>
-
-
-  <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Likes</div>
+  <ion-list *ngSwitchCase="'hiphop'">
+    <ion-item-sliding>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Appartments</h2>
+      <p>Hayao Miyazaki • 1988</p>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button color="primary">
+      <ion-icon name="text"></ion-icon>
+      Text
+    </button>
+    <button ion-button color="secondary">
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
       </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
+    </ion-item-options>
+  </ion-item-sliding>     
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'house'">
+    <ion-item-sliding>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>RDP HOUSE</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <p>3:54</p>
+      <button ion-button clear item-end>Download</button>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button color="primary">
+      <ion-icon name="text"></ion-icon>
+      Text
+    </button>
+    <button ion-button color="secondary">
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
       </button>
-    </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        11h ago
-      </ion-note>
-    </ion-col>
-  </ion-row>
+    </ion-item-options>
+  </ion-item-sliding> 
+  </ion-list>
 
-</ion-card>
-
-<ion-card>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="assets/imgs/logo.png">
-    </ion-avatar>
-    <h2>Marty McFly</h2>
-    <p>November 5, 1955</p>
-  </ion-item>
-
-  <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Likes</div>
+  <ion-list *ngSwitchCase="'other'">
+    <ion-item-sliding>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>RDP HOUSE</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <p>3:54</p>
+      <button ion-button clear item-end>Download</button>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button color="primary">
+      <ion-icon name="text"></ion-icon>
+      Text
+    </button>
+    <button ion-button color="secondary">
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
       </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
-      </button>
-    </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        11h ago
-      </ion-note>
-    </ion-col>
-  </ion-row>
-
-</ion-card>
-
-
+    </ion-item-options>
+  </ion-item-sliding> 
+  </ion-list>
+</div>
 </ion-content>
-<ion-footer no-border>	
-  <ion-toolbar>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="assets/imgs/logo.png">
-    </ion-avatar>
-    <ion-range min="0" max="200" [(ngModel)]="saturation" pin color="secondary">
-      <ion-label range-left>0:00</ion-label>
-      <ion-label range-right>2:50</ion-label>
-    </ion-range>    
-	<ion-buttons end>
-      <button ion-button icon-only full color="primary">
-        <ion-icon name="rewind"></ion-icon>
-      </button>
-      <button ion-button icon-only full color="primary">
-        <ion-icon name="play"></ion-icon>
-      </button>      
-      <button ion-button icon-only full color="primary">
-        <ion-icon name="fastforward"></ion-icon>
-      </button>
-    </ion-buttons>       
-  </ion-item>  	
-  </ion-toolbar>
-</ion-footer>
