@@ -119,7 +119,7 @@ this.push.listChannels().then((channels) => console.log('List of channels', chan
 const options: PushOptions = {
    android: {},
    browser: {
-       pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+       pushServiceURL: 'https://ac-parse-server.herokuapp.com/parse/push'
    }
 };
 
