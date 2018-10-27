@@ -8,18 +8,15 @@
 
   <ion-navbar color="primary">
   <ion-toolbar [color]="agentMode ? 'secondary' : 'primary'">
-    <ion-segment [(ngModel)]="rentalsSegment" [color]="agentMode ? 'primary' : 'secondary'">
-      <ion-segment-button value="latest"  >
-        Latest
+    <ion-segment [(ngModel)]="studioSegment" [color]="agentMode ? 'primary' : 'secondary'" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value=""  >
+        All
       </ion-segment-button>
       <ion-segment-button value="hiphop">
         Hip-Hop
       </ion-segment-button>
       <ion-segment-button value="house">
         House
-      </ion-segment-button>
-      <ion-segment-button value="other">
-        Other
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -29,6 +26,15 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>  
+
     <ion-item-divider color="secondary">
       Get Published!
       <button ion-button outline  icon-left item-end>
@@ -36,17 +42,17 @@
       Join Borracho Studio 
     </button>
     </ion-item-divider>  
-<div [ngSwitch]="rentalsSegment">
-  <ion-list *ngSwitchCase="'latest'">
-    <ion-item-sliding *ngFor="let property of rentalProperties" >
+<div [ngSwitch]="studioSegment">
+  <ion-list *ngSwitchCase="''">
+    <ion-item-sliding *ngFor="let product of studioProducts" >
     <ion-item (click)="openProperty(property)" >
       <ion-thumbnail item-start>
-        <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+        <img [src]="product.propertyPic ? product.propertyPic : 'assets/imgs/logo.png'">
       </ion-thumbnail>
-      <h2>{{ property.name }}</h2>
-      <h3>• {{ property.suburb}}</h3>
-      <small>{{ property.about }}</small>
-      <button ion-button  item-end color="primary" clear small>R{{ property.price }}</button>
+      <h2>{{ product.title }}</h2>
+      <h3>{{ product.artist}}</h3>
+      <small>{{ product.duration }}</small>
+      <a ion-button  item-end color="primary" [href]="product.file.url" clear small>Download</a>
     </ion-item>
     <ion-item-options side="right">
       <button ion-button color="primary">
@@ -119,34 +125,9 @@
   </ion-item-sliding> 
   </ion-list>
 
-  <ion-list *ngSwitchCase="'other'">
-    <ion-item-sliding>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/logo.png">
-      </ion-thumbnail>
-      <h2>RDP HOUSE</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <p>3:54</p>
-      <button ion-button clear item-end>Download</button>
-    </ion-item>
-    <ion-item-options side="left">
-      <button ion-button color="primary">
-      <ion-icon name="text"></ion-icon>
-      Text
-    </button>
-    <button ion-button color="secondary">
-      <ion-icon name="call"></ion-icon>
-      Call
-    </button>
-    </ion-item-options>
-    <ion-item-options side="right">
-      <button ion-button color="primary">
-        <ion-icon name="mail"></ion-icon>
-        Email
-      </button>
-    </ion-item-options>
-  </ion-item-sliding> 
-  </ion-list>
+</div>
+<div center text-center padding>
+  <ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
+  <small *ngIf="spinnerMessage">{{spinnerMessage}}</small>
 </div>
 </ion-content>

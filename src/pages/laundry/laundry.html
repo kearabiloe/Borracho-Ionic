@@ -18,36 +18,42 @@
 
 
 <ion-content >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>  
+
 <ion-list>
+<img class="ad-banner" width="100%" height="10pt" src="assets/img/jeans.png">
   <ion-item-group>
     <ion-item-divider color="secondary">
-      Laundry Orders
-      <button ion-button outline  icon-left item-end>
+      Laundry
+      <button ion-button outline  icon-left item-end (click)="addLaundry()">
         <ion-icon name="add-circle" ></ion-icon>
-      New Order
-    </button>
+        New Order
+      </button>
     </ion-item-divider>
-    <ion-item>
+    <ion-item *ngFor="let order of laundryOrders">
       <ion-icon name="cart" item-start></ion-icon>
-        <h2>#ABDSJA</h2>
+        <h2>{{ order.objectId}}</h2>
         <p>
-          Waiting To Be Sorted<br/>
-          <small><b>Price:</b> R70 | Mixed Load  </small>
+          {{ order.status }}<br/>
+          <small><b>Price:</b> R{{ order.amount }} | {{ order.category }}  </small>
         </p>
-      <ion-icon name="checkbox" item-end></ion-icon>
-    </ion-item>
-  </ion-item-group>
-  <ion-item-group>
-    <ion-item-divider color="primary">Completed</ion-item-divider>
-    <ion-item>
-      <ion-icon name="cart" item-start></ion-icon>
-        <h2>#ABDSJA</h2>
-        <p>
-          Waiting To Be Sorted<br/>
-          <small><b>Price:</b> R70 | Mixed Load  </small>
-        </p>
-      <ion-icon name="checkbox" item-end></ion-icon>
-    </ion-item>
+      <div item-end center text-center>
+        <sub>Delivery</sub><br/>
+        <ion-icon name="clock" small></ion-icon>
+        <p><small>5:00 pm </small></p>
+      </div>        
+    </ion-item>    
   </ion-item-group>
 </ion-list>
+<div center text-center padding>
+  <ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
+  <small *ngIf="spinnerMessage">{{spinnerMessage}}</small>
+</div>
 </ion-content>

@@ -40,7 +40,8 @@ export class MyApp {
 
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
+    { title: 'Home', component: 'TabsPage' },
+    { title: 'Settings', component: 'SettingsPage' },
   ]
 
   constructor(private translate: TranslateService,

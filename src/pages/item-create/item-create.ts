@@ -20,11 +20,16 @@ export class ItemCreatePage {
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
     this.form = formBuilder.group({
       propertyPic: [''],
-      name: ['', Validators.required],
-      about: [''],
-      price:[''],
+      name: ['Property Name', Validators.required],
+      price:['',Validators.required],
+      period:['month'],
+      contact_no:['',Validators.required],
       street_address:[''],
-      suburb:['']
+      suburb:['',Validators.required],
+      longitude:['0'],
+      latitude:['-10'],
+      isListed:[true],
+      isVerified:[false],
     });
 
     // Watch the form for changes, and

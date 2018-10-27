@@ -1,1 +1,96 @@
-webpackJsonp([16],{374:function(l,n,u){"use strict";function a(l){return o._21(0,[(l()(),o.Z(0,0,null,null,42,"ion-content",[["scroll","false"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,v.b,v.a)),o.Y(1,4374528,null,0,h.a,[Z.a,m.a,Y.a,o.j,o.z,y.a,k.a,o.u,[2,P.a],[2,j.a]],null,null),(l()(),o._19(-1,1,["\n  "])),(l()(),o.Z(3,0,null,1,0,"div",[["class","splash-bg"]],null,null,null,null,null)),(l()(),o._19(-1,1,["\n  "])),(l()(),o.Z(5,0,null,1,7,"div",[["class","splash-info"]],null,null,null,null,null)),(l()(),o._19(-1,null,["\n    "])),(l()(),o.Z(7,0,null,null,0,"div",[["class","splash-logo"]],null,null,null,null,null)),(l()(),o._19(-1,null,["\n    "])),(l()(),o.Z(9,0,null,null,2,"div",[["class","splash-intro"]],null,null,null,null,null)),(l()(),o._19(10,null,["\n      ","\n    "])),o._13(131072,w.a,[C.a,o.g]),(l()(),o._19(-1,null,["\n  "])),(l()(),o._19(-1,1,["\n  "])),(l()(),o.Z(14,0,null,1,27,"div",[["padding",""]],null,null,null,null,null)),(l()(),o._19(-1,null,["\n"])),(l()(),o.Z(16,0,null,null,24,"ion-grid",[["class","grid"]],null,null,null,null,null)),o.Y(17,16384,null,0,N.a,[],null,null),(l()(),o._19(-1,null,["\n  "])),(l()(),o.Z(19,0,null,null,20,"ion-row",[["class","row"]],null,null,null,null,null)),o.Y(20,16384,null,0,O.a,[],null,null),(l()(),o._19(-1,null,["\n    "])),(l()(),o.Z(22,0,null,null,7,"ion-col",[["class","col"],["col-6",""]],null,null,null,null,null)),o.Y(23,16384,null,0,z.a,[],null,null),(l()(),o._19(-1,null,["\n      "])),(l()(),o.Z(25,0,null,null,3,"button",[["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var a=!0;if("click"===n){a=!1!==l.component.signup()&&a}return a},I.b,I.a)),o.Y(26,1097728,null,0,L.a,[[8,""],Z.a,o.j,o.z],{full:[0,"full"]},null),(l()(),o._19(27,0,["",""])),o._13(131072,w.a,[C.a,o.g]),(l()(),o._19(-1,null,["\n    "])),(l()(),o._19(-1,null,["\n    "])),(l()(),o.Z(31,0,null,null,7,"ion-col",[["class","col"],["col-6",""]],null,null,null,null,null)),o.Y(32,16384,null,0,z.a,[],null,null),(l()(),o._19(-1,null,["\n      "])),(l()(),o.Z(34,0,null,null,3,"button",[["color","secondary"],["full",""],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var a=!0;if("click"===n){a=!1!==l.component.login()&&a}return a},I.b,I.a)),o.Y(35,1097728,null,0,L.a,[[8,""],Z.a,o.j,o.z],{color:[0,"color"],full:[1,"full"]},null),(l()(),o._19(36,0,["",""])),o._13(131072,w.a,[C.a,o.g]),(l()(),o._19(-1,null,["\n    "])),(l()(),o._19(-1,null,["\n  "])),(l()(),o._19(-1,null,["\n"])),(l()(),o._19(-1,null,["\n    \n    \n  "])),(l()(),o._19(-1,1,["\n"])),(l()(),o._19(-1,null,["\n"]))],function(l,n){l(n,26,0,"");l(n,35,0,"secondary","")},function(l,n){l(n,0,0,o._11(n,1).statusbarPadding,o._11(n,1)._hasRefresher);l(n,10,0,o._20(n,10,0,o._11(n,11).transform("WELCOME_INTRO")));l(n,27,0,o._20(n,27,0,o._11(n,28).transform("SIGNUP")));l(n,36,0,o._20(n,36,0,o._11(n,37).transform("LOGIN")))})}Object.defineProperty(n,"__esModule",{value:!0});var o=u(0),t=(u(2),u(107)),_=(u(168),function(){function l(l){this.navCtrl=l}return l.prototype.login=function(){this.navCtrl.push("LoginPage")},l.prototype.signup=function(){this.navCtrl.push("SignupPage")},l}()),c=function(){return function(){}}(),i=u(262),r=u(263),s=u(264),e=u(265),f=u(266),b=u(267),p=u(268),d=u(269),g=u(270),v=u(271),h=u(29),Z=u(1),m=u(4),Y=u(11),y=u(10),k=u(33),P=u(5),j=u(28),w=u(172),C=u(35),N=u(201),O=u(176),z=u(175),I=u(58),L=u(27),M=o.X({encapsulation:2,styles:[],data:{}}),S=o.V("page-welcome",_,function(l){return o._21(0,[(l()(),o.Z(0,0,null,null,1,"page-welcome",[],null,null,null,a,M)),o.Y(1,49152,null,0,_,[j.a],null,null)],null,null)},{},{},[]),W=u(16),E=u(24),G=u(76),R=u(77),F=u(79),J=u(78),T=u(109),U=u(169),V=u(52);u.d(n,"WelcomePageModuleNgFactory",function(){return X});var X=o.W(c,[],function(l){return o._7([o._8(512,o.i,o.S,[[8,[i.a,r.a,s.a,e.a,f.a,b.a,p.a,d.a,g.a,S]],[3,o.i],o.s]),o._8(4608,W.k,W.j,[o.r,[2,W.s]]),o._8(4608,E.r,E.r,[]),o._8(4608,E.d,E.d,[]),o._8(4608,G.b,G.a,[]),o._8(4608,R.a,R.b,[]),o._8(4608,F.b,F.a,[]),o._8(4608,J.b,J.a,[]),o._8(4608,C.a,C.a,[T.a,G.b,R.a,F.b,J.b,C.b,C.c]),o._8(512,W.b,W.b,[]),o._8(512,E.p,E.p,[]),o._8(512,E.g,E.g,[]),o._8(512,E.n,E.n,[]),o._8(512,U.a,U.a,[]),o._8(512,U.b,U.b,[]),o._8(512,t.a,t.a,[]),o._8(512,c,c,[]),o._8(256,V.a,_,[]),o._8(256,C.c,void 0,[]),o._8(256,C.b,void 0,[])])})}});
+webpackJsonp([16],{
+
+/***/ 412:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatsPageModule", function() { return ChatsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chats__ = __webpack_require__(431);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ChatsPageModule = /** @class */ (function () {
+    function ChatsPageModule() {
+    }
+    ChatsPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__chats__["a" /* ChatsPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chats__["a" /* ChatsPage */]),
+            ],
+        })
+    ], ChatsPageModule);
+    return ChatsPageModule;
+}());
+
+//# sourceMappingURL=chats.module.js.map
+
+/***/ }),
+
+/***/ 431:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(146);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the ChatsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ChatsPage = /** @class */ (function () {
+    function ChatsPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.chatsSegment = 'chats';
+    }
+    ChatsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ChatsPage');
+    };
+    ChatsPage.prototype.openChatDetail = function (chat) {
+        this.navCtrl.push('ChatDetailPage', {
+            id: chat
+        });
+    };
+    ChatsPage.prototype.openProfile = function (profile) {
+        this.navCtrl.push('ProfilePage', { id: profile });
+    };
+    ChatsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-chats',template:/*ion-inline-start:"/home/droog/Workspace/Borracho/src/pages/chats/chats.html"*/'<!--\n  Generated template for the ChatsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n	<ion-toolbar color="primary">\n		<ion-searchbar (input)="getItems($event)"></ion-searchbar>      \n	</ion-toolbar>\n\n</ion-header>\n\n\n<ion-content >\n	\n  <ion-segment [(ngModel)]="chatsSegment" color="primary">\n    <ion-segment-button value="chats">\n      Chats\n    </ion-segment-button>\n    <ion-segment-button value="contacts">\n      Contacts\n    </ion-segment-button>\n  </ion-segment>\n\n\n<div [ngSwitch]="chatsSegment">\n  <ion-list *ngSwitchCase="\'chats\'">\n	  <ion-item-sliding>\n	    <ion-item (click)="openChatDetail(1)">\n	      <ion-avatar item-start>\n	        <img src="assets/imgs/logo.png">\n	      </ion-avatar>\n	      <h2>Laundry</h2>\n	      <p>Pick Up Confirmations</p>\n	    </ion-item>\n	    <ion-item-options side="left">\n	      <button ion-button color="primary">\n	        <ion-icon name="text"></ion-icon>\n	        Text\n	      </button>\n	      <button ion-button color="secondary">\n	        <ion-icon name="call"></ion-icon>\n	        Call\n	      </button>\n	    </ion-item-options>\n	    <ion-item-options side="right">\n	      <button ion-button color="primary">\n	        <ion-icon name="mail"></ion-icon>\n	        Email\n	      </button>\n	    </ion-item-options>\n	  </ion-item-sliding>\n	</ion-list>\n\n\n  <ion-list *ngSwitchCase="\'contacts\'">\n  	<ion-item-sliding>\n	  <ion-item>\n	    <ion-thumbnail item-start (click)="openProfile(1)">\n	      <img src="assets/imgs/logo.png">\n	    </ion-thumbnail>\n	    <h2>RDP HOUSE</h2>\n	    <p>Hayao Miyazaki • 1988</p>\n	    <button ion-button icon-left item-end color="secondary" (click)="openChatDetail(1)">\n	    	<ion-icon name="text"></ion-icon>\n			Chat\n		</button>\n	  </ion-item>\n	  <ion-item-options side="left">\n	  	<button ion-button color="primary">\n			<ion-icon name="text"></ion-icon>\n			Text\n		</button>\n		<button ion-button color="secondary">\n			<ion-icon name="call"></ion-icon>\n			Call\n		</button>\n		</ion-item-options>\n		<ion-item-options side="right">\n			<button ion-button color="primary">\n				<ion-icon name="mail"></ion-icon>\n				Email\n			</button>\n		</ion-item-options>\n	</ion-item-sliding>	\n  </ion-list>\n</div>	\n\n</ion-content>\n'/*ion-inline-end:"/home/droog/Workspace/Borracho/src/pages/chats/chats.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
+    ], ChatsPage);
+    return ChatsPage;
+}());
+
+//# sourceMappingURL=chats.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=16.js.map

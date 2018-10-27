@@ -1,1 +1,153 @@
-webpackJsonp([14],{360:function(l,n,u){"use strict";function a(l){return t._21(0,[(l()(),t.Z(0,0,null,null,10,"ion-header",[],null,null,null,null,null)),t.Y(1,16384,null,0,f.a,[h.a,t.j,t.z,[2,C.a]],null,null),(l()(),t._19(-1,null,["\n  "])),(l()(),t.Z(3,0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,j.b,j.a)),t.Y(4,49152,null,0,v.a,[m.a,[2,C.a],[2,Y.a],h.a,t.j,t.z],null,null),(l()(),t._19(-1,3,["\n    "])),(l()(),t.Z(6,0,null,3,2,"ion-title",[],null,null,null,Z.b,Z.a)),t.Y(7,49152,null,0,y.a,[h.a,t.j,t.z,[2,z.a],[2,v.a]],null,null),(l()(),t._19(-1,0,["\n      Content\n    "])),(l()(),t._19(-1,3,["\n  "])),(l()(),t._19(-1,null,["\n"])),(l()(),t._19(-1,null,["\n\n"])),(l()(),t.Z(12,0,null,null,5,"ion-content",[["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,q.b,q.a)),t.Y(13,4374528,null,0,x.a,[h.a,A.a,P.a,t.j,t.z,m.a,T.a,t.u,[2,C.a],[2,Y.a]],null,null),(l()(),t._19(-1,1,["\n  "])),(l()(),t.Z(15,0,null,1,1,"p",[],null,null,null,null,null)),(l()(),t._19(-1,null,["\n    This is a perfect starting point for a page with primarily text content. The body is padded nicely and ready for prose.\n  "])),(l()(),t._19(-1,1,["\n"]))],null,function(l,n){l(n,3,0,t._11(n,4)._hidden,t._11(n,4)._sbPadding);l(n,12,0,t._11(n,13).statusbarPadding,t._11(n,13)._hasRefresher)})}Object.defineProperty(n,"__esModule",{value:!0});var t=u(0),o=(u(2),u(107)),s=(u(168),function(){return function(l){this.navCtrl=l}}()),e=function(){return function(){}}(),c=u(262),b=u(263),i=u(264),r=u(265),_=u(266),d=u(267),g=u(268),k=u(269),p=u(270),f=u(108),h=u(1),C=u(5),j=u(376),v=u(46),m=u(10),Y=u(28),Z=u(272),y=u(75),z=u(51),q=u(271),x=u(29),A=u(4),P=u(11),T=u(33),w=t.X({encapsulation:2,styles:[],data:{}}),B=t.V("page-content",s,function(l){return t._21(0,[(l()(),t.Z(0,0,null,null,1,"page-content",[],null,null,null,a,w)),t.Y(1,49152,null,0,s,[Y.a],null,null)],null,null)},{},{},[]),M=u(16),X=u(24),F=u(76),I=u(77),J=u(79),N=u(78),O=u(35),R=u(109),S=u(169),V=u(52);u.d(n,"ContentPageModuleNgFactory",function(){return W});var W=t.W(e,[],function(l){return t._7([t._8(512,t.i,t.S,[[8,[c.a,b.a,i.a,r.a,_.a,d.a,g.a,k.a,p.a,B]],[3,t.i],t.s]),t._8(4608,M.k,M.j,[t.r,[2,M.s]]),t._8(4608,X.r,X.r,[]),t._8(4608,X.d,X.d,[]),t._8(4608,F.b,F.a,[]),t._8(4608,I.a,I.b,[]),t._8(4608,J.b,J.a,[]),t._8(4608,N.b,N.a,[]),t._8(4608,O.a,O.a,[R.a,F.b,I.a,J.b,N.b,O.b,O.c]),t._8(512,M.b,M.b,[]),t._8(512,X.p,X.p,[]),t._8(512,X.g,X.g,[]),t._8(512,X.n,X.n,[]),t._8(512,S.a,S.a,[]),t._8(512,S.b,S.b,[]),t._8(512,o.a,o.a,[]),t._8(512,e,e,[]),t._8(256,V.a,s,[]),t._8(256,O.c,void 0,[]),t._8(256,O.b,void 0,[])])})},376:function(l,n,u){"use strict";function a(l){return t._21(0,[(l()(),t.Z(0,0,null,null,1,"div",[["class","toolbar-background"]],null,null,null,null,null)),t.Y(1,278528,null,0,o.g,[t.p,t.q,t.j,t.A],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),(l()(),t.Z(2,0,null,null,8,"button",[["class","back-button"],["ion-button","bar-button"]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var a=!0;if("click"===n){a=!1!==l.component.backButtonClick(u)&&a}return a},s.b,s.a)),t.Y(3,278528,null,0,o.g,[t.p,t.q,t.j,t.A],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),t.Y(4,1097728,null,0,e.a,[[8,"bar-button"],c.a,t.j,t.z],null,null),(l()(),t.Z(5,0,null,0,2,"ion-icon",[["class","back-button-icon"],["role","img"]],[[2,"hide",null]],null,null,null,null)),t.Y(6,278528,null,0,o.g,[t.p,t.q,t.j,t.A],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),t.Y(7,147456,null,0,b.a,[c.a,t.j,t.z],{name:[0,"name"]},null),(l()(),t.Z(8,0,null,0,2,"span",[["class","back-button-text"]],null,null,null,null,null)),t.Y(9,278528,null,0,o.g,[t.p,t.q,t.j,t.A],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),(l()(),t._19(10,null,["",""])),t._10(null,0),t._10(null,1),t._10(null,2),(l()(),t.Z(14,0,null,null,2,"div",[["class","toolbar-content"]],null,null,null,null,null)),t.Y(15,278528,null,0,o.g,[t.p,t.q,t.j,t.A],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),t._10(null,3)],function(l,n){var u=n.component;l(n,1,0,"toolbar-background","toolbar-background-"+u._mode);l(n,3,0,"back-button","back-button-"+u._mode);l(n,6,0,"back-button-icon","back-button-icon-"+u._mode);l(n,7,0,u._bbIcon);l(n,9,0,"back-button-text","back-button-text-"+u._mode);l(n,15,0,"toolbar-content","toolbar-content-"+u._mode)},function(l,n){var u=n.component;l(n,2,0,u._hideBb);l(n,5,0,t._11(n,7)._hidden);l(n,10,0,u._backText)})}u.d(n,"a",function(){return i}),n.b=a;var t=u(0),o=u(16),s=u(58),e=u(27),c=u(1),b=u(59),i=(u(5),u(28),t.X({encapsulation:2,styles:[],data:{}}))}});
+webpackJsonp([14],{
+
+/***/ 414:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemCreatePageModule", function() { return ItemCreatePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__item_create__ = __webpack_require__(433);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ItemCreatePageModule = /** @class */ (function () {
+    function ItemCreatePageModule() {
+    }
+    ItemCreatePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_3__item_create__["a" /* ItemCreatePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__item_create__["a" /* ItemCreatePage */]),
+                __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
+            ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_3__item_create__["a" /* ItemCreatePage */]
+            ]
+        })
+    ], ItemCreatePageModule);
+    return ItemCreatePageModule;
+}());
+
+//# sourceMappingURL=item-create.module.js.map
+
+/***/ }),
+
+/***/ 433:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemCreatePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(146);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ItemCreatePage = /** @class */ (function () {
+    function ItemCreatePage(navCtrl, viewCtrl, formBuilder, camera) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.viewCtrl = viewCtrl;
+        this.camera = camera;
+        this.form = formBuilder.group({
+            propertyPic: [''],
+            name: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            about: [''],
+            price: [''],
+            street_address: [''],
+            suburb: ['']
+        });
+        // Watch the form for changes, and
+        this.form.valueChanges.subscribe(function (v) {
+            _this.isReadyToSave = _this.form.valid;
+        });
+    }
+    ItemCreatePage.prototype.ionViewDidLoad = function () {
+    };
+    ItemCreatePage.prototype.getPicture = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]['installed']()) {
+            this.camera.getPicture({
+                destinationType: this.camera.DestinationType.DATA_URL,
+                targetWidth: 96,
+                targetHeight: 96
+            }).then(function (data) {
+                _this.form.patchValue({ 'propertyPic': 'data:image/jpg;base64,' + data });
+            }, function (err) {
+                alert('Unable to take photo');
+            });
+        }
+        else {
+            this.fileInput.nativeElement.click();
+        }
+    };
+    ItemCreatePage.prototype.processWebImage = function (event) {
+        var _this = this;
+        var reader = new FileReader();
+        reader.onload = function (readerEvent) {
+            var imageData = readerEvent.target.result;
+            _this.form.patchValue({ 'propertyPic': imageData });
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+    ItemCreatePage.prototype.getProfileImageStyle = function () {
+        return 'url(' + this.form.controls['propertyPic'].value + ')';
+    };
+    /**
+     * The user cancelled, so we dismiss without sending data back.
+     */
+    ItemCreatePage.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    /**
+     * The user is done and wants to create the item, so return it
+     * back to the presenter.
+     */
+    ItemCreatePage.prototype.done = function () {
+        if (!this.form.valid) {
+            return;
+        }
+        this.viewCtrl.dismiss(this.form.value);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('fileInput'),
+        __metadata("design:type", Object)
+    ], ItemCreatePage.prototype, "fileInput", void 0);
+    ItemCreatePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-item-create',template:/*ion-inline-start:"/home/droog/Workspace/Borracho/src/pages/item-create/item-create.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{ \'PROPERTY_CREATE_TITLE\' | translate }}</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="cancel()">\n        <span color="primary" showWhen="ios">\n          {{ \'CANCEL_BUTTON\' | translate }}\n        </span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-buttons end>\n      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>\n        <span color="primary" showWhen="ios">\n          {{ \'DONE_BUTTON\' | translate }}\n        </span>\n        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">\n    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />\n    <div class="profile-image-wrapper" (click)="getPicture()">\n      <div class="profile-image-placeholder" *ngIf="!this.form.controls.propertyPic.value">\n        <ion-icon name="add"></ion-icon>\n        <div>\n          {{ \'PROPERTY_CREATE_CHOOSE_IMAGE\' | translate }}\n        </div>\n      </div>\n      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.propertyPic.value"></div>\n    </div>\n    <ion-list>\n      <ion-item>\n        <ion-label color="primary" stacked>{{ \'PROPERTY_NAME_PLACEHOLDER\' | translate }}</ion-label>\n        <ion-input type="text" placeholder="{{ \'PROPERTY_NAME_PLACEHOLDER\' | translate }}" formControlName="name"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color="primary" stacked>{{ \'PROPERTY_ABOUT_PLACEHOLDER\' | translate }}</ion-label>\n        <ion-textarea type="text" placeholder="{{ \'PROPERTY_ABOUT_PLACEHOLDER\' | translate }}" formControlName="about"></ion-textarea>\n      </ion-item>\n      <ion-item>\n        <ion-label color="primary" stacked>{{ \'PROPERTY_PRICE_PLACEHOLDER\' | translate }}</ion-label>\n        <ion-input type="number" placeholder="{{ \'PROPERTY_PRICE_PLACEHOLDER\' | translate }}" formControlName="price"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color="primary" stacked>{{ \'PROPERTY_STREET_ADDRESS_PLACEHOLDER\' | translate }}</ion-label>\n        <ion-input type="text" placeholder="{{ \'PROPERTY_STREET_ADDRESS_PLACEHOLDER\' | translate }}" formControlName="street_address"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label color="primary" stacked>{{ \'PROPERTY_SUBURB_PLACEHOLDER\' | translate }}</ion-label>\n        <ion-input type="text" placeholder="{{ \'PROPERTY_SUBURB_PLACEHOLDER\' | translate }}" formControlName="suburb"></ion-input>\n      </ion-item>                  \n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/droog/Workspace/Borracho/src/pages/item-create/item-create.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]])
+    ], ItemCreatePage);
+    return ItemCreatePage;
+}());
+
+//# sourceMappingURL=item-create.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=14.js.map

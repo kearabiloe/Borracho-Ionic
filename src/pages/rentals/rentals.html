@@ -12,14 +12,14 @@
 		<ion-segment-button value="all"  >
 		  All
 		</ion-segment-button>
-		<ion-segment-button value="appartments">
+		<ion-segment-button value="myproperties">
 		  My Properties
 		</ion-segment-button>
 	</ion-segment>
 
     <ion-buttons end>
-      <button ion-button icon-only menuToggle (tap)="tapHome($event)">
-        <ion-icon name="menu"></ion-icon>
+      <button ion-button icon-only (click)="presentSettings($event)">
+        <ion-icon name="cog"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -38,38 +38,35 @@
   </ion-refresher>	
 
 <div [ngSwitch]="rentalsSegment">
-  <ion-list *ngSwitchCase="'all'">
-    <ion-item-divider color="secondary">
-      Looking For Property?
-      <button ion-button outline  icon-left item-end >
-        <ion-icon name="chatbubbles" ></ion-icon>
-      Chat With Agent
-    </button>
-    </ion-item-divider>    	
-  	<ion-item-sliding *ngFor="let property of rentalProperties" >
-	  <ion-item (click)="openProperty(property)" >
-	    <ion-thumbnail item-start>
-	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
-	    </ion-thumbnail>
-	    <h2>{{ property.name }}</h2>
-	    <h3>• {{ property.suburb}}</h3>
-	    <small>{{ property.about }}</small>
-	    <button ion-button  item-end color="primary" clear small>R{{ property.price }}</button>
+  <ion-list  *ngSwitchCase="'all'" inset>
+
+	<ion-item *ngFor="let property of rentalProperties">
+
+	  <ion-item color="primary">
+	    <ion-avatar item-start>
+	      <img src="assets/img/appicon.png">
+	    </ion-avatar>
+	    <h2 ion-text color="secondary">{{ property.name }}</h2>
+	    <p>{{ property.suburb}} </p>
+	    <ion-badge icon-top  color="primary" item-end>
+	    	R{{ property.price }}
+	    	<br/><sub>per {{ property.period }}</sub>
+	    </ion-badge>
 	  </ion-item>
-	  <ion-item-options side="right">
-	  	<button ion-button color="primary">
-			<ion-icon name="text"></ion-icon>
-			Text
-		</button>
-		<button ion-button color="secondary">
-			<ion-icon name="call"></ion-icon>
-			Call
-		</button>
-		</ion-item-options>
-	</ion-item-sliding>		  
+
+	  <img class="property-img" [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+
+	  <ion-item-divider color="secondary">
+	      <p ion-text color="primary">Want to rent it?</p>
+	      <button ion-button outline strong  icon-left item-end (click)="presentContactUs()">
+	        <ion-icon name="person-add" ></ion-icon>
+	      Apply Now
+	    </button>
+	  </ion-item-divider>	  
+	</ion-item>	  
   </ion-list>
 
-  <ion-list *ngSwitchCase="'appartments'">
+  <ion-list *ngSwitchCase="'myproperties'" >
     <ion-item-divider color="secondary">
       Looking For Tenants?
       <button ion-button outline  icon-left item-end (click)="addProperty()">
@@ -77,13 +74,14 @@
       Add Property
     </button>
     </ion-item-divider>  	
-  	<ion-item-sliding>
-	  <ion-item>
-	    <ion-thumbnail item-start>
-	      <img src="assets/imgs/logo.png">
-	    </ion-thumbnail>
-	    <h2>Appartments</h2>
-	    <p>Hayao Miyazaki • 1988</p>
+  	<ion-item-sliding *ngFor="let property of userProperties">
+	  <ion-item (click)="openProperty(property)" >
+	    <ion-avatar item-start>
+	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+	    </ion-avatar>
+	    <h2>{{ property.name }}</h2>
+	    <p>R {{ property.price}} per {{ property.period}}</p>
+	    <button ion-button  item-end color="primary" clear small>Edit</button>
 	  </ion-item>
 	  <ion-item-options side="left">
 	  	<button ion-button color="primary">
@@ -133,7 +131,10 @@
 	</ion-item-sliding>	
   </ion-list>
 </div>
-
+<div center text-center padding>
+	<ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
+	<small *ngIf="spinnerMessage">{{spinnerMessage}}</small>
+</div>
   <ion-fab right bottom *ngIf="agentMode">
     <button ion-fab [color]="agentMode ? 'secondary' : 'primary'"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="left">

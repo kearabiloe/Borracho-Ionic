@@ -9,6 +9,7 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 // Providers
 import { ParseProvider } from '../providers/parse/parse';
@@ -32,9 +33,9 @@ export function provideSettings(storage: Storage) {
    * these values will not overwrite the saved values (this can be done manually if desired).
    */
   return new Settings(storage, {
-    option1: true,
-    option2: 'Ionitron J. Framework',
-    option3: '3',
+    agentMode: true,
+    option2: '-5.23,0.1',
+    option3: '5',
     option4: 'Hello'
   });
 }
@@ -70,6 +71,7 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     ParseProvider,
     AuthProvider,
+    Geolocation,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
