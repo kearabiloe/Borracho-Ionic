@@ -18,6 +18,9 @@
       <ion-segment-button value="house">
         House
       </ion-segment-button>
+      <ion-segment-button value="beats">
+        Beats
+      </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
   </ion-navbar>
@@ -44,84 +47,58 @@
     </ion-item-divider>  
 <div [ngSwitch]="studioSegment">
   <ion-list *ngSwitchCase="''">
-    <ion-item-sliding *ngFor="let product of studioProducts" >
-    <ion-item (click)="openProperty(property)" >
+    <ion-item (click)="openProperty(property)" *ngFor="let product of studioProducts" >
       <ion-thumbnail item-start>
-        <img [src]="product.propertyPic ? product.propertyPic : 'assets/imgs/logo.png'">
+        <img [src]="product.art ? product.art.url : 'assets/imgs/logo.png'">
       </ion-thumbnail>
       <h2>{{ product.title }}</h2>
       <h3>{{ product.artist}}</h3>
-      <small>{{ product.duration }}</small>
-      <a ion-button  item-end color="primary" [href]="product.file.url" clear small>Download</a>
-    </ion-item>
-    <ion-item-options side="right">
-      <button ion-button color="primary">
-      <ion-icon name="text"></ion-icon>
-      Text
-    </button>
-    <button ion-button color="secondary">
-      <ion-icon name="call"></ion-icon>
-      Call
-    </button>
-    </ion-item-options>
-  </ion-item-sliding>     
+      <small>
+        <ion-icon name="clock" ></ion-icon> {{ product.duration }} | 
+        <ion-icon name="people" ></ion-icon> {{ product.genre }} |
+        <ion-icon name="download" ></ion-icon> {{ product.downloads }} 
+      </small>
+      <a ion-button outline item-end  color="primary" [href]="product.file.url"  small>
+        <ion-icon name="download" ></ion-icon>
+      </a>
+    </ion-item>    
   </ion-list>
 
   <ion-list *ngSwitchCase="'hiphop'">
-    <ion-item-sliding>
-    <ion-item>
+    <ion-item (click)="openProperty(property)" *ngFor="let product of studioProducts" >
       <ion-thumbnail item-start>
-        <img src="assets/imgs/logo.png">
+        <img [src]="product.art ? product.art.url : 'assets/imgs/logo.png'">
       </ion-thumbnail>
-      <h2>Appartments</h2>
-      <p>Hayao Miyazaki • 1988</p>
-    </ion-item>
-    <ion-item-options side="left">
-      <button ion-button color="primary">
-      <ion-icon name="text"></ion-icon>
-      Text
-    </button>
-    <button ion-button color="secondary">
-      <ion-icon name="call"></ion-icon>
-      Call
-    </button>
-    </ion-item-options>
-    <ion-item-options side="right">
-      <button ion-button color="primary">
-        <ion-icon name="mail"></ion-icon>
-        Email
-      </button>
-    </ion-item-options>
-  </ion-item-sliding>     
+      <h2>{{ product.title }}</h2>
+      <h3>{{ product.artist}}</h3>
+      <small>
+        <ion-icon name="clock" ></ion-icon> {{ product.duration }} | 
+        <ion-icon name="people" ></ion-icon> {{ product.genre }} |
+        <ion-icon name="download" ></ion-icon> {{ product.downloads }} 
+      </small>
+      <a ion-button outline item-end  color="primary" [href]="product.file.url"  small>
+        <ion-icon name="download" ></ion-icon>
+      </a>
+    </ion-item>    
   </ion-list>
 
   <ion-list *ngSwitchCase="'house'">
     <ion-item-sliding>
-    <ion-item>
+    <ion-item (click)="openProperty(property)" *ngFor="let product of studioProducts" >
       <ion-thumbnail item-start>
-        <img src="assets/imgs/logo.png">
+        <img [src]="product.art ? product.art.url : 'assets/imgs/logo.png'">
       </ion-thumbnail>
-      <h2>RDP HOUSE</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <p>3:54</p>
-      <button ion-button clear item-end>Download</button>
-    </ion-item>
-    <ion-item-options side="left">
-      <button ion-button color="primary">
-      <ion-icon name="text"></ion-icon>
-      Text
-    </button>
-    <button ion-button color="secondary">
-      <ion-icon name="call"></ion-icon>
-      Call
-    </button>
-    </ion-item-options>
-    <ion-item-options side="right">
-      <button ion-button color="primary">
-        <ion-icon name="mail"></ion-icon>
-        Email
-      </button>
-    </ion-item-options>
+      <h2>{{ product.title }}</h2>
+      <h3>{{ product.artist}}</h3>
+      <small>
+        <ion-icon name="clock" ></ion-icon> {{ product.duration }} | 
+        <ion-icon name="people" ></ion-icon> {{ product.genre }} |
+        <ion-icon name="download" ></ion-icon> {{ product.downloads }} 
+      </small>
+      <a ion-button outline item-end  color="primary" [href]="product.file.url"  small>
+        <ion-icon name="download" ></ion-icon>
+      </a>
+    </ion-item>    
   </ion-item-sliding> 
   </ion-list>
 

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the RentLeadPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Applicant Screener</ion-title>
+	<ion-buttons end>
+  		<button ion-button icon-only (click)="cancel()">
+  			<ion-icon name="close"></ion-icon>
+	 	</button>
+	</ion-buttons>    
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="createLead()">	
+<ion-list inset>
+	  <ion-item color="light" no-lines>
+	    <ion-thumbnail item-start>
+	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+	    </ion-thumbnail>
+	    <h2 ion-text color="secondary">{{ property.name | uppercase }}</h2>
+	    <p>{{ property.suburb | uppercase }} </p>
+	    <p ion-text  color="primary" >
+	    	{{ property.price | currency : "R" }}
+	    	<sub>per {{ property.period }}</sub>
+	    </p>
+	  </ion-item>
+  <ion-item>
+    <ion-label stacked color="secondary">Name & Surname</ion-label>
+    <ion-input type="text" formControlName="name" placeholder="Jane Smith"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked color="secondary">Contact Number</ion-label>
+    <ion-input type="tel" formControlName="contact_no" placeholder="0812345678"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines >
+    <ion-label icon-left >
+      <ion-icon  color="secondary" name="logo-whatsapp"></ion-icon>
+      I am on Whatsapp!
+    </ion-label>
+    <ion-toggle formControlName="remember_me" checked="true"></ion-toggle>
+  </ion-item>
+  <ion-item>
+  	<button ion-button block  large color="secondary" [disabled]="form.valid? false :false" icon-left >
+  		<ion-icon name="send"></ion-icon>
+  		Send Application
+  	</button>
+  </ion-item>
+</ion-list>
+</form>
+</ion-content>

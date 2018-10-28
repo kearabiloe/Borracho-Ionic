@@ -2,6 +2,11 @@
 
   <ion-navbar color="primary">
     <ion-title>{{ pageTitle }}</ion-title>
+  <ion-buttons end>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-buttons>     
   </ion-navbar>
 
 </ion-header>
@@ -9,7 +14,7 @@
 <ion-content>
 
   <form [formGroup]="form" *ngIf="settingsReady">
-    <ion-list *ngIf="page == 'main'">
+    <ion-list *ngIf="page == 'main'" inset>
       <ion-item>
         <ion-label color="primary">{{ 'SETTINGS_OPTION1' | translate }}</ion-label>
         <ion-toggle formControlName="option1"></ion-toggle>
@@ -29,7 +34,7 @@
         </ion-select>
       </ion-item>
 
-      <button ion-button outline [navPush]="subSettings" [navParams]="profileSettings">
+      <button ion-button full [navPush]="subSettings" [navParams]="profileSettings">
         {{ 'SETTINGS_PROFILE_BUTTON' | translate }}
       </button>
     </ion-list>
@@ -39,6 +44,15 @@
         <ion-label>{{ 'SETTINGS_OPTION4' | translate }}</ion-label>
         <ion-input formControlName="option4"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION5' | translate }}</ion-label>
+        <ion-input formControlName="option5" type="tel"></ion-input>
+      </ion-item>      
+      <ion-item>
+        <ion-label color="primary">{{ 'SETTINGS_OPTION6' | translate }}</ion-label>
+        <ion-toggle formControlName="option6"></ion-toggle>
+      </ion-item>
+
     </ion-list>
   </form>
 

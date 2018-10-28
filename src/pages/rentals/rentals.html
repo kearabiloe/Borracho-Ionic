@@ -38,7 +38,7 @@
   </ion-refresher>	
 
 <div [ngSwitch]="rentalsSegment">
-  <ion-list  *ngSwitchCase="'all'" inset>
+  <ion-list  *ngSwitchCase="'all'" no-lines>
 
 	<ion-item *ngFor="let property of rentalProperties">
 
@@ -46,10 +46,10 @@
 	    <ion-avatar item-start>
 	      <img src="assets/img/appicon.png">
 	    </ion-avatar>
-	    <h2 ion-text color="secondary">{{ property.name }}</h2>
-	    <p>{{ property.suburb}} </p>
+	    <h2 ion-text color="secondary">{{ property.name | uppercase }}</h2>
+	    <p>{{ property.suburb | uppercase }} </p>
 	    <ion-badge icon-top  color="primary" item-end>
-	    	R{{ property.price }}
+	    	{{ property.price | currency : "R" }}
 	    	<br/><sub>per {{ property.period }}</sub>
 	    </ion-badge>
 	  </ion-item>
@@ -58,7 +58,7 @@
 
 	  <ion-item-divider color="secondary">
 	      <p ion-text color="primary">Want to rent it?</p>
-	      <button ion-button outline strong  icon-left item-end (click)="presentContactUs()">
+	      <button ion-button outline strong  icon-left item-end (click)="presentContactUs($event,property)">
 	        <ion-icon name="person-add" ></ion-icon>
 	      Apply Now
 	    </button>
@@ -75,24 +75,18 @@
     </button>
     </ion-item-divider>  	
   	<ion-item-sliding *ngFor="let property of userProperties">
-	  <ion-item (click)="openProperty(property)" >
+	  <ion-item (click)="openProperty(property)" [color]="property.isListed ? 'light' : 'danger'">
 	    <ion-avatar item-start>
 	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
 	    </ion-avatar>
-	    <h2>{{ property.name }}</h2>
-	    <p>R {{ property.price}} per {{ property.period}}</p>
-	    <button ion-button  item-end color="primary" clear small>Edit</button>
+	    <h2>{{ property.name | uppercase }}</h2>
+	    <p>{{ property.price | currency : "R" }}per {{ property.period}}</p>
+	    <button ion-button  item-end small [color]="property.isListed ? 'secondary' : 'primary'"  >
+	    	<ion-icon [name]="property.isListed ? 'eye' : 'eye-off'" ></ion-icon> <br/>
+	    	{{ property.isListed ? 'Published' : 'Paused' }}
+	    </button>
+
 	  </ion-item>
-	  <ion-item-options side="left">
-	  	<button ion-button color="primary">
-			<ion-icon name="text"></ion-icon>
-			Text
-		</button>
-		<button ion-button color="secondary">
-			<ion-icon name="call"></ion-icon>
-			Call
-		</button>
-		</ion-item-options>
 		<ion-item-options side="right">
 			<button ion-button color="primary">
 				<ion-icon name="mail"></ion-icon>
@@ -102,44 +96,18 @@
 	</ion-item-sliding>		  
   </ion-list>
 
-  <ion-list *ngSwitchCase="'houses'">
-  	<ion-item-sliding>
-	  <ion-item>
-	    <ion-thumbnail item-start>
-	      <img src="assets/imgs/logo.png">
-	    </ion-thumbnail>
-	    <h2>RDP HOUSE</h2>
-	    <p>Hayao Miyazaki • 1988</p>
-	    <button ion-button  item-end color="secondary">View</button>
-	  </ion-item>
-	  <ion-item-options side="left">
-	  	<button ion-button color="primary">
-			<ion-icon name="text"></ion-icon>
-			Text
-		</button>
-		<button ion-button color="secondary">
-			<ion-icon name="call"></ion-icon>
-			Call
-		</button>
-		</ion-item-options>
-		<ion-item-options side="right">
-			<button ion-button color="primary">
-				<ion-icon name="mail"></ion-icon>
-				Email
-			</button>
-		</ion-item-options>
-	</ion-item-sliding>	
-  </ion-list>
 </div>
 <div center text-center padding>
 	<ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
 	<small *ngIf="spinnerMessage">{{spinnerMessage}}</small>
 </div>
-  <ion-fab right bottom *ngIf="agentMode">
-    <button ion-fab [color]="agentMode ? 'secondary' : 'primary'"><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab><ion-icon name="person-add"></ion-icon></button>
-      <button ion-fab   (click)="addProperty()"><ion-icon name="home"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
 </ion-content>
+<ion-footer >
+  <ion-toolbar>
+
+    <ion-title icon-left>
+    	<ion-icon end name="help-buoy" ></ion-icon>
+    	<small><a>Do you need help? <a href="te://0812829452">Call 081-282-9452</a></a></small>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

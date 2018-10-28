@@ -133,7 +133,9 @@ export class ParseProvider {
         let query = new Parse.Query(StudioProduct);
         query.skip(offset);
         query.limit(limit);
-        query.fullText('genre',genre);
+        if(genre){
+          query.equalTo('genre',genre);
+        }
         //query.equalTo('isDone',false);
         query.find().then((StudioProducts) => {
           resolve(StudioProducts);

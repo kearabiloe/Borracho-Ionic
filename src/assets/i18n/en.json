@@ -34,11 +34,13 @@
   "SETTINGS_OPTION1": "Agent Mode",
   "SETTINGS_OPTION2": "Location",
   "SETTINGS_OPTION3": "Search Radius",
-  "SETTINGS_OPTION4": "New Password",
+  "SETTINGS_OPTION4": "Full Names",
+  "SETTINGS_OPTION5": "Cell No.",
+  "SETTINGS_OPTION5": "Number Active On Whatsapp",
 
-  "SETTINGS_PROFILE_BUTTON": "Change Password",
+  "SETTINGS_PROFILE_BUTTON": "Edit Profile Details",
 
-  "SETTINGS_PAGE_PROFILE": "Change Password",
+  "SETTINGS_PAGE_PROFILE": "Edit Profile",
 
   "WELCOME_TITLE": "Welcome",
 

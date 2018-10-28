@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { Settings } from '../../providers';
 
@@ -38,6 +38,7 @@ export class SettingsPage {
     public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
+    public viewCtrl: ViewController,
     public translate: TranslateService) {
   }
 
@@ -53,7 +54,9 @@ export class SettingsPage {
         break;
       case 'profile':
         group = {
-          option4: [this.options.option4]
+          option4: [this.options.option4],
+          option5: [this.options.option5,Validators.required],
+          option6: [this.options.option6,Validators.required]
         };
         break;
     }
@@ -87,6 +90,10 @@ export class SettingsPage {
 
       this._buildForm();
     });
+  }
+  
+  cancel() {
+    this.viewCtrl.dismiss();
   }
 
   ngOnChanges() {

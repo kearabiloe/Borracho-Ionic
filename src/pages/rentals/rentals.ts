@@ -11,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { ParseProvider } from '../../providers/parse/parse';
 import { Settings } from '../../providers/settings/settings';
 
+
 @IonicPage({segment:"rentals"})
 @Component({
   selector: 'page-rentals',
@@ -134,15 +135,15 @@ export class RentalsPage {
     this.navCtrl.push('RentalDetailPage', {id: rental.objectId})
   }  
 
-  presentContactUs(myEvent) {
-    let popover = this.popoverCtrl.create('SignupPage',{},{showBackdrop:true});
+  presentContactUs(myEvent,Property) {
+    let popover = this.modalCtrl.create('RentLeadPage',{property:Property},{showBackdrop:true});
     popover.present({
       ev: myEvent
     });
   }  
 
   presentSettings(myEvent) {
-    let popover = this.popoverCtrl.create('SettingsPage',{},{showBackdrop:true});
+    let popover = this.modalCtrl.create('SettingsPage',{},{showBackdrop:true});
     popover.present({
       ev: myEvent
     });

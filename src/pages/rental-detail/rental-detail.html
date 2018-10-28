@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-title>{{ rentalProperty.name }}</ion-title>
   </ion-navbar>
 
@@ -8,16 +8,29 @@
 
 
 <ion-content>
+  <div class="item-profile" text-center #propertyPic [style.background-image]="'url(' + rentalProperty.propertyPic + ')'">
+  </div>
+
+  <div class="item-detail" padding>
+    <h2>{{rentalProperty.name}}</h2>
+    <p>{{rentalProperty.about}}</p>
+  </div>
 <ion-card>
-  <img [src]="rentalProperty.propertyPic? rentalProperty.propertyPic : 'assets/imgs/logo.png'"/>
+
+  <ion-item>
+    <ion-avatar item-start>
+      <div class="item-profile" text-center #propertyPic [style.background-image]="'url(' + rentalProperty.propertyPic + ')'">
+    </ion-avatar>
+    <h2>{{rentalProperty.name}}</h2>
+    <p>November 5, 1955</p>
+  </ion-item>
+
+  <img src="img/advance-card-bttf.png">
+
   <ion-card-content>
-    <ion-card-title>
-      R {{ rentalProperty.price }} {{ rentalProperty.billingFrequency}}
-      </ion-card-title>
-    <p>
-      {{ rentalProperty.about }}
-    </p>
+    <p>{{rentalProperty.about}}</p>
   </ion-card-content>
+
   <ion-row>
     <ion-col>
       <button ion-button icon-left clear small>
@@ -36,37 +49,7 @@
         11h ago
       </ion-note>
     </ion-col>
-  </ion-row>  
-</ion-card>
-<ion-card color="secondary">
-  <ion-card-header>
-    Features
-  </ion-card-header>
-  <ion-card-content>
-  <ion-list >
-    <button ion-item color="secondary">
-      <ion-icon name="shirt" item-start></ion-icon>
-      Laundry
-    </button>
+  </ion-row>
 
-    <button ion-item color="secondary">
-      <ion-icon name="wifi" item-start></ion-icon>
-      Internet
-    </button>
-
-    <button ion-item color="secondary">
-      <ion-icon name="beer" item-start></ion-icon>
-      Pub
-    </button>
-
-    <button ion-item color="secondary">
-      <ion-icon name="planet" item-start></ion-icon>
-      Space
-    </button>
-
-  </ion-list>
-</ion-card-content>
-</ion-card>
-
-
+</ion-card>  
 </ion-content>

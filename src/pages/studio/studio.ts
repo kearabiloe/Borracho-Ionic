@@ -31,11 +31,11 @@ export class StudioPage {
     this.listProducts();
   }
 
-  public listProducts(): Promise<any> {
+  public listProducts(genre:any=false): Promise<any> {
     this.showSpinner = true;
     let offset = this.studioProducts.length;
     let limit = 10;
-    return this.parseProvider.listStudioProducts(offset, limit).then((result) => {
+    return this.parseProvider.listStudioProducts(offset, limit,genre).then((result) => {
       for (let i = 0; i < result.length; i++) {
         let object = result[i];
         console.log(object);
@@ -51,8 +51,12 @@ export class StudioPage {
   }
 
   segmentChanged(ev){
+    this.showSpinner = true;
+    this.studioProducts=[];
     let segment=ev.value;
-    console.log(segment);
+    this.listProducts(segment).then((resp)=>{
+      console.log(resp)
+    });
   }
 
   doRefresh(refresher){
