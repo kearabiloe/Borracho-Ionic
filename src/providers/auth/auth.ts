@@ -45,7 +45,7 @@ export class AuthProvider {
       user.set('name', account.name);
       user.set('username', account.username);
       user.set('password', account.password);
-      user.set('email', account.email);
+      user.set('phone', account.phone);
 
       user.signUp(null).then((user) => {
           console.log("signup successfull");

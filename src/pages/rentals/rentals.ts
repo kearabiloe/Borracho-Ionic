@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController, PopoverController } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, PopoverController,ToastController, LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the RentalsPage page.
@@ -32,9 +31,10 @@ export class RentalsPage {
     public navParams: NavParams,
     public popoverCtrl: PopoverController,
     private parseProvider:ParseProvider,
-    private geolocation: Geolocation,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    public loadCtrl: LoadingController,
     public settings: Settings) {
     this.settings.load();
   }
@@ -43,8 +43,7 @@ export class RentalsPage {
     console.log('ionViewDidLoad RentalsPage');
     this.tapCounter =0; 
     this.listProperties();
-    this.listUserProperties();
-    this.getLocation();    
+    this.listUserProperties();  
   }
 
   ionViewCanEnter(): boolean {
@@ -59,7 +58,6 @@ export class RentalsPage {
   }
   tapHome(tap){
     //Secret Door: Activates Agents Mode.
-    console.log("tapped home "+this.tapCounter+" times");
     if(this.tapCounter >= 10){
       if(this.agentMode){
         //Deactivate Agent Mode
@@ -97,14 +95,13 @@ export class RentalsPage {
     return this.parseProvider.getRentalProperties(offset, limit).then((result) => {
       for (let i = 0; i < result.length; i++) {
         let object = result[i];
-        console.log(object);
         this.rentalProperties.push(object.toJSON());
       }
       this.showSpinner = false;
       this.spinnerMessage =false;      
     }, (error) => {
       this.showSpinner = false;
-      this.spinnerMessage = error.message;
+      this.spinnerMessage = "We were unable to update this page. Please check your internet connectivity and tap/pull to refresh.";
       console.log(error);
     });
   }
@@ -135,11 +132,39 @@ export class RentalsPage {
     this.navCtrl.push('RentalDetailPage', {id: rental.objectId})
   }  
 
-  presentContactUs(myEvent,Property) {
-    let popover = this.modalCtrl.create('RentLeadPage',{property:Property},{showBackdrop:true});
-    popover.present({
-      ev: myEvent
-    });
+  presentContactUs(Property) {
+    let applyModal = this.modalCtrl.create('RentLeadPage',{property:Property},{showBackdrop:true});
+    applyModal.onDidDismiss(applicationForm => {
+      if (applicationForm) {
+        console.log(applicationForm);
+      let loader = this.loadCtrl.create({
+        content: 'Submitting Application...'
+      });
+      loader.present();      
+      console.log("go");  
+        this.parseProvider.addRentApplication(applicationForm).then((resp)=>{
+          loader.dismissAll();
+
+          let toast = this.toastCtrl.create({
+            message: "Your new application was successfuly created.",
+            duration: 3000,
+            position: 'top'
+          });      
+          
+          toast.present();          
+          }).catch(err =>{
+            console.error(err);
+            loader.dismissAll();
+            let alert = this.alertCtrl.create({
+              title: 'Property Rental Application Was Not Created',
+              subTitle: err.message,
+              buttons: ['OK']
+            });  
+            alert.present();              
+          })
+      }
+    })
+    applyModal.present();
   }  
 
   presentSettings(myEvent) {
@@ -153,15 +178,53 @@ export class RentalsPage {
     let addModal = this.modalCtrl.create('ItemCreatePage');
     addModal.onDidDismiss(item => {
       if (item) {
-        this.parseProvider.addRentalProperty(item).then(()=>{this.doRefresh()});
+      let loader = this.loadCtrl.create({
+        content: 'Creating Property...'
+      });
+      loader.present();        
+        this.parseProvider.addRentalProperty(item).then((resp)=>{
+          loader.dismissAll();
+          let toast = this.toastCtrl.create({
+            message: "Your new property was successfuly created.",
+            duration: 3000,
+            position: 'top'
+          });      
+          
+          toast.present();          
+          this.doRefresh()}).catch(err =>{
+            console.error(err);
+            loader.dismissAll();
+            let alert = this.alertCtrl.create({
+              title: 'Property Not Created',
+              subTitle: err.message,
+              buttons: ['OK']
+            });  
+            alert.present();              
+          })
       }
     })
     addModal.present();
   }
 
 
-  deleteProperty(item) {
-    //this.items.delete(item);
+  deleteProperty(property) {
+    this.parseProvider.deleteRentalProperty(property).then((resp)=>{
+      let toast = this.toastCtrl.create({
+        message: "Your property was successfuly deleted.",
+        duration: 3000,
+        position: 'top'
+      });      
+      
+      toast.present();          
+      this.doRefresh()}).catch(err =>{
+        console.error(err);
+        let alert = this.alertCtrl.create({
+          title: 'Property Not Deleted',
+          subTitle: err.message,
+          buttons: ['OK']
+        });  
+        alert.present();              
+      })
   }
 
   doRefresh(refresher:any=false) {
@@ -177,16 +240,6 @@ export class RentalsPage {
         refresher.complete();
       }
     }, 2000);
-  }
-
-  getLocation(){
-this.geolocation.getCurrentPosition().then((resp) => {
- // resp.coords.latitude
- // resp.coords.longitude
-}).catch((error) => {
-  console.log('Error getting location', error);
-});
-
   }
 
 }

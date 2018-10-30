@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 
@@ -20,12 +20,12 @@ export class ItemCreatePage {
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
     this.form = formBuilder.group({
       propertyPic: [''],
-      name: ['Property Name', Validators.required],
-      price:['',Validators.required],
+      name: ['Property Name'],
+      price:[0],
       period:['month'],
-      contact_no:['',Validators.required],
+      contact_no:[''],
       street_address:[''],
-      suburb:['',Validators.required],
+      suburb:[''],
       longitude:['0'],
       latitude:['-10'],
       isListed:[true],

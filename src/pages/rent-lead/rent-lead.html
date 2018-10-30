@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Applicant Screener</ion-title>
+    <ion-title>Application To Rent</ion-title>
 	<ion-buttons end>
   		<button ion-button icon-only (click)="cancel()">
   			<ion-icon name="close"></ion-icon>
@@ -18,7 +18,7 @@
 
 
 <ion-content >
-<form *ngIf="form" [formGroup]="form" (ngSubmit)="createLead()">	
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="done()">	
 <ion-list inset>
 	  <ion-item color="light" no-lines>
 	    <ion-thumbnail item-start>
@@ -43,10 +43,10 @@
 
   <ion-item no-lines >
     <ion-label icon-left >
-      <ion-icon  color="secondary" name="logo-whatsapp"></ion-icon>
+      <ion-icon small  color="secondary" name="logo-whatsapp"></ion-icon>
       I am on Whatsapp!
     </ion-label>
-    <ion-toggle formControlName="remember_me" checked="true"></ion-toggle>
+    <ion-toggle formControlName="onWhatsapp" checked="true"></ion-toggle>
   </ion-item>
   <ion-item>
   	<button ion-button block  large color="secondary" [disabled]="form.valid? false :false" icon-left >

@@ -8,6 +8,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 import { FirstRunPage } from '../pages';
 import { Settings } from '../providers';
+import { GpsProvider } from '../providers/gps/gps';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -35,6 +36,8 @@ import { Settings } from '../providers';
 })
 export class MyApp {
   rootPage = FirstRunPage;
+  firstRun: any = false;
+
 
   @ViewChild(Nav) nav: Nav;
 
@@ -46,7 +49,8 @@ export class MyApp {
 
   constructor(private translate: TranslateService,
     platform: Platform,
-    settings: Settings,
+    private settings: Settings,
+    private gpsProv: GpsProvider,
     private config: Config,
     private statusBar: StatusBar,
     private push: Push) {
@@ -56,8 +60,27 @@ export class MyApp {
       this.statusBar.styleDefault();
       SplashScreen.hide().catch((err)=>{console.log(err)});
       //this.initPush();
+
     });
     this.initTranslate();
+    this.setRootPage();
+    this.gpsProv.gpsInitialize()
+  }
+
+  setRootPage() {
+
+    this.settings.load().then(() => {
+      this.settings.getValue('firstRun').then((val)=>{
+        this.firstRun=val
+      });
+      console.log("First run",this.firstRun);
+      if(this.firstRun){
+        this.settings.setValue('firstRun',false)
+      }else{
+        this.rootPage = 'WelcomePage';
+      }      
+    });
+
   }
 
   initTranslate() {

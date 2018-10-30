@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Settings } from '../../providers';
+import { GpsProvider } from '../../providers/gps/gps';
 
 /**
  * Generated class for the RentLeadPage page.
@@ -35,7 +36,7 @@ export class RentLeadPage {
   	this.form = formBuilder.group({
   		name: [this.options.option4],
   		contact_no: [this.options.option5, Validators.required],
-  		remember_me: [true]
+  		onWhatsapp: [this.options.option6]
   	});
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
@@ -46,7 +47,10 @@ export class RentLeadPage {
     let group: any = {
       name: [this.options.option4],
       contact_no: [this.options.option5],
-      remember_me: [true]
+      onWhatsapp: [true],
+      latitude:["-1.0"],
+      longitude:["2.0"],
+      property:[this.property]
     };
 
     this.form = this.formBuilder.group(group);
@@ -85,7 +89,4 @@ export class RentLeadPage {
     this.viewCtrl.dismiss(this.form.value);
   }  
 
-  createLead(){
-    debugger;
-  }
 }

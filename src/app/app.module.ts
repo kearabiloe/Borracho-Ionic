@@ -14,6 +14,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 // Providers
 import { ParseProvider } from '../providers/parse/parse';
 import { AuthProvider } from '../providers/auth/auth';
+import { GpsProvider } from '../providers/gps/gps';
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 
@@ -33,10 +34,7 @@ export function provideSettings(storage: Storage) {
    * these values will not overwrite the saved values (this can be done manually if desired).
    */
   return new Settings(storage, {
-    agentMode: true,
-    option2: '-5.23,0.1',
-    option3: '5',
-    option4: 'Hello'
+    agentMode: false
   });
 }
 
@@ -72,6 +70,7 @@ export function provideSettings(storage: Storage) {
     ParseProvider,
     AuthProvider,
     Geolocation,
+    GpsProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
 import { ParseProvider } from '../../providers/parse/parse';
 
 /**
@@ -23,7 +22,6 @@ export class LaundryPage {
   constructor(public navCtrl: NavController, 
   	public navParams: NavParams,
   	private parseProvider:ParseProvider,
-    private geolocation: Geolocation,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController) {
   	this.listOrders();

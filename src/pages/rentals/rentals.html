@@ -58,7 +58,7 @@
 
 	  <ion-item-divider color="secondary">
 	      <p ion-text color="primary">Want to rent it?</p>
-	      <button ion-button outline strong  icon-left item-end (click)="presentContactUs($event,property)">
+	      <button ion-button outline strong  icon-left item-end (click)="presentContactUs(property)">
 	        <ion-icon name="person-add" ></ion-icon>
 	      Apply Now
 	    </button>
@@ -80,7 +80,7 @@
 	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
 	    </ion-avatar>
 	    <h2>{{ property.name | uppercase }}</h2>
-	    <p>{{ property.price | currency : "R" }}per {{ property.period}}</p>
+	    <p>{{ property.price | currency : "R" }} <sub>per {{ property.period}}</sub></p>
 	    <button ion-button  item-end small [color]="property.isListed ? 'secondary' : 'primary'"  >
 	    	<ion-icon [name]="property.isListed ? 'eye' : 'eye-off'" ></ion-icon> <br/>
 	    	{{ property.isListed ? 'Published' : 'Paused' }}
@@ -88,9 +88,9 @@
 
 	  </ion-item>
 		<ion-item-options side="right">
-			<button ion-button color="primary">
-				<ion-icon name="mail"></ion-icon>
-				Email
+			<button ion-button color="danger" (click)="deleteProperty(property)">
+				<ion-icon name="trash"></ion-icon>
+				Delete
 			</button>
 		</ion-item-options>
 	</ion-item-sliding>		  
@@ -99,15 +99,25 @@
 </div>
 <div center text-center padding>
 	<ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
-	<small *ngIf="spinnerMessage">{{spinnerMessage}}</small>
+	<div *ngIf="spinnerMessage && !showSpinner">
+		<h2>Are you in airplane mode?</h2>
+		<small >{{spinnerMessage}}</small><br/>
+		<ion-row padding>
+	  <ion-fab center >
+	    <button ion-fab color="secondary" (click)="doRefresh()">
+	      <ion-icon name="refresh"></ion-icon>
+	    </button>
+	  </ion-fab>
+	  </ion-row>		
+	</div>
 </div>
 </ion-content>
 <ion-footer >
   <ion-toolbar>
 
     <ion-title icon-left>
-    	<ion-icon end name="help-buoy" ></ion-icon>
-    	<small><a>Do you need help? <a href="te://0812829452">Call 081-282-9452</a></a></small>
+    	<ion-icon small name="help-buoy" color="danger"></ion-icon>
+    	<small>Do you need help? <a href="tel://27793617077">Call 0793617077</a></small>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

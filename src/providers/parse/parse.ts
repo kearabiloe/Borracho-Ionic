@@ -83,13 +83,13 @@ export class ParseProvider {
     rentalProperty.set('name', newProperty.name);
     rentalProperty.set('street_address', newProperty.street_address);
     rentalProperty.set('suburb', newProperty.suburb);
-    rentalProperty.set('price', newProperty.price);
+    rentalProperty.set('price', parseFloat(newProperty.price));
     rentalProperty.set('period', newProperty.period);
     rentalProperty.set('propertyPic', newProperty.propertyPic);
     rentalProperty.set('manager', currentUser);
     rentalProperty.set('isVerified', newProperty.isVerified);
     rentalProperty.set('isListed', newProperty.isListed);
-    rentalProperty.set('location', point);
+    rentalProperty.set('gps', point);
 
     return rentalProperty.save(null, {
       success: function (rentalProperty) {
@@ -100,6 +100,25 @@ export class ParseProvider {
         console.log(error);
         return error;
       }
+    });
+  }
+
+  public deleteRentalProperty(property): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const RentalProperty = Parse.Object.extend('RentalProperties');
+        let query = new Parse.Query(RentalProperty);
+        console.log(property);
+        query.get(property.objectId).then((Property) => {
+          Property.destroy().then((property) =>{
+            resolve(property);
+          }, (error) =>{
+            reject(error);
+          })
+        }, (error) => {
+          reject(error);
+        });
+      }, 500);
     });
   }
 
@@ -144,7 +163,36 @@ export class ParseProvider {
         });
       }, 500);
     });
-  }    
+  }
+
+  public addRentApplication(newApplication): Promise<any> {
+    const RentApplication = Parse.Object.extend('RentApplication');
+    const Property = Parse.Object.extend("RentalProperties");
+    let rentProperty = new Property();
+    console.log(newApplication);
+    rentProperty.id = newApplication.property.objectId;
+    let rentApplication = new RentApplication();
+    let currentUser = Parse.User.current();
+    let point = new Parse.GeoPoint({latitude: newApplication.latitude, longitude: newApplication.longitude});
+    console.log(point);
+    rentApplication.set('name', newApplication.name);
+    rentApplication.set('contact_no', newApplication.contact_no);
+    rentApplication.set('onWhatsapp', newApplication.onWhatsapp);
+    rentApplication.set('location', point);
+    rentApplication.set('user', currentUser);
+    rentApplication.set('property', rentProperty);
+
+    return rentApplication.save(null, {
+      success: function (rentApplication) {
+        console.log(rentApplication);
+        return rentApplication;
+      },
+      error: function (rentApplication, error) {
+        console.log(error);
+        return error;
+      }
+    });
+  }      
 
   private parseInitialize() {
     Parse.initialize(this.parseAppId);
