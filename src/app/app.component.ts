@@ -42,9 +42,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Home', component: 'TabsPage' },
-    { title: 'Settings', component: 'SettingsPage' },
+    { title: 'Log Out', component: 'LogOutPage' },
   ]
 
   constructor(private translate: TranslateService,

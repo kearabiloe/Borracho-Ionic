@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Settings } from '../../providers';
-import { GpsProvider } from '../../providers/gps/gps';
+//import { GpsProvider } from '../../providers/gps/gps';
 
 /**
  * Generated class for the RentLeadPage page.

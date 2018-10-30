@@ -50,7 +50,7 @@
 	    <p>{{ property.suburb | uppercase }} </p>
 	    <ion-badge icon-top  color="primary" item-end>
 	    	{{ property.price | currency : "R" }}
-	    	<br/><sub>per {{ property.period }}</sub>
+	    	<br/><sup>per {{ property.period }}</sup>
 	    </ion-badge>
 	  </ion-item>
 
@@ -81,7 +81,7 @@
 	    </ion-avatar>
 	    <h2>{{ property.name | uppercase }}</h2>
 	    <p>{{ property.price | currency : "R" }} <sub>per {{ property.period}}</sub></p>
-	    <button ion-button  item-end small [color]="property.isListed ? 'secondary' : 'primary'"  >
+	    <button ion-button clear  item-end small [color]="property.isListed ? 'secondary' : 'primary'"  >
 	    	<ion-icon [name]="property.isListed ? 'eye' : 'eye-off'" ></ion-icon> <br/>
 	    	{{ property.isListed ? 'Published' : 'Paused' }}
 	    </button>

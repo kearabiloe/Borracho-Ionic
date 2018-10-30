@@ -41,6 +41,7 @@ export class AuthProvider {
 
   public signup(account: any): Observable<boolean> {
     return new Observable((observer) => {
+      setTimeout(() => {
       var user = new Parse.User();
       user.set('name', account.name);
       user.set('username', account.username);
@@ -55,8 +56,7 @@ export class AuthProvider {
           console.error(error);
           observer.error(error);
           observer.complete();        
-      });
-
+      })}, 500);
     });
   }
 

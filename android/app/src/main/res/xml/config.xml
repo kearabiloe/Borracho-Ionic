@@ -16,11 +16,6 @@
   </feature>
 
 
-  <feature name="BackgroundGeolocation">
-    <param name="android-package" value="com.tenforwardconsulting.cordova.BackgroundGeolocationPlugin"/>
-  </feature>
-
-
   <feature name="Whitelist">
     <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin"/>
     <param name="onload" value="true"/>
