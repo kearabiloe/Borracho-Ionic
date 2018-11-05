@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Settings } from '../../providers';
+import { AuthProvider } from '../../providers/auth/auth';
 //import { GpsProvider } from '../../providers/gps/gps';
 
 /**
@@ -27,27 +28,34 @@ export class RentLeadPage {
 
   options: any = {};
 
+  user: any = {};
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public settings: Settings,
+    public authProv: AuthProvider,
     public formBuilder: FormBuilder) {
   	this.property = navParams.get('property') || {};
   	this.form = formBuilder.group({
-  		name: [this.options.option4],
-  		contact_no: [this.options.option5, Validators.required],
-  		onWhatsapp: [this.options.option6]
+  		name: [this.user.name],
+  		contact_no: [this.user.phone, Validators.required],
+  		onWhatsapp: [this.user.onWhatsapp],
   	});
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
       this.isReadyToSave = this.form.valid;
     });	
+
+    //Set User
+    this.user = this.authProv.currentUser();
+    console.log(this.user);
   }
   _buildForm() {
     let group: any = {
-      name: [this.options.option4],
-      contact_no: [this.options.option5],
-      onWhatsapp: [true],
+      name: [this.user.name],
+      contact_no: [this.user.phone],
+      onWhatsapp: [this.user.onWhatsapp],
       latitude:["-1.0"],
       longitude:["2.0"],
       property:[this.property]

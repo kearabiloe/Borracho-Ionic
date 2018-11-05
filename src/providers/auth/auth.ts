@@ -12,6 +12,9 @@ export class User {
   public id: string;
   public name: string;
   public email: string;
+  public phone: string;
+  public onWhatsapp: boolean;
+  public isAgent: boolean;
 }
 
 @Injectable()
@@ -27,7 +30,6 @@ export class AuthProvider {
   public signin(username: string, password: string): Observable<boolean> {
     return new Observable((observer) => {
       Parse.User.logIn(username, password).then((user)=>{
-          console.log(user);
           observer.next(true);
           observer.complete();
       }).catch(error => {
@@ -47,6 +49,7 @@ export class AuthProvider {
       user.set('username', account.username);
       user.set('password', account.password);
       user.set('phone', account.phone);
+      user.set('onWhatsapp', account.onWhatsapp);
 
       user.signUp(null).then((user) => {
           console.log("signup successfull");
@@ -73,6 +76,9 @@ export class AuthProvider {
       user.id = u.id;
       user.name = u.get('username');
       user.email = u.get('email');
+      user.phone = u.get('phone');
+      user.onWhatsapp = u.get('onWhatsapp');
+      user.isAgent = u.get('isAgent')
       return user;
     }
     return null

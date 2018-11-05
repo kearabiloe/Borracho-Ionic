@@ -36,7 +36,7 @@ import { GpsProvider } from '../providers/gps/gps';
 })
 export class MyApp {
   rootPage = FirstRunPage;
-  firstRun: any = false;
+  firstRun: any = true;
 
 
   @ViewChild(Nav) nav: Nav;

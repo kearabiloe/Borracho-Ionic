@@ -9,7 +9,7 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController, 
  */
 import { ParseProvider } from '../../providers/parse/parse';
 import { Settings } from '../../providers/settings/settings';
-
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage({segment:"rentals"})
 @Component({
@@ -35,6 +35,7 @@ export class RentalsPage {
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public loadCtrl: LoadingController,
+    public authProv: AuthProvider,
     public settings: Settings) {
     this.settings.load();
   }
@@ -47,12 +48,12 @@ export class RentalsPage {
   }
 
   ionViewCanEnter(): boolean {
-    return true //this.auth.authenticated();
+    return this.authProv.authenticated();
   }
   ionViewWillEnter() {
   
-      this.settings.getValue('option1').then((resp)=>{
-        console.log("Agent Mode: "+resp);
+      this.settings.getValue('agentMode').then((resp)=>{
+        console.log("Agent Mode: ",resp);
         this.agentMode = resp;
         });
   }

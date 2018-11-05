@@ -28,8 +28,8 @@ export class ParseProvider {
         query.skip(offset);
         query.limit(limit);
         query.descending("price");
-        query.equalTo('isVerified',true);
         query.equalTo('isListed',true);
+        query.equalTo('isVerified',true);
         query.find().then((Properties) => {
           resolve(Properties);
         }, (error) => {
@@ -49,6 +49,7 @@ export class ParseProvider {
         let query = new Parse.Query(RentalProperty);
         query.skip(offset);
         query.limit(limit);
+        query.equalTo('isListed',true);
         query.ascending("price");
         query.equalTo('manager',currentUser);
         query.find().then((Properties) => {

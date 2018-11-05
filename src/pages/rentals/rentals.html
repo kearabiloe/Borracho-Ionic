@@ -18,12 +18,18 @@
 	</ion-segment>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentSettings($event)">
+      <button ion-button icon-only (click)="presentSettings($event)" [color]="agentMode ? 'primary' : 'secondary'">
         <ion-icon name="cog"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
-
+    <ion-item-divider color="primary">
+      Do you need assistance? 
+      <button ion-button outline  icon-left item-end (click)="presentContactUs()">
+        <ion-icon name="contact" ></ion-icon>
+      	Contact Details
+    </button>
+    </ion-item-divider>  	
 </ion-header>
 
 
@@ -75,15 +81,15 @@
     </button>
     </ion-item-divider>  	
   	<ion-item-sliding *ngFor="let property of userProperties">
-	  <ion-item (click)="openProperty(property)" [color]="property.isListed ? 'light' : 'danger'">
+	  <ion-item (click)="openProperty(property)" [color]="property.isVerified ? 'light' : ''">
 	    <ion-avatar item-start>
 	      <img [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
 	    </ion-avatar>
 	    <h2>{{ property.name | uppercase }}</h2>
 	    <p>{{ property.price | currency : "R" }} <sub>per {{ property.period}}</sub></p>
-	    <button ion-button clear  item-end small [color]="property.isListed ? 'secondary' : 'primary'"  >
-	    	<ion-icon [name]="property.isListed ? 'eye' : 'eye-off'" ></ion-icon> <br/>
-	    	{{ property.isListed ? 'Published' : 'Paused' }}
+	    <button ion-button clear  item-end small [color]="property.isVerified ? 'secondary' : 'primary'"  >
+	    	<ion-icon [name]="property.isVerified ? 'eye' : 'eye-off'" ></ion-icon> <br/>
+	    	{{ property.isVerified ? 'Verified' : 'Unverified' }}
 	    </button>
 
 	  </ion-item>
@@ -100,7 +106,7 @@
 <div center text-center padding>
 	<ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
 	<div *ngIf="spinnerMessage && !showSpinner">
-		<h2>Are you in airplane mode?</h2>
+		<h2>Are you offline?</h2>
 		<small >{{spinnerMessage}}</small><br/>
 		<ion-row padding>
 	  <ion-fab center >
@@ -112,7 +118,7 @@
 	</div>
 </div>
 </ion-content>
-<ion-footer >
+<!-- <ion-footer >
   <ion-toolbar>
 
     <ion-title icon-left>
@@ -120,4 +126,4 @@
     	<small>Do you need help? <a href="tel://27793617077">Call 0793617077</a></small>
     </ion-title>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

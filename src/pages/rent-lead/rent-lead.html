@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Application To Rent</ion-title>
+    <ion-title>Request for information</ion-title>
 	<ion-buttons end>
   		<button ion-button icon-only (click)="cancel()">
   			<ion-icon name="close"></ion-icon>
@@ -31,29 +31,43 @@
 	    	<sub>per {{ property.period }}</sub>
 	    </p>
 	  </ion-item>
-  <ion-item>
-    <ion-label stacked color="secondary">Name & Surname</ion-label>
-    <ion-input type="text" formControlName="name" placeholder="Jane Smith"></ion-input>
-  </ion-item>
+    <ion-item-group *ngIf="options.agentMode">
+      <ion-item-divider color="secondary">Client Contact Details</ion-item-divider>  
+      <ion-item>
+        <ion-label stacked color="secondary">Name & Surname</ion-label>
+        <ion-input type="text" formControlName="name" placeholder="Jane Smith"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label stacked color="secondary">Contact Number</ion-label>
-    <ion-input type="tel" formControlName="contact_no" placeholder="0812345678"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label stacked color="secondary">Contact Number</ion-label>
+        <ion-input type="tel" formControlName="contact_no" placeholder="0812345678"></ion-input>
+      </ion-item>
 
-  <ion-item no-lines >
-    <ion-label icon-left >
-      <ion-icon small  color="secondary" name="logo-whatsapp"></ion-icon>
-      I am on Whatsapp!
-    </ion-label>
-    <ion-toggle formControlName="onWhatsapp" checked="true"></ion-toggle>
-  </ion-item>
-  <ion-item>
-  	<button ion-button block  large color="secondary" [disabled]="form.valid? false :false" icon-left >
-  		<ion-icon name="send"></ion-icon>
-  		Send Application
-  	</button>
-  </ion-item>
+    </ion-item-group>
+    <ion-item-group *ngIf="!options.agentMode">
+    <ion-item text-wrap >
+      <h2 ion-text color="primary">HELLO {{ user.name | uppercase }}</h2>
+      <h3>Please confirm your contact details</h3>      
+      <p><small>We will contact you after you submit your request to discuss your rental options around {{ property.suburb }}.</small> </p>      
+    </ion-item>
+      <ion-item no-lines >
+        <ion-label stacked color="primary">Contact Number<sup ion-text color="danger">*</sup></ion-label>
+        <ion-input type="tel" formControlName="contact_no" placeholder="0812345678"></ion-input>
+      </ion-item>    
+      <ion-item no-lines >
+        <ion-label icon-left >
+          <ion-icon small  color="secondary" name="logo-whatsapp"></ion-icon>
+          <small>Available on Whatsapp!</small>
+        </ion-label>
+        <ion-toggle formControlName="onWhatsapp" checked="true"></ion-toggle>
+      </ion-item>    
+    <ion-item>
+      <button ion-button big full color="secondary" icon-left >
+        <ion-icon name="send"></ion-icon>
+        Submit Request
+      </button>
+    </ion-item>    
+  </ion-item-group>
 </ion-list>
 </form>
 </ion-content>

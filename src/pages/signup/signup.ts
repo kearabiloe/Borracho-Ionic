@@ -25,7 +25,7 @@ export class SignupPage {
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: AuthProvider,
+    public authProv: AuthProvider,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public translateService: TranslateService) {
@@ -37,7 +37,7 @@ export class SignupPage {
 
   doSignup() {
     // Attempt to login in through our User service
-    this.user.signup(this.account).subscribe((success) => {
+    this.authProv.signup(this.account).subscribe((success) => {
       console.log(success);
       this.navCtrl.push(MainPage);
     }, (err) => {
