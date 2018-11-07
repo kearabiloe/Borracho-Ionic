@@ -45,7 +45,7 @@ export class SettingsPage {
   _buildForm() {
     let group: any = {
       agentMode: [this.options.agentMode],
-      option2: [this.options.option2],
+      gps: [this.options.gps],
       option3: [this.options.option3]
     };
 

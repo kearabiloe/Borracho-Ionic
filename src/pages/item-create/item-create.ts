@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
+import { GpsProvider } from '../../providers/gps/gps';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class ItemCreatePage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera, public gpsProv: GpsProvider) {
     this.form = formBuilder.group({
       propertyPic: [''],
       name: ['Property Name'],
@@ -80,6 +81,16 @@ export class ItemCreatePage {
     this.viewCtrl.dismiss();
   }
 
+  getLocation(){
+    this.gpsProv.getCurrentPosition().subscribe((resp) =>{
+      console.log(resp);
+      this.form.patchValue({'longitude':resp});
+    },
+    (error)=>{
+      console.log(error);
+      this.form.patchValue({'longitude':error.message});
+    })
+  }
   /**
    * The user is done and wants to create the item, so return it
    * back to the presenter.

@@ -28,17 +28,17 @@
   </ion-refresher>  
 
 <ion-list>
-<img class="ad-banner" width="100%" height="10pt" src="assets/img/jeans.png">
+
   <ion-item-group>
-    <ion-item-divider color="secondary">
-      Laundry
-      <button ion-button outline  icon-left item-end (click)="addLaundry()">
-        <ion-icon name="add-circle" ></ion-icon>
-        Price Calculator
+    <ion-item-divider >
+      
+      <button ion-button block outline icon-left  large color="primary" (click)="addLaundry()">
+        <ion-icon name="car" ></ion-icon>
+        Request Collection
       </button>
     </ion-item-divider>
     <ion-item *ngFor="let order of laundryOrders">
-      <ion-icon name="cart" item-start></ion-icon>
+      <ion-icon name="shirt" item-start></ion-icon>
         <h2>{{ order.objectId}}</h2>
         <p>
           {{ order.status }}<br/>
