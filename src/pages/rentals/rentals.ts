@@ -7,6 +7,7 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController, 
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
 import { ParseProvider } from '../../providers/parse/parse';
 import { Settings } from '../../providers/settings/settings';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -48,7 +49,7 @@ export class RentalsPage {
   }
 
   ionViewCanEnter(): boolean {
-    return this.authProv.authenticated();
+    return true //this.authProv.authenticated();
   }
   ionViewWillEnter() {
   

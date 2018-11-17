@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
-import { GpsProvider } from '../../providers/gps/gps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,7 @@ export class ItemCreatePage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera, public gpsProv: GpsProvider) {
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera, private geolocation: Geolocation) {
     this.form = formBuilder.group({
       propertyPic: [''],
       name: ['Property Name'],
@@ -40,7 +40,7 @@ export class ItemCreatePage {
   }
 
   ionViewDidLoad() {
-
+    this.getLocation();
   }
 
   getPicture() {
@@ -82,14 +82,20 @@ export class ItemCreatePage {
   }
 
   getLocation(){
-    this.gpsProv.getCurrentPosition().subscribe((resp) =>{
-      console.log(resp);
-      this.form.patchValue({'longitude':resp});
-    },
-    (error)=>{
-      console.log(error);
-      this.form.patchValue({'longitude':error.message});
-    })
+    this.geolocation.getCurrentPosition().then((data) => {
+     this.form.patchValue({'longitude':data.coords.longitude,'latitude':data.coords.latitude});
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+  let watch = this.geolocation.watchPosition();
+  watch.subscribe((data) => {
+   // data can be a set of coordinates, or an error (if an error occurred).
+   this.form.patchValue({'longitude':data.coords.longitude,'latitude':data.coords.latitude});
+   // data.coords.latitude
+   // data.coords.longitude
+  });
+
   }
   /**
    * The user is done and wants to create the item, so return it

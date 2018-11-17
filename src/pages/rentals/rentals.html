@@ -42,24 +42,28 @@
 	<ion-item *ngFor="let property of rentalProperties">
 
 	  <ion-item color="primary">
-	    <ion-avatar item-start>
-	      <img src="assets/img/appicon.png">
-	    </ion-avatar>
+	    <ion-thumbnail item-start>
+	      <img class="property-img" [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+	    </ion-thumbnail>
 	    <h2 ion-text color="secondary">{{ property.name | uppercase }}</h2>
 	    <p>{{ property.suburb | uppercase }} </p>
-	    <ion-badge icon-top  color="primary" item-end>
+	    <ion-badge icon-top  color="primary" >
 	    	{{ property.price | currency : "R" }}
-	    	<br/><sup>per {{ property.period }}</sup>
+	    	<sup>per {{ property.period }}</sup>
 	    </ion-badge>
 	  </ion-item>
 
-	  <img class="property-img" [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'">
+	  <!-- <img class="property-img" [src]="property.propertyPic ? property.propertyPic : 'assets/imgs/logo.png'"> -->
 
-	  <ion-item-divider color="secondary">
-	      <p ion-text color="primary">Want to rent it?</p>
-	      <button ion-button outline strong  icon-left item-end (click)="presentContactUs(property)">
-	        <ion-icon name="person-add" ></ion-icon>
-	      Contact
+	  <ion-item-divider color="light">
+	      <p ion-text color="primary">Rent {{ property.name }}</p>
+	      <button ion-button  strong  icon-left item-end color="danger" (click)="presentContactUs(property)">
+	        <ion-icon name="heart" ></ion-icon>
+	      Rent 
+	    </button>
+	      <button ion-button  strong small icon-left item-end color="primary" >
+	        <ion-icon name="phone" ></ion-icon>
+	      Call 
 	    </button>
 	  </ion-item-divider>	  
 	</ion-item>	  
@@ -97,7 +101,7 @@
 
 </div>
 <div center text-center padding>
-	<ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
+	<!-- <ion-spinner *ngIf="showSpinner"></ion-spinner><br/> -->
 	<div *ngIf="spinnerMessage && !showSpinner">
 		<h2>Are you offline?</h2>
 		<small >{{spinnerMessage}}</small><br/>

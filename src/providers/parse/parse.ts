@@ -193,7 +193,25 @@ export class ParseProvider {
         return error;
       }
     });
-  }      
+  }   
+
+  public getMarketPartners(offset: number = 0, limit: number = 3): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let currentUser = Parse.User.current();
+        console.log("Fetching MarketPartners");
+        const MarketPartners = Parse.Object.extend('MarketPartner');
+        //const RentalProperty = currentUser.relation('RentalProperties');
+        let query = new Parse.Query(MarketPartners);
+        //query.equalTo('isDone',false);
+        query.find().then((MarketPartners) => {
+          resolve(MarketPartners);
+        }, (error) => {
+          reject(error);
+        });
+      }, 500);
+    });
+  }     
 
   private parseInitialize() {
     Parse.initialize(this.parseAppId);

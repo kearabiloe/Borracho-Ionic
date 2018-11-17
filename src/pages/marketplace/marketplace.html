@@ -1,0 +1,90 @@
+<!--
+  Generated template for the MarketplacePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+
+<ion-searchbar (ionInput)="getmarketPartners($event)"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>  
+
+
+<ion-list *ngIf="searchResults">  
+  <ion-item *ngFor="let partner of searchResults" (click)="openPartner(partner)">
+    <ion-avatar item-start>
+    	<img class="property-img" [src]="partner.partnerAvatar ? partner.partnerAvatar : 'assets/imgs/logo.png'">
+    </ion-avatar>
+    <h2>{{ partner.name }}</h2>
+    <p>{{ partner.bio }}</p>
+    <button ion-button clear item-end>View</button>
+  </ion-item>	
+  <img class="partner-img" [src]="partner.partnerPic ? partner.partnerPic : 'assets/imgs/logo.png'">
+
+    <ion-item-divider color="light">
+        <p ion-text color="primary">Rent {{ partner.name }}</p>
+        <button ion-button  strong  icon-left item-end color="danger" (click)="presentContactUs(property)">
+          <ion-icon name="heart" ></ion-icon>
+        Rent 
+      </button>
+        <button ion-button  strong small icon-left item-end color="primary" >
+          <ion-icon name="phone" ></ion-icon>
+        Call 
+      </button>
+    </ion-item-divider>     
+</ion-list>
+
+
+
+<!-- <ion-card color="light" *ngFor="let property of items">
+
+  <ion-item>
+    <ion-icon name="football" item-start large></ion-icon>
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison, WI 53703</p>
+  </ion-item>
+
+  <ion-card-content>
+  </ion-card-content>
+
+  <ion-row color="primary">
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        11h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+
+</ion-card> -->
+
+</ion-content>
