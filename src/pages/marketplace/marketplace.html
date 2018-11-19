@@ -28,30 +28,34 @@
   </ion-refresher>  
 
 
-<ion-list *ngIf="searchResults">  
-  <ion-item *ngFor="let partner of searchResults" (click)="openPartner(partner)">
-    <ion-avatar item-start>
-    	<img class="property-img" [src]="partner.partnerAvatar ? partner.partnerAvatar : 'assets/imgs/logo.png'">
-    </ion-avatar>
-    <h2>{{ partner.name }}</h2>
-    <p>{{ partner.bio }}</p>
-    <button ion-button clear item-end>View</button>
-  </ion-item>	
-  <img class="partner-img" [src]="partner.partnerPic ? partner.partnerPic : 'assets/imgs/logo.png'">
-
-    <ion-item-divider color="light">
-        <p ion-text color="primary">Rent {{ partner.name }}</p>
-        <button ion-button  strong  icon-left item-end color="danger" (click)="presentContactUs(property)">
-          <ion-icon name="heart" ></ion-icon>
-        Rent 
+<ion-list>
+  <ion-item-sliding *ngFor="let partner of searchResults">
+    <ion-item>
+      <ion-avatar item-start>
+        <img class="property-img" [src]="partner.partnerAvatar.url ? partner.partnerAvatar : 'assets/imgs/logo.png'">
+      </ion-avatar>
+      <h2>{{ partner.name }}</h2>
+      <p>{{ partner.bio }}</p>
+      <button ion-button clear item-end (click)="openPartner(partner)">View</button>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button color="primary">
+        <ion-icon name="text"></ion-icon>
+        Text
       </button>
-        <button ion-button  strong small icon-left item-end color="primary" >
-          <ion-icon name="phone" ></ion-icon>
-        Call 
+      <button ion-button color="secondary">
+        <ion-icon name="call"></ion-icon>
+        Call
       </button>
-    </ion-item-divider>     
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-list>
-
 
 
 <!-- <ion-card color="light" *ngFor="let property of items">

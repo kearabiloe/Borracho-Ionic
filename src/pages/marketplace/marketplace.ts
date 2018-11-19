@@ -19,6 +19,7 @@ export class MarketplacePage {
 	marketPartners: any = [];
   searchResults: any = [];
   defaultPartners: any =[1,2,3];
+  partner: any={};
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public parseProvider:ParseProvider) {

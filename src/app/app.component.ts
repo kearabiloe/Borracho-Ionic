@@ -1,14 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Plugins } from '@capacitor/core';
-const { SplashScreen } = Plugins;
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
-import { Config, Nav, Platform } from 'ionic-angular';
+import { Config, Nav, Platform, ModalController } from 'ionic-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
-
 import { FirstRunPage } from '../pages';
-import { Settings } from '../providers';
-import { GpsProvider } from '../providers/gps/gps';
+import { Splash } from '../pages/splash/splash'
 import { ENV } from '../app/app.constant';
 
 @Component({
@@ -44,47 +41,32 @@ export class MyApp {
 
   pages: any[] = [
     { title: 'Home', component: 'TabsPage' },
+    { title: 'Welcome', component: 'WelcomePage' },
     { title: 'Log Out', component: 'LogOutPage' },
   ]
 
   constructor(private translate: TranslateService,
     platform: Platform,
-    private settings: Settings,
-    private gpsProv: GpsProvider,
     private config: Config,
     private statusBar: StatusBar,
-    private push: Push) {
+    private push: Push,
+    splashScreen: SplashScreen, modalCtrl: ModalController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       console.log(platform);
-      if(platform.is('android')){
+      
         this.statusBar.styleDefault();
-        SplashScreen.hide().catch((err)=>{console.log(err)});
+        let splash = modalCtrl.create(Splash);
+            splash.present();
         this.initPush()
-      };
+
 
     });
     this.initTranslate();
-    //this.setRootPage();
-    //this.gpsProv.gpsInitialize()
   }
 
-/*  setRootPage() {
 
-    this.settings.load().then(() => {
-      this.settings.getValue('firstRun').then((val)=>{
-        this.firstRun=val
-      });
-      console.log("First run",this.firstRun);
-      if(this.firstRun){
-        this.settings.setValue('firstRun',false)
-      }else{
-        this.rootPage = 'WelcomePage';
-      }      
-    });
-
-  }*/
 
   initTranslate() {
     // Set the default language for translation strings, and the current language.

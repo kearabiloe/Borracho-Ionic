@@ -17,7 +17,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { GpsProvider } from '../providers/gps/gps';
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
-
+import { Splash } from '../pages/splash/splash'
 import { MyApp } from './app.component';
 
 // The translate loader needs to know where to load i18n files
@@ -40,7 +40,7 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +57,8 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    Splash
   ],
   providers: [
     Api,
