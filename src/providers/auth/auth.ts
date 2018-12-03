@@ -10,6 +10,7 @@ import { ENV } from '../../app/app.constant';
 
 export class User {
   public id: string;
+  public username: string;
   public name: string;
   public email: string;
   public phone: string;
@@ -65,7 +66,9 @@ export class AuthProvider {
 
   public signout(): Observable<boolean> {
     return new Observable((observer) => {
+      setTimeout(() => {
       Parse.User.logOut().then(() => observer.next(true));
+    },500)
     });
   }
 
@@ -74,18 +77,19 @@ export class AuthProvider {
     if (u) {
       var user = new User();
       user.id = u.id;
-      user.name = u.get('username');
+      user.username = u.get('username');
+      user.name = u.get('name');
       user.email = u.get('email');
       user.phone = u.get('phone');
-      user.onWhatsapp = u.get('onWhatsapp');
-      user.isAgent = u.get('isAgent')
+      user.onWhatsapp = u.get('onWhatsapp',false);
+      user.isAgent = u.get('isAgent',false)
       return user;
     }
     return null
   }
 
-  public authenticated(): boolean {
-    return this.currentUser() !== null;
+  public authenticated(): any {
+      return this.currentUser()
   }
 
   private parseInitialize() {

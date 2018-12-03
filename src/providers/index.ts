@@ -1,4 +1,5 @@
 export { Api } from './api/api';
-export { Items } from '../mocks/providers/items';
+export { MarketListings } from '../mocks/providers/market-listings';
 export { Settings } from './settings/settings';
 export { User } from './user/user';
+export { StudioListings } from '../mocks/providers/studio-listings';

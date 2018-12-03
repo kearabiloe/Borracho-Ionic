@@ -11,6 +11,7 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController, 
 import { ParseProvider } from '../../providers/parse/parse';
 import { Settings } from '../../providers/settings/settings';
 import { AuthProvider } from '../../providers/auth/auth';
+import { MarketListings } from '../../providers';
 
 @IonicPage({segment:"rentals"})
 @Component({
@@ -19,14 +20,18 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class RentalsPage {
 	listedRentals: any={"appartments":{},"houses":{}};
-	rentalsSegment: string="all";
+	rentalsSegment: string="buy";
   newProperty = { name: null, price: null, address: null };
   rentalProperties = [];
   userProperties = [];
+  searchResults = [];
+  searchbarVisible = false;
+  featuredListings = [];
   tapCounter = 0;  
   agentMode = false;
   showSpinner= true;
   spinnerMessage: any = "Loading...";
+  user: any ={"name":"Guest"};
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,6 +41,7 @@ export class RentalsPage {
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public loadCtrl: LoadingController,
+    public marketListings: MarketListings,
     public authProv: AuthProvider,
     public settings: Settings) {
     this.settings.load();
@@ -52,11 +58,8 @@ export class RentalsPage {
     return true //this.authProv.authenticated();
   }
   ionViewWillEnter() {
-  
-      this.settings.getValue('agentMode').then((resp)=>{
-        console.log("Agent Mode: ",resp);
-        this.agentMode = resp;
-        });
+    this.featuredListings=this.marketListings.query();
+    this.user=this.authProv.currentUser();
   }
   tapHome(tap){
     //Secret Door: Activates Agents Mode.
@@ -97,13 +100,15 @@ export class RentalsPage {
     return this.parseProvider.getRentalProperties(offset, limit).then((result) => {
       for (let i = 0; i < result.length; i++) {
         let object = result[i];
+        console.log(object);
         this.rentalProperties.push(object.toJSON());
       }
       this.showSpinner = false;
       this.spinnerMessage =false;      
     }, (error) => {
+      this.rentalProperties = this.marketListings.query();
       this.showSpinner = false;
-      this.spinnerMessage = "We were unable to update this page. Please check your internet connectivity and tap/pull to refresh.";
+      this.spinnerMessage = "We were unable to fetch latest results. Please check your internet connection and pull down to refresh.";
       console.log(error);
     });
   }
@@ -129,45 +134,20 @@ export class RentalsPage {
   	this.navCtrl.push('ChatsPage')
   }
 
+  toggleSearch(ev: any){
+    if(this.searchbarVisible){
+      this.searchbarVisible =  false;
+    }else{
+      this.searchbarVisible =  true;
+    }
+    
+  }
+
   openProperty(rental){
     console.log(rental);
-    this.navCtrl.push('RentalDetailPage', {id: rental.objectId})
+    this.navCtrl.push('RentalDetailPage', {property: rental})
   }  
 
-  presentContactUs(Property) {
-    let applyModal = this.modalCtrl.create('RentLeadPage',{property:Property},{showBackdrop:true});
-    applyModal.onDidDismiss(applicationForm => {
-      if (applicationForm) {
-        console.log(applicationForm);
-      let loader = this.loadCtrl.create({
-        content: 'Submitting Application...'
-      });
-      loader.present();      
-      console.log("go");  
-        this.parseProvider.addRentApplication(applicationForm).then((resp)=>{
-          loader.dismissAll();
-
-          let toast = this.toastCtrl.create({
-            message: "Your new application was successfuly created.",
-            duration: 3000,
-            position: 'top'
-          });      
-          
-          toast.present();          
-          }).catch(err =>{
-            console.error(err);
-            loader.dismissAll();
-            let alert = this.alertCtrl.create({
-              title: 'Property Rental Application Was Not Created',
-              subTitle: err.message,
-              buttons: ['OK']
-            });  
-            alert.present();              
-          })
-      }
-    })
-    applyModal.present();
-  }  
 
   presentSettings(myEvent) {
     let popover = this.modalCtrl.create('SettingsPage',{},{showBackdrop:true});
@@ -244,4 +224,38 @@ export class RentalsPage {
     }, 2000);
   }
 
+  getSearch(ev: any) {
+    // Reset marketPartners back to all of the marketPartners
+    //this.listMarketPartners();
+    console.log(this.rentalProperties);
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the marketPartners
+    if (val && val.trim() != '') {
+      this.searchResults = this.rentalProperties.filter((item) => {
+        if(item.segment == this.rentalsSegment){
+          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);  
+        }
+        
+      })
+    }
+  }
+
+  segmentChanged(ev: any){
+    // Reset marketPartners back to all of the marketPartners
+    this.listProperties();
+    console.log(this.rentalProperties);
+
+    // set val to the value of the searchbar
+    let val = ev.value;
+    console.log(val);
+    // if the value is an empty string don't filter the marketPartners
+    if (val && val.trim() != '') {
+      this.searchResults = this.rentalProperties.filter((item) => {
+        return (item.segment.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }    
+  }
 }

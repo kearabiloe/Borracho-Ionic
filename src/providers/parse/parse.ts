@@ -22,8 +22,8 @@ export class ParseProvider {
       setTimeout(() => {
         let currentUser = Parse.User.current();
         console.log(currentUser);
-        const RentalProperty = Parse.Object.extend('RentalProperties');
-        //const RentalProperty = currentUser.relation('RentalProperties');
+        const RentalProperty = Parse.Object.extend('MarketListing');
+        //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(RentalProperty);
         query.skip(offset);
         query.limit(limit);
@@ -44,14 +44,14 @@ export class ParseProvider {
       setTimeout(() => {
         let currentUser = Parse.User.current();
         console.log(currentUser);
-        const RentalProperty = Parse.Object.extend('RentalProperties');
-        //const RentalProperty = currentUser.relation('RentalProperties');
+        const RentalProperty = Parse.Object.extend('MarketListing');
+        //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(RentalProperty);
         query.skip(offset);
         query.limit(limit);
         query.equalTo('isListed',true);
         query.ascending("price");
-        query.equalTo('manager',currentUser);
+        query.equalTo('user',currentUser);
         query.find().then((Properties) => {
           resolve(Properties);
         }, (error) => {
@@ -64,7 +64,7 @@ export class ParseProvider {
   public getRentalProperty(propertyId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const RentalProperty = Parse.Object.extend('RentalProperties');
+        const RentalProperty = Parse.Object.extend('MarketListing');
         let query = new Parse.Query(RentalProperty);
         query.get(propertyId).then((Property) => {
           resolve(Property);
@@ -76,20 +76,30 @@ export class ParseProvider {
   }
 
   public addRentalProperty(newProperty): Promise<any> {
-    const RentalProperty = Parse.Object.extend('RentalProperties');
+    const RentalProperty = Parse.Object.extend('MarketListing');
     
     let rentalProperty = new RentalProperty();
     let currentUser = Parse.User.current();
-    let point = new Parse.GeoPoint({latitude: newProperty.latitude, longitude: newProperty.longitude})
+    let point = new Parse.GeoPoint({latitude: newProperty.coordinates.split(',')[0], longitude: newProperty.coordinates.split(',')[1]})
+    
     rentalProperty.set('name', newProperty.name);
     rentalProperty.set('street_address', newProperty.street_address);
     rentalProperty.set('suburb', newProperty.suburb);
     rentalProperty.set('price', parseFloat(newProperty.price));
+    rentalProperty.set('deposit', parseFloat(newProperty.deposit));
     rentalProperty.set('period', newProperty.period);
-    rentalProperty.set('propertyPic', newProperty.propertyPic);
-    rentalProperty.set('manager', currentUser);
+    rentalProperty.set('description', newProperty.description);
+    rentalProperty.set('manager', newProperty.manager);
+    if(newProperty.propertyPic){
+      let file = new Parse.File("myfile.png", { base64: newProperty.propertyPic });
+      file.save();  
+      rentalProperty.set('propertyPic', file);
+    }    
+    rentalProperty.set('user', currentUser);
     rentalProperty.set('isVerified', newProperty.isVerified);
     rentalProperty.set('isListed', newProperty.isListed);
+    rentalProperty.set('isBusiness', newProperty.isBusiness);
+    rentalProperty.set('segment', newProperty.segment);
     rentalProperty.set('gps', point);
 
     return rentalProperty.save(null, {
@@ -107,7 +117,7 @@ export class ParseProvider {
   public deleteRentalProperty(property): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const RentalProperty = Parse.Object.extend('RentalProperties');
+        const RentalProperty = Parse.Object.extend('MarketListing');
         let query = new Parse.Query(RentalProperty);
         console.log(property);
         query.get(property.objectId).then((Property) => {
@@ -129,7 +139,7 @@ export class ParseProvider {
         let currentUser = Parse.User.current();
         console.log(currentUser);
         const LaundryOrder = Parse.Object.extend('LaundryOrder');
-        //const RentalProperty = currentUser.relation('RentalProperties');
+        //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(LaundryOrder);
         query.skip(offset);
         query.limit(limit);
@@ -148,8 +158,8 @@ export class ParseProvider {
       setTimeout(() => {
         let currentUser = Parse.User.current();
         console.log(currentUser);
-        const StudioProduct = Parse.Object.extend('Studio');
-        //const RentalProperty = currentUser.relation('RentalProperties');
+        const StudioProduct = Parse.Object.extend('StudioProduct');
+        //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(StudioProduct);
         query.skip(offset);
         query.limit(limit);
@@ -168,7 +178,7 @@ export class ParseProvider {
 
   public addRentApplication(newApplication): Promise<any> {
     const RentApplication = Parse.Object.extend('RentApplication');
-    const Property = Parse.Object.extend("RentalProperties");
+    const Property = Parse.Object.extend("MarketListing");
     let rentProperty = new Property();
     console.log(newApplication);
     rentProperty.id = newApplication.property.objectId;
@@ -198,10 +208,9 @@ export class ParseProvider {
   public getMarketPartners(offset: number = 0, limit: number = 3): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        let currentUser = Parse.User.current();
         console.log("Fetching MarketPartners");
         const MarketPartners = Parse.Object.extend('MarketPartner');
-        //const RentalProperty = currentUser.relation('RentalProperties');
+        //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(MarketPartners);
         //query.equalTo('isDone',false);
         query.find().then((MarketPartners) => {

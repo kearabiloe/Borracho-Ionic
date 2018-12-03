@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
-
+import { AuthProvider } from '../../providers/auth/auth';
 import { TranslateService } from '@ngx-translate/core';
+import { MainPage } from '../';
 
 export interface Slide {
   title: string;
@@ -19,7 +20,7 @@ export class TutorialPage {
   showSkip = true;
   dir: string = 'ltr';
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
+  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform,public authProv: AuthProvider) {
     this.dir = platform.dir();
     translate.get(["TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
@@ -64,6 +65,12 @@ export class TutorialPage {
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
     this.menu.enable(false);
+  }
+  ionViewWillEnter() {
+    // the root left menu should be disabled on the tutorial page
+    if(this.authProv.authenticated()){
+      this.navCtrl.setRoot(MainPage)
+    }
   }
 
   ionViewWillLeave() {

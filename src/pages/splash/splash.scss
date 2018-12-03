@@ -1,69 +1,40 @@
-.ios, .md {
- 
-    page-splash {
- 
-        .scroll-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
- 
-        #bars {
-            height: 80%;
- 
-            .cls-1 {
-                opacity: 0;
-                transform: rotate3d(1, 1, 0, 50deg);
-                animation: 1s 0.2s ease fadeInAndSpin;
-                animation-fill-mode: forwards;
-            }
- 
-            .cls-2 {
-                opacity: 0;
-                transform: rotate3d(1, 1, 0, 50deg);
-                animation: 1s 0.4s ease fadeInAndSpin;
-                animation-fill-mode: forwards;
-            }
- 
-            .cls-3 {
-                opacity: 0;
-                transform: rotate3d(1, 1, 0, 50deg);
-                animation: 1s 0.6s ease fadeInAndSpin;
-                animation-fill-mode: forwards;
-            }
- 
-            .cls-4 {
-                opacity: 0;
-                transform: rotate3d(1, 1, 0, 50deg);
-                animation: 1s 0.8s ease fadeInAndSpin;
-                animation-fill-mode: forwards;
-            }
- 
-            .cls-5, .cls-6 {
-                opacity: 0;
-                animation: 2s 1.5s linear fadeIn;
-                animation-fill-mode: forwards;
-            }
- 
-        }
- 
-    }
- 
+page-splash {
+        .splash-bg {
+            position: relative;
+            background: url('../assets/imgs/droog-foundation-logo.png') no-repeat transparent;
+            background-size: cover;
+            height: 100%;
+            z-index: 1;
+            background-repeat: repeat-x;
+            animation: animatedBackground 40s linear infinite;
+          }
+
+          @keyframes animatedBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100% 0; }
+          }
+
+          .splash-info {
+            position: relative;
+            z-index: 2;
+            margin-top: -64px;
+            text-align: center;
+          }
+          .splash-logo {
+            margin: auto;
+            background: url('../assets/img/appicon.png') repeat transparent;
+            background-size: 100%;
+            width: 128px;
+            height: 128px;
+            top:50%;
+          }
+          .splash-intro {
+            font-size: 18px;
+            font-weight: bold;
+            max-width: 80%;
+            margin: auto;
+            color: #fff;
+          }
+
 }
- 
-@keyframes fadeInAndSpin {
- 
-    100% {
-        opacity: 1;
-        transform: rotate3d(1, 1, 0, 0deg);
-    }
- 
-}
- 
-@keyframes fadeIn {
- 
-    100% {
-        opacity: 1;
-    }
- 
-}
+

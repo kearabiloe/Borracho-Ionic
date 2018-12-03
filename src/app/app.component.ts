@@ -5,63 +5,69 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform, ModalController } from 'ionic-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { FirstRunPage } from '../pages';
-import { Splash } from '../pages/splash/splash'
 import { ENV } from '../app/app.constant';
+import { SplashPage } from '../pages/splash/splash'
 
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>
-      <ion-item >
+      <ion-item color="primary" no-lines>
           <ion-avatar item-start>
             <img src="assets/img/appicon.png">
           </ion-avatar>
           <ion-title>
-            Borracho
+            <h2 ion-text color="light">Borracho</h2>
           </ion-title>
         </ion-item>
     </ion-header>
 
     <ion-content>
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" >
           {{p.title}}
         </button>
       </ion-list>
     </ion-content>
+
+    <ion-footer>
+      <ion-toolbar color="primary">
+            <p ion-text color="light">{{ env.production? 'Production':env.parseServerUrl }}</p> 
+      </ion-toolbar>
+    </ion-footer>
 
   </ion-menu>
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
   rootPage = FirstRunPage;
-  firstRun: any = true;
+  firstRun: any = false;
 
 
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
     { title: 'Home', component: 'TabsPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
+    { title: 'Settings', component: 'SettingsPage' },
     { title: 'Log Out', component: 'LogOutPage' },
   ]
+
+  env: any = ENV;
 
   constructor(private translate: TranslateService,
     platform: Platform,
     private config: Config,
     private statusBar: StatusBar,
     private push: Push,
-    splashScreen: SplashScreen, modalCtrl: ModalController) {
+    private splashScreen: SplashScreen, 
+     modalCtrl: ModalController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      console.log(platform);
-      
-        this.statusBar.styleDefault();
-        let splash = modalCtrl.create(Splash);
-            splash.present();
-        this.initPush()
-
-
+          this.statusBar.styleDefault();
+          this.splashScreen.hide();
+          //let splash = modalCtrl.create(SplashPage);
+          //    splash.present();
+          this.initPush()
     });
     this.initTranslate();
   }
@@ -74,17 +80,7 @@ export class MyApp {
     const browserLang = this.translate.getBrowserLang();
 
     if (browserLang) {
-      if (browserLang === 'zh') {
-        const browserCultureLang = this.translate.getBrowserCultureLang();
-
-        if (browserCultureLang.match(/-CN|CHS|Hans/i)) {
-          this.translate.use('zh-cmn-Hans');
-        } else if (browserCultureLang.match(/-TW|CHT|Hant/i)) {
-          this.translate.use('zh-cmn-Hant');
-        }
-      } else {
         this.translate.use(this.translate.getBrowserLang());
-      }
     } else {
       this.translate.use('en'); // Set your language here
     }

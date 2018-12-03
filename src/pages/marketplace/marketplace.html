@@ -32,7 +32,7 @@
   <ion-item-sliding *ngFor="let partner of searchResults">
     <ion-item>
       <ion-avatar item-start>
-        <img class="property-img" [src]="partner.partnerAvatar.url ? partner.partnerAvatar : 'assets/imgs/logo.png'">
+        <img class="property-img" [src]="partner.partnerAvatar ? partner.partnerAvatar.url : 'assets/imgs/logo.png'">
       </ion-avatar>
       <h2>{{ partner.name }}</h2>
       <p>{{ partner.bio }}</p>

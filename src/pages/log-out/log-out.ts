@@ -45,9 +45,9 @@ export class LogOutPage {
       });      
       
       toast.present();
-      this.navCtrl.setRoot('WelcomePage');
     }, (error) => {
       console.log(error);
+      loader.dismissAll();
       let toast = this.toastCtrl.create({
           message: error.message,
           duration: 3000,
@@ -55,7 +55,13 @@ export class LogOutPage {
         }); 
       
       toast.present();
-    })
+    });
+
+
+    setTimeout(() => {
+      this.navCtrl.setRoot('WelcomePage');
+    }, 5000);
+ 
   }
 
 }

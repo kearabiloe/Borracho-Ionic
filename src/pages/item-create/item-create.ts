@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -18,29 +19,44 @@ export class ItemCreatePage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera, private geolocation: Geolocation) {
+  user: any;
+
+  formSegment: any="'basic'";
+
+  segment: "Marketplace";
+
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera, private geolocation: Geolocation,public authProv: AuthProvider) {
     this.form = formBuilder.group({
-      propertyPic: [''],
+      propertyPic1: [],
+      propertyPic2: [],
       name: ['Property Name'],
       price:[0],
+      deposit:[0],
       period:['month'],
+      manager:['Manager Name'],
       contact_no:[''],
       street_address:[''],
       suburb:[''],
-      longitude:['0'],
-      latitude:['-10'],
+      link:['https://'],
+      coordinates:['0,0'],
+      description:['Description'],
+      segment:[this.segment],
       isListed:[true],
       isVerified:[false],
+      isBusiness:[false],
     });
 
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
       this.isReadyToSave = this.form.valid;
     });
+    this.user = this.authProv.authenticated();
+    console.log(this.user);    
   }
 
   ionViewDidLoad() {
     this.getLocation();
+    this.formSegment='basic';
   }
 
   getPicture() {
@@ -50,7 +66,7 @@ export class ItemCreatePage {
         targetWidth: 96,
         targetHeight: 96
       }).then((data) => {
-        this.form.patchValue({ 'propertyPic': 'data:image/jpg;base64,' + data });
+        this.form.patchValue({ 'propertyPic1': 'data:image/jpg;base64,' + data });
       }, (err) => {
         alert('Unable to take photo');
       })
@@ -64,14 +80,14 @@ export class ItemCreatePage {
     reader.onload = (readerEvent) => {
 
       let imageData = (readerEvent.target as any).result;
-      this.form.patchValue({ 'propertyPic': imageData });
+      this.form.patchValue({ 'propertyPic1': imageData });
     };
 
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  getProfileImageStyle() {
-    return 'url(' + this.form.controls['propertyPic'].value + ')'
+  getProfileImageStyle(id) {
+    return 'url(' + this.form.controls[id].value + ')'
   }
 
   /**
@@ -83,15 +99,16 @@ export class ItemCreatePage {
 
   getLocation(){
     this.geolocation.getCurrentPosition().then((data) => {
-     this.form.patchValue({'longitude':data.coords.longitude,'latitude':data.coords.latitude});
+     this.form.patchValue({'coordinates':data.coords.longitude+","+data.coords.latitude});
     }).catch((error) => {
       console.log('Error getting location', error);
+      this.form.patchValue({'coordinates':error});
     });
 
   let watch = this.geolocation.watchPosition();
   watch.subscribe((data) => {
    // data can be a set of coordinates, or an error (if an error occurred).
-   this.form.patchValue({'longitude':data.coords.longitude,'latitude':data.coords.latitude});
+   this.form.patchValue({'coordinates':data.coords.longitude+","+data.coords.latitude});
    // data.coords.latitude
    // data.coords.longitude
   });

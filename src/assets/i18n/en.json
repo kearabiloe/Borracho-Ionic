@@ -1,4 +1,5 @@
 {
+  "APP_TITLE":"Borracho Properties",
   "BACK_BUTTON_TEXT": "Back",
 
   "NAME": "Name",
@@ -8,9 +9,9 @@
   "LOGIN": "Log in",
   "SIGNUP": "Register",
 
-  "TAB1_TITLE": "Rentals",
-  "TAB2_TITLE": "Market",
-  "TAB3_TITLE": "Studio",
+  "TAB1_TITLE": "Market",
+  "TAB2_TITLE": "Studio",
+  "TAB3_TITLE": "Wallet",
 
   "MAP_TITLE": "Map",
 
@@ -60,6 +61,7 @@
   "PROPERTY_NAME_PLACEHOLDER": "Name",
   "PROPERTY_ABOUT_PLACEHOLDER": "About",
   "PROPERTY_PRICE_PLACEHOLDER": "Price",
+  "PROPERTY_DEPOSIT_PLACEHOLDER": "Deposit",
   "PROPERTY_STREET_ADDRESS_PLACEHOLDER": "Street Address",
   "PROPERTY_SUBURB_PLACEHOLDER": "Suburb",
   "PROPERTY_CONTACT_NO_PLACEHOLDER": "Contact No.",
@@ -81,5 +83,7 @@
   "CARDS_TITLE": "Social",
 
   "SEARCH_TITLE": "Search",
-  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\""
+  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
+
+  "DROOG_INTRO":"Powered by love"
 }

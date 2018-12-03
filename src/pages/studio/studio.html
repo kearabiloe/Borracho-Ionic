@@ -6,25 +6,46 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
   <ion-toolbar [color]="agentMode ? 'secondary' : 'primary'">
-    <ion-segment [(ngModel)]="studioSegment" [color]="agentMode ? 'primary' : 'secondary'" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value=""  >
-        All
+<!--     <ion-buttons start>
+      <button ion-button icon-only (click)="toggleSearch()" *ngIf="!searchbarVisible" >
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons> -->
+    <ion-searchbar 
+      *ngIf="searchbarVisible" 
+      (ionInput)="getSearch($event)" 
+      (ionCancel)="toggleSearch($event)" 
+      placeholder=" Search {{ 'APP_TITLE' | translate }}" 
+      animated=true 
+      autocomplete="on"
+      showCancelButton=true
+      ></ion-searchbar>
+    <ion-segment [(ngModel)]="studioSegment" color="secondary" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="artists"  >
+        Artists
       </ion-segment-button>
-      <ion-segment-button value="hiphop">
-        Hip-Hop
+      <ion-segment-button value="tracks">
+        Tracks
       </ion-segment-button>
-      <ion-segment-button value="house">
-        House
+      <ion-segment-button value="managed">
+        Managed
       </ion-segment-button>
-      <ion-segment-button value="beats">
-        Beats
-      </ion-segment-button>
-    </ion-segment>
+    </ion-segment>    
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
-  </ion-navbar>
-
+<!-- 
+    <ion-item-divider color="secondary">
+      <p ion-text color="primary">Upload And Promote Your Music</p>
+      <button ion-button icon-left item-end >
+        <ion-icon name="add-circle" ></ion-icon>
+      Publish
+    </button>
+    </ion-item-divider>   -->
 </ion-header>
 
 
@@ -38,54 +59,48 @@
     </ion-refresher-content>
   </ion-refresher>  
 
-    <ion-item-divider color="secondary">
-      Get Published!
-      <button ion-button outline  icon-left item-end>
-        <ion-icon name="add-circle" ></ion-icon>
-      Join Borracho Studio 
-    </button>
-    </ion-item-divider>  
 <div [ngSwitch]="studioSegment">
-  <ion-list *ngSwitchCase="''">
-    <ion-item (click)="openProperty(property)" *ngFor="let product of studioProducts" >
-      <ion-thumbnail item-start>
+  <ion-list *ngSwitchCase="'artists'" inset>
+    <ion-item-divider color="secondary" center text-center >
+      <h3>{{ studioProducts.length }} {{ studioSegment |uppercase}}</h3>
+    </ion-item-divider>    
+    <ion-item *ngFor="let product of studioProducts" color="primary" >
+      <ion-thumbnail item-start (click)="openProperty(property)" >
         <img [src]="product.art ? product.art.url : 'assets/imgs/logo.png'">
       </ion-thumbnail>
       <h2>{{ product.title }}</h2>
-      <h3>{{ product.artist}}</h3>
-      <small>
-        <ion-icon name="clock" ></ion-icon> {{ product.duration }} | 
-        <ion-icon name="people" ></ion-icon> {{ product.genre }} |
-        <ion-icon name="download" ></ion-icon> {{ product.downloads }} 
-      </small>
-      <a ion-button outline item-end  color="primary" [href]="product.file.url"  small>
-        <ion-icon name="download" ></ion-icon>
-      </a>
+      <h3>{{ product.artist}}</h3>      
+      <button ion-button icon-only item-end clear large color="light" >
+        <ion-icon  name="more" ></ion-icon> 
+      </button>
     </ion-item>    
   </ion-list>
 
-  <ion-list *ngSwitchCase="'hiphop'">
-    <ion-item (click)="openProperty(property)" *ngFor="let product of studioProducts" >
-      <ion-thumbnail item-start>
+  <ion-list *ngSwitchCase="'tracks'" inset>
+    <ion-item-divider color="secondary" center text-center >
+      <h3>{{ studioProducts.length }} {{ studioSegment |uppercase}}</h3>
+    </ion-item-divider>
+    <ion-item *ngFor="let product of studioProducts" >
+      <ion-thumbnail item-start (click)="openProperty(property)" >
         <img [src]="product.art ? product.art.url : 'assets/imgs/logo.png'">
       </ion-thumbnail>
       <h2>{{ product.title }}</h2>
       <h3>{{ product.artist}}</h3>
-      <small>
-        <ion-icon name="clock" ></ion-icon> {{ product.duration }} | 
-        <ion-icon name="people" ></ion-icon> {{ product.genre }} |
-        <ion-icon name="download" ></ion-icon> {{ product.downloads }} 
-      </small>
-      <a ion-button outline item-end  color="primary" [href]="product.file.url"  small>
-        <ion-icon name="download" ></ion-icon>
-      </a>
+      <button ion-button  item-end  color="primary" (click)="playPauseTrack(product)" >
+        <ion-icon  name="play" ></ion-icon> Play
+      </button>
     </ion-item>    
   </ion-list>
 
-  <ion-list *ngSwitchCase="'house'">
-    <ion-item-sliding>
-    <ion-item (click)="openProperty(property)" *ngFor="let product of studioProducts" >
-      <ion-thumbnail item-start>
+  <ion-list *ngSwitchCase="'managed'" inset>
+    <ion-item-divider color="secondary" center text-center >
+      <h3>{{ studioProducts.length }} {{ studioSegment |uppercase}}</h3>
+      <button ion-button icon-start small item-end  color="primary" (click)="playPauseTrack(product)" >
+        <ion-icon  name="cloud-upload" ></ion-icon> Publish Song
+      </button>      
+    </ion-item-divider>
+    <ion-item *ngFor="let product of studioProducts" >
+      <ion-thumbnail item-start (click)="openProperty(property)" >
         <img [src]="product.art ? product.art.url : 'assets/imgs/logo.png'">
       </ion-thumbnail>
       <h2>{{ product.title }}</h2>
@@ -95,16 +110,41 @@
         <ion-icon name="people" ></ion-icon> {{ product.genre }} |
         <ion-icon name="download" ></ion-icon> {{ product.downloads }} 
       </small>
-      <a ion-button outline item-end  color="primary" [href]="product.file.url"  small>
-        <ion-icon name="download" ></ion-icon>
-      </a>
-    </ion-item>    
-  </ion-item-sliding> 
+      <button ion-button  item-end  color="primary" (click)="playPauseTrack(product)" >
+        <ion-icon  name="play" ></ion-icon> Play
+      </button>
+    </ion-item>       
   </ion-list>
 
 </div>
-<div center text-center padding>
+<div center text-center >
   <ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
   <small *ngIf="spinnerMessage">{{spinnerMessage}}</small>
 </div>
+  <ion-fab middle mini *ngIf="currentSong" >
+    <button ion-fab color="danger" (click)="minimisePanel()" ><ion-icon [name]="panelMinimised? 'ios-headset':'close' "></ion-icon></button>
+  </ion-fab>  
+
 </ion-content>
+<ion-footer *ngIf="!panelMinimised" >
+  <div >
+    <ion-item no-lines clear>
+      <ion-thumbnail small item-start (click)="openProperty(currentSong)">
+        <img [src]="currentSong.art ? currentSong.art.url : 'assets/imgs/logo.png'">
+      </ion-thumbnail>   
+      <h2 ion-text color="danger">{{ currentSong.title }}</h2>
+      <h3>{{ currentSong.artist}}</h3>
+      <ion-buttons>
+      <button ion-button icon-only clear color="dark" (click)="rewindTrack()">
+        <ion-icon name="rewind" ></ion-icon>
+      </button>
+      <button ion-button icon-only clear color="danger" (click)="playPauseTrack(songPlaying? false:currentSong)">
+        <ion-icon [name]="songPlaying? 'pause' : 'play'" ></ion-icon>
+      </button>
+      <button ion-button icon-only clear color="dark" (click)="forwardTrack()">
+        <ion-icon name="fastforward" ></ion-icon>
+      </button>                       
+      </ion-buttons>
+    </ion-item>  
+  </div>  
+</ion-footer>  

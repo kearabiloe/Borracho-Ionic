@@ -15,9 +15,9 @@ export class SignupPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   account: { name: string, username: string,  email: string, password: string } = {
-    name: 'Test Human',
-    username: 'test@example.com',
-    email: 'test@example.com',
+    name: 'Jane Dube',
+    username: '08123456789',
+    email: 'jdube@example.com',
     password: 'test'
   };
 

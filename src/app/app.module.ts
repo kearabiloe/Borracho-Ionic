@@ -10,15 +10,24 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeAudio } from '@ionic-native/native-audio';
+import { MusicControls } from '@ionic-native/music-controls';
+
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Network } from '@ionic-native/network';
+import { Httpd } from '@ionic-native/httpd';
+import { Hotspot } from '@ionic-native/hotspot';
+import { Device } from '@ionic-native/device';
 
 // Providers
 import { ParseProvider } from '../providers/parse/parse';
 import { AuthProvider } from '../providers/auth/auth';
 import { GpsProvider } from '../providers/gps/gps';
-import { Items } from '../mocks/providers/items';
+import { MarketListings } from '../mocks/providers/market-listings';
+import { StudioListings } from '../mocks/providers/studio-listings';
 import { Settings, User, Api } from '../providers';
-import { Splash } from '../pages/splash/splash'
 import { MyApp } from './app.component';
+import { SplashPageModule } from '../pages/splash/splash.module'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -40,11 +49,12 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    SplashPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,12 +67,12 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    Splash
+    MyApp
   ],
   providers: [
     Api,
-    Items,
+    MarketListings,
+    StudioListings,
     User,
     Camera,
     Push,
@@ -70,6 +80,13 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     ParseProvider,
     AuthProvider,
+    MusicControls,
+    NativeAudio,
+    SocialSharing,
+    Hotspot,
+    Httpd,
+    Network,
+    Device,
     Geolocation,
     GpsProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

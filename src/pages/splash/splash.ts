@@ -6,19 +6,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   selector: 'page-splash',
   templateUrl: 'splash.html',
 })
-export class Splash {
+export class SplashPage {
  
   constructor(public viewCtrl: ViewController, public splashScreen: SplashScreen) {
  
   }
  
   ionViewDidEnter() {
- 
+    console.log("Loading Custom SplashScreen");
     this.splashScreen.hide();
  
     setTimeout(() => {
       this.viewCtrl.dismiss();
-    }, 4000);
+    }, 5000);
  
   }
  

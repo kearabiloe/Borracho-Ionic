@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Settings } from '../../providers';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -32,7 +32,7 @@ export class RentLeadPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewCtrl: ViewController,
+    public viewCtrl: ViewController,    
     public settings: Settings,
     public authProv: AuthProvider,
     public formBuilder: FormBuilder) {
