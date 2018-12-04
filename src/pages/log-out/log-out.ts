@@ -59,6 +59,7 @@ export class LogOutPage {
 
 
     setTimeout(() => {
+      loader.dismissAll();
       this.navCtrl.setRoot('WelcomePage');
     }, 5000);
  

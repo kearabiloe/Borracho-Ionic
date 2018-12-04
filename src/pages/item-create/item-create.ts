@@ -23,12 +23,10 @@ export class ItemCreatePage {
 
   formSegment: any="'basic'";
 
-  segment: "Marketplace";
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera, private geolocation: Geolocation,public authProv: AuthProvider) {
     this.form = formBuilder.group({
-      propertyPic1: [],
-      propertyPic2: [],
+      propertyPic: [],
       name: ['Property Name'],
       price:[0],
       deposit:[0],
@@ -40,7 +38,7 @@ export class ItemCreatePage {
       link:['https://'],
       coordinates:['0,0'],
       description:['Description'],
-      segment:[this.segment],
+      segment:['Buy'],
       isListed:[true],
       isVerified:[false],
       isBusiness:[false],
@@ -66,7 +64,7 @@ export class ItemCreatePage {
         targetWidth: 96,
         targetHeight: 96
       }).then((data) => {
-        this.form.patchValue({ 'propertyPic1': 'data:image/jpg;base64,' + data });
+        this.form.patchValue({ 'propertyPic': 'data:image/jpg;base64,' + data });
       }, (err) => {
         alert('Unable to take photo');
       })
@@ -80,14 +78,14 @@ export class ItemCreatePage {
     reader.onload = (readerEvent) => {
 
       let imageData = (readerEvent.target as any).result;
-      this.form.patchValue({ 'propertyPic1': imageData });
+      this.form.patchValue({ 'propertyPic': imageData });
     };
 
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  getProfileImageStyle(id) {
-    return 'url(' + this.form.controls[id].value + ')'
+  getProfileImageStyle() {
+    return 'url(' + this.form.controls['propertyPic'].value + ')'
   }
 
   /**

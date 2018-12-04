@@ -20,7 +20,7 @@ import { MarketListings } from '../../providers';
 })
 export class RentalsPage {
 	listedRentals: any={"appartments":{},"houses":{}};
-	rentalsSegment: string="buy";
+	marketSegment: any="buy";
   newProperty = { name: null, price: null, address: null };
   rentalProperties = [];
   userProperties = [];
@@ -51,14 +51,13 @@ export class RentalsPage {
     console.log('ionViewDidLoad RentalsPage');
     this.tapCounter =0; 
     this.listProperties();
-    this.listUserProperties();  
   }
 
   ionViewCanEnter(): boolean {
     return true //this.authProv.authenticated();
   }
   ionViewWillEnter() {
-    this.featuredListings=this.marketListings.query();
+    this.searchResults=this.marketListings.query({'segment':this.marketSegment});
     this.user=this.authProv.currentUser();
   }
   tapHome(tap){
@@ -101,12 +100,13 @@ export class RentalsPage {
       for (let i = 0; i < result.length; i++) {
         let object = result[i];
         console.log(object);
-        this.rentalProperties.push(object.toJSON());
+        //this.rentalProperties.push(object.toJSON());
+        this.marketListings.add(object.toJSON());
       }
       this.showSpinner = false;
       this.spinnerMessage =false;      
     }, (error) => {
-      this.rentalProperties = this.marketListings.query();
+      this.rentalProperties = this.marketListings.query({'segment':this.marketSegment});
       this.showSpinner = false;
       this.spinnerMessage = "We were unable to fetch latest results. Please check your internet connection and pull down to refresh.";
       console.log(error);
@@ -163,7 +163,8 @@ export class RentalsPage {
       let loader = this.loadCtrl.create({
         content: 'Creating Property...'
       });
-      loader.present();        
+      loader.present();  
+      this.marketListings.add(item);
         this.parseProvider.addRentalProperty(item).then((resp)=>{
           loader.dismissAll();
           let toast = this.toastCtrl.create({
@@ -235,7 +236,7 @@ export class RentalsPage {
     // if the value is an empty string don't filter the marketPartners
     if (val && val.trim() != '') {
       this.searchResults = this.rentalProperties.filter((item) => {
-        if(item.segment == this.rentalsSegment){
+        if(item.segment == this.marketSegment){
           return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);  
         }
         
@@ -245,12 +246,19 @@ export class RentalsPage {
 
   segmentChanged(ev: any){
     // Reset marketPartners back to all of the marketPartners
-    this.listProperties();
+    //this.listProperties();
     console.log(this.rentalProperties);
+    
 
     // set val to the value of the searchbar
-    let val = ev.value;
+    let val = ev.value.toString();
     console.log(val);
+    if(val =="managed"){
+      this.userProperties =[];
+      this.listUserProperties();
+      return this.searchResults=this.userProperties;
+    }
+    this.rentalProperties = this.marketListings.query({'segment':this.marketSegment});
     // if the value is an empty string don't filter the marketPartners
     if (val && val.trim() != '') {
       this.searchResults = this.rentalProperties.filter((item) => {

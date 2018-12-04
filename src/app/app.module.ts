@@ -10,14 +10,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeAudio } from '@ionic-native/native-audio';
-import { MusicControls } from '@ionic-native/music-controls';
+
 
 import { SocialSharing } from '@ionic-native/social-sharing';
-import { Network } from '@ionic-native/network';
-import { Httpd } from '@ionic-native/httpd';
-import { Hotspot } from '@ionic-native/hotspot';
-import { Device } from '@ionic-native/device';
 
 // Providers
 import { ParseProvider } from '../providers/parse/parse';
@@ -25,7 +20,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { GpsProvider } from '../providers/gps/gps';
 import { MarketListings } from '../mocks/providers/market-listings';
 import { StudioListings } from '../mocks/providers/studio-listings';
-import { Settings, User, Api } from '../providers';
+import { Settings, User, Api, CordovaAudioPlayerService } from '../providers';
 import { MyApp } from './app.component';
 import { SplashPageModule } from '../pages/splash/splash.module'
 
@@ -80,18 +75,13 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     ParseProvider,
     AuthProvider,
-    MusicControls,
-    NativeAudio,
+    CordovaAudioPlayerService,
     SocialSharing,
-    Hotspot,
-    Httpd,
-    Network,
-    Device,
     Geolocation,
     GpsProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })
 export class AppModule { }

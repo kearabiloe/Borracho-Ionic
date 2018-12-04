@@ -20,7 +20,7 @@
     	autocomplete="on"
     	showCancelButton=true
     	></ion-searchbar>
-	<ion-segment [(ngModel)]="rentalsSegment" color='secondary' (ionChange)="segmentChanged($event)">
+	<ion-segment [(ngModel)]="marketSegment" color='light' (ionChange)="segmentChanged($event)">
 		<ion-segment-button value="buy" >
 		  Buy
 		</ion-segment-button>
@@ -28,7 +28,7 @@
 		  Rent
 		</ion-segment-button>		
 		<ion-segment-button value="managed">
-		  Managed
+		  My Ads
 		</ion-segment-button>
 	</ion-segment>  
     <ion-buttons end>
@@ -52,68 +52,86 @@
   </ion-refresher>	
 
 
-<div [ngSwitch]="rentSegment">   
-  <ion-list *ngSwitchCase="buy">  	
-	<ion-grid>
-	  <ion-row>
-	    <ion-col col-6 col-sm-6 col-md-3 col-lg-4 *ngFor="let property of searchResults" >
-			<ion-card  (click)="openProperty(property)">
-			  <img  class="property-img" [src]="property.propertyPic ? property.propertyPic.url : 'assets/imgs/logo.png'">
-			  	<ion-item color="primary">
-			  		<p ion-text color="secondary">{{ property.name | uppercase }}</p>
-			  		<small>{{ property.suburb | uppercase }} </small>
-			     <ion-icon name="more" item-end></ion-icon>
-			 	</ion-item>
-			</ion-card> 
-	    </ion-col>
-	  </ion-row>
-	</ion-grid>  	 	
-  </ion-list>
+<div [ngSwitch]="marketSegment"> 
+  <div *ngSwitchCase="'managed'" >
+  	<ion-list>	
+	    <ion-item-divider color="secondary" center text-center >
+	      <p ion-text color="primary"> {{ searchResults.length }}  Results</p>
+	    </ion-item-divider>    		
+	  	<ion-item-sliding *ngFor="let property of searchResults">
+		  <ion-item (click)="openProperty(property)" [color]="property.isVerified ? 'primary' : 'light'">
+		    <ion-avatar item-start>
+		      <img [src]="property.propertyPic ? property.propertyPic.url : 'assets/imgs/logo.png'"/>
+		    </ion-avatar>
+		    <h3>{{ property.name | uppercase }}</h3>
+		    <p>{{ property.price | currency : "R" }} <sub>{{ property.period}}</sub></p>
+		    <button ion-button clear icon-left item-end small [color]="property.isVerified ? 'secondary' : 'primary'"  >
+		    	<ion-icon [name]="property.isVerified ? 'eye' : 'eye-off'" ></ion-icon> 
+		    	<small>{{ property.isVerified ? 'Verified' : 'Unverified' }}</small>
+		    </button>
 
-  <ion-list  *ngSwitchCase="rent" >
-	<ion-grid>
-	  <ion-row>
-	    <ion-col col-6 col-sm-6 col-md-3 col-lg-4 *ngFor="let property of searchResults" >
-			<ion-card  (click)="openProperty(property)">
-			  <img  class="property-img" [src]="property.propertyPic ? property.propertyPic.url : 'assets/imgs/logo.png'">
-			  	<ion-item color="primary" text-wrap>
-			  		<p ion-text color="secondary">{{ property.price | currency : "R" }}</p>
-			  		<small>{{ property.suburb | uppercase }} </small>
-			     <ion-icon name="more" item-end></ion-icon>
-			 	</ion-item>
-			</ion-card> 
-	    </ion-col>
-	  </ion-row>
-	</ion-grid>    	
-  </ion-list>
+		  </ion-item>
+			<ion-item-options side="right">
+				<button ion-button color="danger" (click)="deleteProperty(property)">
+					<ion-icon name="trash"></ion-icon>
+					Delete
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>		
+	</ion-list>
+	<ion-fab right bottom>
+	  <button ion-fab icon-only (click)="addProperty()">
+	  	<ion-icon name="add" ></ion-icon>
+	  </button>
+	</ion-fab>	
+  </div>
 
-  <ion-list *ngSwitchCase="managed" >	
-  	<ion-item-sliding *ngFor="let property of userProperties">
-	  <ion-item (click)="openProperty(property)" [color]="property.isVerified ? 'light' : ''">
-	    <ion-avatar item-start>
-	      <img [src]="property.propertyPic ? property.propertyPic.url : 'assets/imgs/logo.png'">
-	    </ion-avatar>
-	    <h3>{{ property.name | uppercase }}</h3>
-	    <p>{{ property.price | currency : "R" }} <sub>per {{ property.period}}</sub></p>
-	    <button ion-button clear  item-end small [color]="property.isVerified ? 'secondary' : 'primary'"  >
-	    	<ion-icon [name]="property.isVerified ? 'eye' : 'eye-off'" ></ion-icon> <br/>
-	    	{{ property.isVerified ? 'Verified' : 'Unverified' }}
-	    </button>
+  <div *ngSwitchCase="'buy'" >  
+  	<ion-list>
+	    <ion-item-divider color="secondary" center text-center >
+	      <p ion-text color="primary"> {{ searchResults.length }}  Results</p>
+	    </ion-item-divider>  	
+		<ion-grid>
+		  <ion-row>
+		    <ion-col col-6 col-sm-6 col-md-3 col-lg-4 *ngFor="let property of searchResults" >
+				<ion-card  (click)="openProperty(property)">
+				  <img  class="property-img" [src]="property.propertyPic ? property.propertyPic.url : 'assets/imgs/logo.png'"/>
+				  	<ion-item color="primary">
+				  		<p ion-text color="secondary">{{ property.price | currency : "R" }}<br/> <small>{{ property.period}}</small></p>
+				  		<small>{{ property.name | uppercase }} </small>
+				     <ion-icon name="more" item-end></ion-icon>
+				 	</ion-item>
+				</ion-card> 
+		    </ion-col>
+		  </ion-row>
+		</ion-grid>  
+	</ion-list>	 	
+  </div>
 
-	  </ion-item>
-		<ion-item-options side="right">
-			<button ion-button color="danger" (click)="deleteProperty(property)">
-				<ion-icon name="trash"></ion-icon>
-				Delete
-			</button>
-		</ion-item-options>
-	</ion-item-sliding>		
-	  <ion-fab right bottom>
-	    <button ion-fab color="primary" (click)="addProperty()" ><ion-icon name="add"></ion-icon></button>
-	  </ion-fab>	  
-  </ion-list>
+  <div  *ngSwitchCase="'rent'" >
+  	<ion-list>
+	    <ion-item-divider color="secondary" center text-center >
+	      <p ion-text color="primary"> {{ searchResults.length }}  Results</p>
+	    </ion-item-divider>    		
+		<ion-grid>
+		  <ion-row>
+		    <ion-col col-6 col-sm-6 col-md-3 col-lg-4 *ngFor="let property of searchResults" >
+				<ion-card  (click)="openProperty(property)">
+				  <img  class="property-img" [src]="property.propertyPic ? property.propertyPic.url : 'assets/imgs/logo.png'"/>
+				  	<ion-item color="primary" text-wrap>
+				  		<p ion-text color="secondary">{{ property.price | currency : "R" }}<br/> <small>{{ property.period}}</small></p>
+				  		<small>{{ property.name | uppercase }} </small>
+				     <ion-icon name="more" item-end></ion-icon>
+				 	</ion-item>
+				</ion-card> 
+		    </ion-col>
+		  </ion-row>
+		</ion-grid>    
+	</ion-list>	
+  </div>
+
 </div>
-<div center text-center padding>
+<div center text-center >
 	<ion-spinner *ngIf="showSpinner"></ion-spinner><br/>
 	<div *ngIf="spinnerMessage && !showSpinner">
 		<p >{{spinnerMessage}}</p>	

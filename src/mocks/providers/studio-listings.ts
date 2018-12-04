@@ -17,31 +17,18 @@ export class StudioListings {
     let studioListings = [
       {
         "id":"doN4goxf2F",
-        "title":"Deeper",
+        "title":"Let's Hope",
         "created_at":{
           "$date":"2018-11-26T20:10:50.505Z"
         },
         "updated_at":{
           "$date":"2018-11-26T22:09:45.165Z"
         },
-        "artist":"SlimSuit",
+        "artist":"Troy ft Floyd Flava",
+        "album":"Borracho Sample",
         "genre":"hiphop",
-        "file":{"url":"assets/studio-listings/sample-file-1.ogg"},
+        "file":{"url":"assets/studio-listings/sample-file-1.mp3"},
         "art":{"url":"assets/studio-listings/sample-art-1.png"}
-      },
-      {
-        "id":"dgZ4dkhutz",
-        "title":"Custard Juice",
-        "created_at":{
-          "$date":"2018-11-26T23:32:00.569Z"
-        },
-        "updated_at":{
-          "$date":"2018-11-26T23:33:08.512Z"
-        },
-        "artist":"SlimSuit",
-        "genre":"hiphop",
-        "file":{"url":"assets/studio-listings/sample-file-2.ogg"},
-        "art":{"url":"assets/studio-listings/sample-art-2.png"}
       }
     ];
 

@@ -16,7 +16,7 @@ export class MarketListings {
   constructor() {
     let marketListings = [
       {
-        "_id":"Zo0A5HmKUq",
+        "objectId":"0U8HFny54n",
         "gps":["0","0"],
         "name":"Laundry",
         "street_address":"Scheduled Laundry Every Week",
@@ -36,7 +36,7 @@ export class MarketListings {
         "call_to_action":"Create Account",
         "segment":"buy",
       },{
-        "_id":"Zo0A5HmKUq",
+        "objectId":"Zo0A5HmKUq",
         "gps":["0","0"],
         "name":"Consultant",
         "street_address":"Find & Compare Rooms Faster",
@@ -83,6 +83,8 @@ export class MarketListings {
   }
 
   add(marketListing: MarketListing) {
+    console.log("adding market listing",marketListing);
+    this.marketListings = this.marketListings.filter(listing=>listing.objectId !==marketListing.objectId);
     this.marketListings.push(marketListing);
   }
 

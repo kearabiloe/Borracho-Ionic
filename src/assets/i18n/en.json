@@ -4,13 +4,13 @@
 
   "NAME": "Name",
   "EMAIL": "Email",
-  "USERNAME": "Username",
+  "USERNAME": "Cellphone",
   "PASSWORD": "Password",
   "LOGIN": "Log in",
   "SIGNUP": "Register",
 
-  "TAB1_TITLE": "Market",
-  "TAB2_TITLE": "Studio",
+  "TAB1_TITLE": "Marketplace",
+  "TAB2_TITLE": "Entertainment",
   "TAB3_TITLE": "Wallet",
 
   "MAP_TITLE": "Map",
@@ -55,7 +55,7 @@
 
   "LIST_MASTER_TITLE": "Items",
 
-  "PROPERTY_CREATE_TITLE": "New Property",
+  "PROPERTY_CREATE_TITLE": "New Advertisement",
   "PROPERTY_CREATE_CHOOSE_IMAGE": "Add Image",
 
   "PROPERTY_NAME_PLACEHOLDER": "Name",
@@ -66,6 +66,8 @@
   "PROPERTY_SUBURB_PLACEHOLDER": "Suburb",
   "PROPERTY_CONTACT_NO_PLACEHOLDER": "Contact No.",
   "PROPERTY_PERIOD_PLACEHOLDER": "Billing Frequency",
+  "PROPERTY_LISTED_PLACEHOLDER":"Published",
+  "PROPERTY_VERIFIED_PLACEHOLDER":"Verified By Borracho",
 
   "LAUNDRY_CREATE_TITLE": "Request Pick Up",
   "LAUNDRY_CREATE_CHOOSE_IMAGE": "Add Image",
