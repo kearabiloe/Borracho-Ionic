@@ -18,11 +18,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { ParseProvider } from '../providers/parse/parse';
 import { AuthProvider } from '../providers/auth/auth';
 import { GpsProvider } from '../providers/gps/gps';
-import { MarketListings } from '../mocks/providers/market-listings';
 import { StudioListings } from '../mocks/providers/studio-listings';
-import { Settings, User, Api, CordovaAudioPlayerService } from '../providers';
+import { Settings, CordovaAudioPlayerService } from '../providers';
 import { MyApp } from './app.component';
-import { SplashPageModule } from '../pages/splash/splash.module'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -49,7 +47,6 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
-    SplashPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -66,10 +63,7 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   providers: [
-    Api,
-    MarketListings,
     StudioListings,
-    User,
     Camera,
     Push,
     SplashScreen,

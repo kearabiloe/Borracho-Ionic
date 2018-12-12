@@ -6,7 +6,6 @@ import { Config, Nav, Platform, ModalController } from 'ionic-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { FirstRunPage } from '../pages';
 import { ENV } from '../app/app.constant';
-import { SplashPage } from '../pages/splash/splash'
 import { CacheService } from 'ionic-cache';
 
 @Component({
