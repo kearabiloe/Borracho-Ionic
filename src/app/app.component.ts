@@ -7,6 +7,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { FirstRunPage } from '../pages';
 import { ENV } from '../app/app.constant';
 import { SplashPage } from '../pages/splash/splash'
+import { CacheService } from 'ionic-cache';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -47,8 +48,7 @@ export class MyApp {
 
   pages: any[] = [
     { title: 'Home', component: 'TabsPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Log Out', component: 'LogOutPage' },
+    { title: 'Logout', component: 'LogOutPage' },
   ]
 
   env: any = ENV;
@@ -59,7 +59,12 @@ export class MyApp {
     private statusBar: StatusBar,
     private push: Push,
     private splashScreen: SplashScreen, 
+    cache: CacheService,
      modalCtrl: ModalController) {
+      cache.setDefaultTTL(60 * 60 * 12);
+ 
+      // Keep our cached results when device is offline!
+      cache.setOfflineInvalidate(true);       
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

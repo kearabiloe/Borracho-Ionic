@@ -10,7 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { CacheModule } from 'ionic-cache';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -58,7 +58,8 @@ export function provideSettings(storage: Storage) {
       }
     }),
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    CacheModule.forRoot({ keyPrefix: 'borracho-properties-app-cache' }), 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
