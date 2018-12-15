@@ -16,7 +16,7 @@ import { CacheService } from 'ionic-cache';
             <img src="assets/img/appicon.png">
           </ion-avatar>
           <ion-title>
-            <h2 ion-text color="light">Borracho</h2>
+            <h3 ion-text color="light">Hetro Records</h3>
           </ion-title>
         </ion-item>
     </ion-header>
@@ -31,7 +31,8 @@ import { CacheService } from 'ionic-cache';
 
     <ion-footer>
       <ion-toolbar color="primary">
-            <p ion-text color="light">{{ env.production? 'Production':env.parseServerUrl }}</p> 
+            <h4>By Droog Foundation</h4>
+            <small ion-text color="light">{{ env.production? 'Production':env.parseServerUrl }}</small> 
       </ion-toolbar>
     </ion-footer>
 
@@ -46,7 +47,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Home', component: 'TabsPage' },
+    { title: 'Home', component: 'StudioPage' },
     { title: 'Logout', component: 'LogOutPage' },
   ]
 

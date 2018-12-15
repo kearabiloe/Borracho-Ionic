@@ -1,6 +1,6 @@
 {
-  "name": "Borracho Properties",
-  "short_name": "Borracho",
+  "name": "Hetror Records",
+  "short_name": "Hetro",
   "start_url": "index.html",
   "display": "fullscreen",
   "icons": [{
@@ -9,6 +9,6 @@
     "type": "image/png"
   }],
   "background_color": "#04264c",
-  "theme_color": "#04264c",
-  "gcm_sender_id": "134068110418"
+  "theme_color": "#f53d3d",
+  "gcm_sender_id": "342440059123"
 }

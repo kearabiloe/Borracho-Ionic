@@ -60,7 +60,7 @@ export class LogOutPage {
 
     setTimeout(() => {
       loader.dismissAll();
-      this.navCtrl.setRoot('WelcomePage');
+      this.navCtrl.setRoot('StudioPage');
     }, 5000);
  
   }

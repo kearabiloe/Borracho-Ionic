@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "134068110418",
-    "firebase_url": "https://borracho-properties-app.firebaseio.com",
-    "project_id": "borracho-properties-app",
-    "storage_bucket": "borracho-properties-app.appspot.com"
+    "project_number": "342440059123",
+    "firebase_url": "https://hetro-records.firebaseio.com",
+    "project_id": "hetro-records",
+    "storage_bucket": "hetro-records.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:134068110418:android:5e2496c18220f8a0",
+        "mobilesdk_app_id": "1:342440059123:android:22e25983c0cb32d9",
         "android_client_info": {
-          "package_name": "za.borracho.mobile"
+          "package_name": "io.droog.hetro"
         }
       },
       "oauth_client": [
         {
-          "client_id": "134068110418-vphr39rv45fbh7b3pvs1gi308sfng0d2.apps.googleusercontent.com",
+          "client_id": "342440059123-nb7deuvvk8fka82k3aqosk863b1b24cm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAtuw9dfXVj4YX9oc6-57-9hbwYyi0rT7s"
+          "current_key": "AIzaSyBd39xpI1pF2lLZ1NYKdDlDPGga6ieVgrY"
         }
       ],
       "services": {

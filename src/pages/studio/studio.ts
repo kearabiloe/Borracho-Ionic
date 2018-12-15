@@ -38,7 +38,6 @@ export class StudioPage {
     console.log('ionViewDidLoad StudioPage');
     this.listProducts();
     this.studioProducts=this.studioProv.query();
-    console.log(this.studioProducts);
     this.studioSegment="tracks";
     this.initPlaylist();
   }
@@ -50,10 +49,9 @@ export class StudioPage {
     return this.parseProvider.listStudioProducts(offset, limit,genre).then((result) => {
       for (let i = 0; i < result.length; i++) {
         let object = result[i].toJSON();
-        console.log(object);
         this.studioProducts.push(object);
         this.cdvAudioPlayer.addItem(
-          { trackId: object.objectId, assetUrl: object.file.url , albumArt: object.art.url, artist: object.artist, album: object.album, title: object.title }
+          { trackId: object.objectId, assetUrl: object.file.url , albumArt: object.art? object.art.url:'assets/imgs/track-placeholder.png', artist: object.artist, album: object.album, title: object.title }
           );
       }
       this.showSpinner = false;
@@ -68,8 +66,8 @@ export class StudioPage {
 
 
   segmentChanged(ev){
-    this.showSpinner = true;
-    let segment=ev.value;
+    //this.showSpinner = true;
+    //let segment=ev.value;
 
   }
 
@@ -95,18 +93,34 @@ export class StudioPage {
     }, 2000);
   }
 
-initPlaylist(){
-this.cdvAudioPlayer.setOptions({ verbose: true, resetStreamOnPause: true }) 
-     .then(() => { 
-       this.cdvAudioPlayer.setPlaylistItems([  
-         { trackId: '12345', assetUrl: 'assets/studio-listings/sample-file-1.ogg', albumArt: 'assets/studio-listings/sample-art-1.png', artist: 'Awesome', album: 'Test Files', title: 'Test 1' }
-       ])  
-     }).catch((err) => console.log('YourService, cdvAudioPlayer init error: ', err));  
- 
-   this.cdvAudioPlayer.setVolume(0.5);
+  initPlaylist(){
+  this.cdvAudioPlayer.setOptions({ verbose: true, resetStreamOnPause: true }) 
+       .then(() => { 
+         this.cdvAudioPlayer.setPlaylistItems([  
+           { trackId: '12345', assetUrl: 'assets/studio-listings/sample-file-1.mp3', albumArt: 'assets/studio-listings/sample-art-1.png', artist: 'Awesome', album: 'Test Files', title: 'Test 1' }
+         ])  
+       }).catch((err) => console.log('YourService, cdvAudioPlayer init error: ', err));  
+   
+     this.cdvAudioPlayer.setVolume(0.5);
 
-   this.cdvAudioPlayer.onStatus.subscribe((status) => {  
-     console.log('YourService: Got RmxAudioPlayer onStatus: ', status);  
-   });   
-}
+     this.cdvAudioPlayer.onStatus.subscribe((status) => {  
+       console.log('YourService: Got RmxAudioPlayer onStatus: ', status);  
+     });   
+  }
+
+  openProductDetail(product){
+    this.navCtrl.push('ProductsDetailPage', {
+      id: product
+    });
+  }
+
+  openArtist(profile){
+    this.navCtrl.push('ArtistPage', {artist: profile});
+  }  
+
+  playTrack(track){
+    this.currentSong = track;
+    this.cdvAudioPlayer.playTrackById(track.objectId);
+  }
+
 }
