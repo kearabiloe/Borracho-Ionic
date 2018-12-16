@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, ModalController,ActionSheetController } from 'ionic-angular';
 import { ParseProvider } from '../../providers/parse/parse';
 import { StudioListings } from '../../providers';
 import { CordovaAudioPlayerService } from '../../providers';
@@ -28,6 +28,9 @@ export class StudioPage {
   	public navParams: NavParams,
     public loadCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController,
+    public actionSheetCtrl: ActionSheetController,
     private cdvAudioPlayer: CordovaAudioPlayerService,
   	private parseProvider:ParseProvider,
     public studioProv:StudioListings) {
@@ -51,8 +54,15 @@ export class StudioPage {
         let object = result[i].toJSON();
         this.studioProducts.push(object);
         this.cdvAudioPlayer.addItem(
-          { trackId: object.objectId, assetUrl: object.file.url , albumArt: object.art? object.art.url:'assets/imgs/track-placeholder.png', artist: object.artist, album: object.album, title: object.title }
-          );
+          { 
+            trackId: object.objectId, 
+            assetUrl: object.file.url, 
+            albumArt: object.art? object.art.url:'assets/imgs/track-placeholder.png', 
+            artist: object.artist, 
+            album: object.album, 
+            title: object.title,
+            isStream: true
+          });
       }
       this.showSpinner = false;
       this.spinnerMessage =false;      
@@ -94,18 +104,10 @@ export class StudioPage {
   }
 
   initPlaylist(){
-  this.cdvAudioPlayer.setOptions({ verbose: true, resetStreamOnPause: true }) 
-       .then(() => { 
-         this.cdvAudioPlayer.setPlaylistItems([  
-           { trackId: '12345', assetUrl: 'assets/studio-listings/sample-file-1.mp3', albumArt: 'assets/studio-listings/sample-art-1.png', artist: 'Awesome', album: 'Test Files', title: 'Test 1' }
-         ])  
-       }).catch((err) => console.log('YourService, cdvAudioPlayer init error: ', err));  
-   
-     this.cdvAudioPlayer.setVolume(0.5);
+  this.cdvAudioPlayer.setOptions({ verbose: true, resetStreamOnPause: false }) 
+ 
+     this.cdvAudioPlayer.setVolume(1);
 
-     this.cdvAudioPlayer.onStatus.subscribe((status) => {  
-       console.log('YourService: Got RmxAudioPlayer onStatus: ', status);  
-     });   
   }
 
   openProductDetail(product){
@@ -116,11 +118,42 @@ export class StudioPage {
 
   openArtist(profile){
     this.navCtrl.push('ArtistPage', {artist: profile});
+/*    let profileModal = this.modalCtrl.create('LoginPage', {artist: profile});
+       profileModal.present();  */  
   }  
 
   playTrack(track){
-    this.currentSong = track;
     this.cdvAudioPlayer.playTrackById(track.objectId);
+    this.currentSong = this.cdvAudioPlayer.currentTrack;
   }
+
+ presentActionSheet(track) {
+   let actionSheet = this.actionSheetCtrl.create({
+     title: track.title+" By "+track.artist,
+     buttons: [
+       {
+         text: 'Follow ',
+         icon: 'logo-facebook',
+         role: 'destructive',
+         handler: () => {this.openArtist(track)}
+       },
+       {
+         text: 'Play Now',
+         icon: 'play',
+         handler: () => {this.playTrack(track)}
+       },
+       {
+         text: 'Cancel',
+         role: 'cancel',
+         icon: 'close',
+         handler: () => {
+           console.log('Cancel clicked');
+         }
+       }
+     ]
+   });
+
+   actionSheet.present();
+ }  
 
 }

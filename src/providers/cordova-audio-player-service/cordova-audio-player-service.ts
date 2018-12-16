@@ -58,6 +58,10 @@ export class CordovaAudioPlayerService {
     return this.AudioPlayer ? this.AudioPlayer.currentState : 'unknown';
   }
 
+  get currentTrack() {
+    return this.AudioPlayer ? this.AudioPlayer.currentTrack : null;
+  }  
+
   get isInitialized() {
     return !!this.AudioPlayer && this.AudioPlayer.isInitialized;
   }

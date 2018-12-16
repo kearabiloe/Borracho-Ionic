@@ -7,45 +7,29 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>{{ artist.title }}</ion-title>
+    <ion-title>{{ artist.artist }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content >
-	<ion-card  color="primary">
-
-	  <ion-item>
-	    <h2>{{ artist.title }}</h2>
-	    <p>{{ artist.artist }}</p>
-	  </ion-item>
 
 	  <img [src]="artist.art ? artist.art.url : 'assets/imgs/track-placeholder.png'">
-
-	  <ion-card-content>
-	    <p>{{ artist.about }}</p>
-	  </ion-card-content>
-
 	  <ion-row>
 	    <ion-col>
-	      <button ion-button icon-left clear small>
-	        <ion-icon name="thumbs-up"></ion-icon>
-	        <div>12 Likes</div>
+	      <button ion-button icon-left outline small>
+	        <ion-icon name="cloud-download"></ion-icon>
+	        <div>Download</div>
 	      </button>
 	    </ion-col>
 	    <ion-col>
-	      <button ion-button icon-left clear small>
-	        <ion-icon name="text"></ion-icon>
-	        <div>4 Comments</div>
+	      <button ion-button icon-left outline small>
+	        <ion-icon name="logo-facebook"></ion-icon>
+	        <div>Follow</div>
 	      </button>
-	    </ion-col>
-	    <ion-col center text-center>
-	      <ion-note>
-	        11h ago
-	      </ion-note>
 	    </ion-col>
 	  </ion-row>
 
-	</ion-card>
+
 </ion-content>

@@ -27,8 +27,8 @@ export class StudioListings {
         "artist":"Troy ft Floyd Flava",
         "album":"Borracho Sample",
         "genre":"hiphop",
-        "file":{"url":"assets/studio-listings/sample-file-1.mp3"},
-        "art":{"url":"assets/studio-listings/sample-art-1.png"}
+        "file":{"url":"./assets/studio-listings/sample-file-1.mp3"},
+        "art":{"url":"./assets/studio-listings/sample-art-1.png"}
       }
     ];
 

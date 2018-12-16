@@ -29,12 +29,6 @@ import { CacheService } from 'ionic-cache';
       </ion-list>
     </ion-content>
 
-    <ion-footer>
-      <ion-toolbar color="primary">
-            <h4>By Droog Foundation</h4>
-            <small ion-text color="light">{{ env.production? 'Production':env.parseServerUrl }}</small> 
-      </ion-toolbar>
-    </ion-footer>
 
   </ion-menu>
   <ion-nav #content [root]="rootPage"></ion-nav>`
@@ -48,6 +42,8 @@ export class MyApp {
 
   pages: any[] = [
     { title: 'Home', component: 'StudioPage' },
+    { title: 'Publish', component: 'PublishPage' },
+    { title: 'Login', component: 'LoginPage' },
     { title: 'Logout', component: 'LogOutPage' },
   ]
 
