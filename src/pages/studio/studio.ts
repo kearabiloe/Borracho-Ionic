@@ -17,6 +17,7 @@ import { CordovaAudioPlayerService } from '../../providers';
 })
 export class StudioPage {
 	studioProducts:any = [];
+  userProducts:any = [];
   studioSegment = "";
 	showSpinner= true;
 	spinnerMessage: any = "Updating...";
@@ -76,8 +77,21 @@ export class StudioPage {
 
 
   segmentChanged(ev){
-    //this.showSpinner = true;
-    //let segment=ev.value;
+    this.showSpinner = true;
+    let segment=ev.value;
+    if(segment =="published"){
+      this.parseProvider.getUserProducts().then(
+        (result) =>{
+          this.userProducts=[];
+          for (let i = 0; i < result.length; i++) {
+            let object = result[i].toJSON();
+            this.userProducts.push(object);
+          }
+        },
+        (error)=>{
+          console.log(error);
+        })
+    }
 
   }
 
@@ -121,6 +135,11 @@ export class StudioPage {
 /*    let profileModal = this.modalCtrl.create('LoginPage', {artist: profile});
        profileModal.present();  */  
   }  
+
+  openPublishModal(){
+    let profileModal = this.modalCtrl.create('PublishPage');
+       profileModal.present();   
+  }
 
   playTrack(track){
     this.cdvAudioPlayer.playTrackById(track.objectId);

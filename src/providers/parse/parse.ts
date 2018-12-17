@@ -114,6 +114,7 @@ export class ParseProvider {
     });
   }
 
+
   public deleteRentalProperty(property): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -175,6 +176,67 @@ export class ParseProvider {
       }, 500);
     });
   }
+
+
+  public getUserProducts(offset: number = 0, limit: number = 3): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let currentUser = Parse.User.current();
+        console.log(currentUser);
+        const RentalProperty = Parse.Object.extend('StudioProduct');
+        let query = new Parse.Query(RentalProperty);
+        query.skip(offset);
+        query.limit(limit);
+
+        query.equalTo('user',currentUser);
+        query.find().then((Products) => {
+          resolve(Products);
+        }, (error) => {
+          reject(error);
+        });
+      }, 500);
+    });
+  }  
+
+  public addStudioProduct(newProduct): Promise<any> {
+    const StudioProduct = Parse.Object.extend('StudioProduct');
+    
+    let studioProduct = new StudioProduct();
+    let currentUser = Parse.User.current();
+    let point = new Parse.GeoPoint({latitude: newProduct.coordinates.split(',')[0], longitude: newProduct.coordinates.split(',')[1]})
+    
+    studioProduct.set('title', newProduct.title);
+    studioProduct.set('artist', newProduct.artist);
+    studioProduct.set('genre', newProduct.genre);
+    studioProduct.set('link', newProduct.link);
+
+    if(newProduct.art){
+      let file = new Parse.File("cover-art.png", { base64: newProduct.art });
+      file.save();  
+      studioProduct.set('art', file);
+    }    
+    if(newProduct.file){
+      let file = new Parse.File("track.mp3", { base64: newProduct.file });
+      file.save();  
+      studioProduct.set('file', file);
+    }        
+    studioProduct.set('user', currentUser);
+    studioProduct.set('isVerified', newProduct.isVerified);
+    studioProduct.set('isListed', newProduct.isListed);
+    studioProduct.set('gps', point);
+
+    return studioProduct.save(null, {
+      success: function (createdStudioProduct) {
+        console.log(createdStudioProduct);
+        return createdStudioProduct;
+      },
+      error: function (createdStudioProduct, error) {
+        console.log(error);
+        return error;
+      }
+    });
+  }
+
 
   public addRentApplication(newApplication): Promise<any> {
     const RentApplication = Parse.Object.extend('RentApplication');
