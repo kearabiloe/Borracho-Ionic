@@ -11,7 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CacheModule } from 'ionic-cache';
-
+import { Autostart } from '@ionic-native/autostart';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 // Providers
@@ -19,8 +19,7 @@ import { ParseProvider } from '../providers/parse/parse';
 import { AuthProvider } from '../providers/auth/auth';
 import { GpsProvider } from '../providers/gps/gps';
 import { MarketListings } from '../mocks/providers/market-listings';
-import { StudioListings } from '../mocks/providers/studio-listings';
-import { Settings, User, Api, CordovaAudioPlayerService } from '../providers';
+import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { SplashPageModule } from '../pages/splash/splash.module'
 
@@ -59,7 +58,7 @@ export function provideSettings(storage: Storage) {
     }),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    CacheModule.forRoot({ keyPrefix: 'borracho-properties-app-cache' }), 
+    CacheModule.forRoot({ keyPrefix: 'borracho-properties-app-cache' }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,7 +67,6 @@ export function provideSettings(storage: Storage) {
   providers: [
     Api,
     MarketListings,
-    StudioListings,
     User,
     Camera,
     Push,
@@ -76,10 +74,10 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     ParseProvider,
     AuthProvider,
-    CordovaAudioPlayerService,
     SocialSharing,
     Geolocation,
     GpsProvider,
+    Autostart,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },

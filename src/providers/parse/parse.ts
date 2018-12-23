@@ -43,7 +43,6 @@ export class ParseProvider {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let currentUser = Parse.User.current();
-        console.log(currentUser);
         const RentalProperty = Parse.Object.extend('MarketListing');
         //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(RentalProperty);
@@ -59,7 +58,7 @@ export class ParseProvider {
         });
       }, 500);
     });
-  }  
+  }
 
   public getRentalProperty(propertyId: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -77,11 +76,11 @@ export class ParseProvider {
 
   public addRentalProperty(newProperty): Promise<any> {
     const RentalProperty = Parse.Object.extend('MarketListing');
-    
+
     let rentalProperty = new RentalProperty();
     let currentUser = Parse.User.current();
     let point = new Parse.GeoPoint({latitude: newProperty.coordinates.split(',')[0], longitude: newProperty.coordinates.split(',')[1]})
-    
+
     rentalProperty.set('name', newProperty.name);
     rentalProperty.set('street_address', newProperty.street_address);
     rentalProperty.set('suburb', newProperty.suburb);
@@ -92,9 +91,9 @@ export class ParseProvider {
     rentalProperty.set('manager', newProperty.manager);
     if(newProperty.propertyPic){
       let file = new Parse.File("myfile.png", { base64: newProperty.propertyPic });
-      file.save();  
+      file.save();
       rentalProperty.set('propertyPic', file);
-    }    
+    }
     rentalProperty.set('user', currentUser);
     rentalProperty.set('isVerified', newProperty.isVerified);
     rentalProperty.set('isListed', newProperty.isListed);
@@ -104,7 +103,6 @@ export class ParseProvider {
 
     return rentalProperty.save(null, {
       success: function (rentalProperty) {
-        console.log(rentalProperty);
         return rentalProperty;
       },
       error: function (rentalProperty, error) {
@@ -119,7 +117,6 @@ export class ParseProvider {
       setTimeout(() => {
         const RentalProperty = Parse.Object.extend('MarketListing');
         let query = new Parse.Query(RentalProperty);
-        console.log(property);
         query.get(property.objectId).then((Property) => {
           Property.destroy().then((property) =>{
             resolve(property);
@@ -137,7 +134,6 @@ export class ParseProvider {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let currentUser = Parse.User.current();
-        console.log(currentUser);
         const LaundryOrder = Parse.Object.extend('LaundryOrder');
         //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(LaundryOrder);
@@ -151,13 +147,12 @@ export class ParseProvider {
         });
       }, 500);
     });
-  }    
+  }
 
   public listStudioProducts(offset: number = 0, limit: number = 3, genre: string=''): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let currentUser = Parse.User.current();
-        console.log(currentUser);
         const StudioProduct = Parse.Object.extend('StudioProduct');
         //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(StudioProduct);
@@ -180,12 +175,10 @@ export class ParseProvider {
     const RentApplication = Parse.Object.extend('RentApplication');
     const Property = Parse.Object.extend("MarketListing");
     let rentProperty = new Property();
-    console.log(newApplication);
     rentProperty.id = newApplication.property.objectId;
     let rentApplication = new RentApplication();
     let currentUser = Parse.User.current();
     let point = new Parse.GeoPoint({latitude: newApplication.latitude, longitude: newApplication.longitude});
-    console.log(point);
     rentApplication.set('name', newApplication.name);
     rentApplication.set('contact_no', newApplication.contact_no);
     rentApplication.set('onWhatsapp', newApplication.onWhatsapp);
@@ -195,7 +188,6 @@ export class ParseProvider {
 
     return rentApplication.save(null, {
       success: function (rentApplication) {
-        console.log(rentApplication);
         return rentApplication;
       },
       error: function (rentApplication, error) {
@@ -203,12 +195,11 @@ export class ParseProvider {
         return error;
       }
     });
-  }   
+  }
 
   public getMarketPartners(offset: number = 0, limit: number = 3): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log("Fetching MarketPartners");
         const MarketPartners = Parse.Object.extend('MarketPartner');
         //const RentalProperty = currentUser.relation('MarketListing');
         let query = new Parse.Query(MarketPartners);
@@ -220,7 +211,7 @@ export class ParseProvider {
         });
       }, 500);
     });
-  }     
+  }
 
   private parseInitialize() {
     Parse.initialize(this.parseAppId);

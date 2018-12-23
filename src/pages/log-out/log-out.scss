@@ -6,7 +6,7 @@ page-log-out {
             height: 100%;
             z-index: 1;
             background-repeat: repeat-x;
-            animation: animatedBackground 40s linear infinite;
+            animation: animatedBackground 10s linear infinite;
           }
 
           @keyframes animatedBackground {

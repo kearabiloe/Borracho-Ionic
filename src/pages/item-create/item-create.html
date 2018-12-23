@@ -26,18 +26,18 @@
     </ion-segment-button>
     <ion-segment-button value="location"  >
       Location
-    </ion-segment-button>   
+    </ion-segment-button>
     <ion-segment-button value="settings">
       Setting
     </ion-segment-button>
-  </ion-segment>  
-</ion-item-divider>   
+  </ion-segment>
+</ion-item-divider>
 </ion-header>
 
 
 <ion-content>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="done()">
-  <ion-list  *ngIf="formSegment=='basic'" >    
+  <ion-list  *ngIf="formSegment=='basic'" >
     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
     <div class="profile-image-wrapper" (click)="getPicture($event)">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.propertyPic.value">
@@ -54,7 +54,7 @@
           <ion-option value="Buy" selected>Buy</ion-option>
           <ion-option value="Rent">Rent</ion-option>
         </ion-select>
-      </ion-item>      
+      </ion-item>
       <ion-item>
         <ion-label color="primary" inline>{{ 'PROPERTY_NAME_PLACEHOLDER' | translate }}</ion-label>
         <ion-input type="text" placeholder="{{ 'PROPERTY_NAME_PLACEHOLDER' | translate }}" formControlName="name"></ion-input>
@@ -62,7 +62,7 @@
       <ion-item>
         <ion-label color="primary" inline>Description</ion-label>
         <ion-textarea height="4"  placeholder="Description" formControlName="description"></ion-textarea>
-      </ion-item>      
+      </ion-item>
        <ion-item>
         <ion-label color="primary" inline>{{ 'PROPERTY_PRICE_PLACEHOLDER' | translate }}</ion-label>
         <ion-input type="number" placeholder="{{ 'PROPERTY_PRICE_PLACEHOLDER' | translate }}" formControlName="price"></ion-input>
@@ -85,9 +85,9 @@
           Continue
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-      </ion-item>       
+      </ion-item>
   </ion-list>
-  <ion-list  *ngIf="formSegment=='location'" >        
+  <ion-list  *ngIf="formSegment=='location'" >
       <ion-item>
         <ion-label color="primary" inline>{{ 'PROPERTY_STREET_ADDRESS_PLACEHOLDER' | translate }}</ion-label>
         <ion-textarea type="text" placeholder="{{ 'PROPERTY_STREET_ADDRESS_PLACEHOLDER' | translate }}" formControlName="street_address"></ion-textarea>
@@ -95,46 +95,46 @@
       <ion-item>
         <ion-label color="primary" inline>{{ 'PROPERTY_SUBURB_PLACEHOLDER' | translate }}</ion-label>
         <ion-input type="text" placeholder="{{ 'PROPERTY_SUBURB_PLACEHOLDER' | translate }}" formControlName="suburb"></ion-input>
-      </ion-item>  
+      </ion-item>
       <ion-item>
         <ion-label color="primary" inline>GPS Coordinates</ion-label>
         <ion-input type="text" placeholder="0,0" formControlName="coordinates"></ion-input>
-      </ion-item>      
+      </ion-item>
       <ion-item>
         <ion-label color="primary" inline>{{ 'PROPERTY_CONTACT_NO_PLACEHOLDER' | translate }}</ion-label>
         <ion-input type="tel" placeholder="{{ 'PROPERTY_CONTACT_NO_PLACEHOLDER' | translate }}" formControlName="contact_no"></ion-input>
-      </ion-item>   
+      </ion-item>
         <ion-item>
           <ion-label color="primary" inline >Contact Person</ion-label>
           <ion-input  type="text" placeholder="Contact Person" formControlName="manager"></ion-input>
-        </ion-item>            
+        </ion-item>
       <ion-item>
         <button ion-button block icon-right color="secondary" (click)="formSegment='settings'">
           Continue
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-      </ion-item>          
+      </ion-item>
   </ion-list>
-  <ion-list  *ngIf="formSegment=='settings'" >   
+  <ion-list  *ngIf="formSegment=='settings'" >
         <ion-item>
           <ion-label color="primary" inline>Link</ion-label>
           <ion-input type="url" placeholder="https://facebook.com/" formControlName="link"></ion-input>
-        </ion-item>    
+        </ion-item>
         <ion-item>
           <ion-label color="primary" inline>{{ 'PROPERTY_LISTED_PLACEHOLDER' | translate }}</ion-label>
           <ion-toggle  formControlName="isListed"></ion-toggle>
-        </ion-item>  
-        <ion-item>
+        </ion-item>
+        <ion-item *ngIf="user && user.isAgent">
           <ion-label color="primary" inline>{{ 'PROPERTY_VERIFIED_PLACEHOLDER' | translate }}</ion-label>
-          <ion-toggle [disabled]="!user.isAgent" formControlName="isVerified"></ion-toggle>
-        </ion-item>    
-   
+          <ion-toggle formControlName="isVerified"></ion-toggle>
+        </ion-item>
+
       <ion-item>
         <button ion-button block icon-right color="primary" (click)="done()">
           Publish Advertisement
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-      </ion-item>                   
+      </ion-item>
     </ion-list>
   </form>
 </ion-content>

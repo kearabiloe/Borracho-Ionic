@@ -20,14 +20,14 @@ import { MarketListings } from '../../providers';
 })
 export class RentalsPage {
 	listedRentals: any={"appartments":{},"houses":{}};
-	marketSegment: any="buy";
+	marketSegment: any="rent";
   newProperty = { name: null, price: null, address: null };
   rentalProperties = [];
   userProperties = [];
   searchResults = [];
   searchbarVisible = false;
   featuredListings = [];
-  tapCounter = 0;  
+  tapCounter = 0;
   agentMode = false;
   showSpinner= true;
   spinnerMessage: any = "Loading...";
@@ -49,8 +49,10 @@ export class RentalsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RentalsPage');
-    this.tapCounter =0; 
+    this.tapCounter =0;
     this.listProperties();
+    this.listUserProperties();
+    this.user=this.authProv.currentUser();
   }
 
   ionViewCanEnter(): boolean {
@@ -58,7 +60,7 @@ export class RentalsPage {
   }
   ionViewWillEnter() {
     this.searchResults=this.marketListings.query({'segment':this.marketSegment});
-    this.user=this.authProv.currentUser();
+
   }
   tapHome(tap){
     //Secret Door: Activates Agents Mode.
@@ -70,8 +72,8 @@ export class RentalsPage {
           title: 'Toggle Agent Mode',
           subTitle: 'Agent Mode Deactivated',
           buttons: ['OK']
-        });  
-        alert.present();    
+        });
+        alert.present();
 
       }else{
         //Activate Agent Mode
@@ -80,13 +82,13 @@ export class RentalsPage {
           title: 'Toggle Agent Mode',
           subTitle: 'Agent Mode Activated',
           buttons: ['OK']
-        });  
-        alert.present();    
+        });
+        alert.present();
 
       }
-      this.tapCounter =0; 
+      this.tapCounter =0;
       this.settings.setValue('AgentMode',this.agentMode);
-    
+
     }else{
       this.tapCounter++
     }
@@ -99,12 +101,11 @@ export class RentalsPage {
     return this.parseProvider.getRentalProperties(offset, limit).then((result) => {
       for (let i = 0; i < result.length; i++) {
         let object = result[i];
-        console.log(object);
         //this.rentalProperties.push(object.toJSON());
         this.marketListings.add(object.toJSON());
       }
       this.showSpinner = false;
-      this.spinnerMessage =false;      
+      this.spinnerMessage =false;
     }, (error) => {
       this.rentalProperties = this.marketListings.query({'segment':this.marketSegment});
       this.showSpinner = false;
@@ -140,13 +141,13 @@ export class RentalsPage {
     }else{
       this.searchbarVisible =  true;
     }
-    
+
   }
 
   openProperty(rental){
     console.log(rental);
     this.navCtrl.push('RentalDetailPage', {property: rental})
-  }  
+  }
 
 
   presentSettings(myEvent) {
@@ -154,7 +155,7 @@ export class RentalsPage {
     popover.present({
       ev: myEvent
     });
-  }  
+  }
 
   addProperty() {
     let addModal = this.modalCtrl.create('ItemCreatePage');
@@ -163,7 +164,7 @@ export class RentalsPage {
       let loader = this.loadCtrl.create({
         content: 'Creating Property...'
       });
-      loader.present();  
+      loader.present();
       this.marketListings.add(item);
         this.parseProvider.addRentalProperty(item).then((resp)=>{
           loader.dismissAll();
@@ -171,9 +172,9 @@ export class RentalsPage {
             message: "Your new property was successfuly created.",
             duration: 3000,
             position: 'top'
-          });      
-          
-          toast.present();          
+          });
+
+          toast.present();
           this.doRefresh()}).catch(err =>{
             console.error(err);
             loader.dismissAll();
@@ -181,8 +182,8 @@ export class RentalsPage {
               title: 'Property Not Created',
               subTitle: err.message,
               buttons: ['OK']
-            });  
-            alert.present();              
+            });
+            alert.present();
           })
       }
     })
@@ -196,17 +197,17 @@ export class RentalsPage {
         message: "Your property was successfuly deleted.",
         duration: 3000,
         position: 'top'
-      });      
-      
-      toast.present();          
+      });
+
+      toast.present();
       this.doRefresh()}).catch(err =>{
         console.error(err);
         let alert = this.alertCtrl.create({
           title: 'Property Not Deleted',
           subTitle: err.message,
           buttons: ['OK']
-        });  
-        alert.present();              
+        });
+        alert.present();
       })
   }
 
@@ -237,9 +238,9 @@ export class RentalsPage {
     if (val && val.trim() != '') {
       this.searchResults = this.rentalProperties.filter((item) => {
         if(item.segment == this.marketSegment){
-          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);  
+          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
         }
-        
+
       })
     }
   }
@@ -247,15 +248,13 @@ export class RentalsPage {
   segmentChanged(ev: any){
     // Reset marketPartners back to all of the marketPartners
     //this.listProperties();
-    console.log(this.rentalProperties);
-    
+
 
     // set val to the value of the searchbar
     let val = ev.value.toString();
     console.log(val);
     if(val =="managed"){
-      this.userProperties =[];
-      this.listUserProperties();
+      //this.listUserProperties();
       return this.searchResults=this.userProperties;
     }
     this.rentalProperties = this.marketListings.query({'segment':this.marketSegment});
@@ -264,6 +263,6 @@ export class RentalsPage {
       this.searchResults = this.rentalProperties.filter((item) => {
         return (item.segment.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
-    }    
+    }
   }
 }

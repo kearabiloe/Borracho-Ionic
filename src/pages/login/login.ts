@@ -15,8 +15,8 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   account: { username: string, password: string } = {
-    username: '08123456789',
-    password: 'test'
+    username: '',
+    password: ''
   };
 
   // Our translated text strings
@@ -53,8 +53,8 @@ export class LoginPage {
         message: this.loginSuccessString,
         duration: 3000,
         position: 'top'
-      });      
-      
+      });
+
       toast.present();
       this.navCtrl.setRoot(MainPage);
     }, (error) => {
@@ -69,8 +69,8 @@ export class LoginPage {
           message: this.loginErrorString,
           duration: 3000,
           position: 'top'
-        }); 
-      
+        });
+
       alert.present();
       toast.present();
     })

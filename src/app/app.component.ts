@@ -6,8 +6,8 @@ import { Config, Nav, Platform, ModalController } from 'ionic-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { FirstRunPage } from '../pages';
 import { ENV } from '../app/app.constant';
-import { SplashPage } from '../pages/splash/splash'
 import { CacheService } from 'ionic-cache';
+import { Autostart } from '@ionic-native/autostart';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -32,7 +32,7 @@ import { CacheService } from 'ionic-cache';
 
     <ion-footer>
       <ion-toolbar color="primary">
-            <p ion-text color="light">{{ env.production? 'Production':env.parseServerUrl }}</p> 
+            <p ion-text color="light">{{ env.production? 'Production':env.parseServerUrl }}</p>
       </ion-toolbar>
     </ion-footer>
 
@@ -47,8 +47,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Home', component: 'TabsPage' },
+    { title: 'Home', component: 'RentalsPage' },
     { title: 'Logout', component: 'LogOutPage' },
+    { title: 'Tutorial', component: 'TutorialPage' },
   ]
 
   env: any = ENV;
@@ -58,13 +59,14 @@ export class MyApp {
     private config: Config,
     private statusBar: StatusBar,
     private push: Push,
-    private splashScreen: SplashScreen, 
+    private splashScreen: SplashScreen,
+    private autostart: Autostart,
     cache: CacheService,
      modalCtrl: ModalController) {
       cache.setDefaultTTL(60 * 60 * 12);
- 
+
       // Keep our cached results when device is offline!
-      cache.setOfflineInvalidate(true);       
+      cache.setOfflineInvalidate(true);
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -72,9 +74,11 @@ export class MyApp {
           this.splashScreen.hide();
           //let splash = modalCtrl.create(SplashPage);
           //    splash.present();
-          this.initPush()
+          this.initPush();
+          this.autostart.enable();
     });
     this.initTranslate();
+
   }
 
 
@@ -109,20 +113,6 @@ export class MyApp {
 
       });
 
-    // Create a channel (Android O and above). You'll need to provide the id, description and importance properties.
-    this.push.createChannel({
-     id: "testchannel1",
-     description: "My first test channel",
-     // The importance property goes from 1 = Lowest, 2 = Low, 3 = Normal, 4 = High and 5 = Highest.
-     importance: 3
-    }).then(() => console.log('Channel created'));
-
-    // Delete a channel (Android O and above)
-    this.push.deleteChannel('testchannel1').then(() => console.log('Channel deleted'));
-
-    // Return a list of currently configured channels
-    this.push.listChannels().then((channels) => console.log('List of channels', channels))
-
     // to initialize push notifications
 
     const options: PushOptions = {
@@ -140,7 +130,7 @@ export class MyApp {
     pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
 
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-     
+
   }
 
   openPage(page) {
@@ -149,5 +139,3 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 }
-
-

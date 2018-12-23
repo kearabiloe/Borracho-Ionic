@@ -17,13 +17,13 @@
     <button ion-button  item-end icon-left (click)="presentContactUs(rentalProperty)" color="secondary">
       <ion-icon name="phone-portrait"></ion-icon>
       {{ rentalProperty.call_to_action ? rentalProperty.call_to_action :'Contact'}}
-    </button>  
+    </button>
   </ion-item-divider>
   <ion-item color="">
     <h2>{{rentalProperty.suburb}}</h2>
     <h3>{{rentalProperty.street_address}}</h3>
-    <p>{{rentalProperty.description}}</p>
-  </ion-item>  
+    <p class="rental-description">{{rentalProperty.description}}</p>
+  </ion-item>
 
 </ion-list>
 </ion-content>

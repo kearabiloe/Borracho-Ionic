@@ -1,11 +1,14 @@
 page-rental-detail {
   .item-profile {
     width: 100%;
-    height:250px;
+    height:70%;
     background-position: center center;
     background-size: cover;
   }
 
-
-
+  .rental-description {
+    overflow: inherit ;
+    text-overflow: inherit ;
+    white-space: pre;    
+  }
 }

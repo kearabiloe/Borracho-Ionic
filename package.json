@@ -21,6 +21,7 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/autostart": "^4.18.0",
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "~4.15.0",
     "@ionic-native/geolocation": "^4.16.0",
@@ -33,6 +34,7 @@
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "cordova-android": "7.1.4",
+    "cordova-plugin-autostart": "2.3.0",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^2.2.5",
@@ -80,8 +82,11 @@
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       },
-      "cordova-plugin-playlist": {}
+      "cordova-plugin-playlist": {},
+      "cordova-plugin-autostart": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }
